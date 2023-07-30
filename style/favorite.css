@@ -1,0 +1,134 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit&display=swap");
+
+:root {
+  --primary-color: #007430;
+  --text-color: #313131;
+  --black-color: #000;
+  --white-color: #fff;
+  --bg-shadow: #8f8f8f;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body,
+html {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+}
+
+.user-container {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  gap: 10px;
+}
+
+.dashboard-content {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+  margin-bottom: 15px;
+  font-size: 2vh;
+  padding: 15px;
+  /* border-bottom: 1px solid #797878; */
+  background-color: #f8f8f8;
+  box-shadow: 1px 1px 4px #bebebe;
+  border-radius: 5px;
+}
+
+.admin-box .dashboard {
+  background-color: #008537;
+  border-radius: 5px;
+}
+div.down-side {
+  display: flex;
+  width: 100%;
+  gap: 15px;
+}
+div.new-stocklist {
+  padding: 20px;
+  background-color: #f8f8f8;
+  box-shadow: 1px 1px 4px #bebebe;
+  width: 70%;
+  border-radius: 5px;
+}
+
+table td,
+table th {
+  border-bottom: 1px solid #c2c2c2 !important;
+  padding: 4px;
+}
+.new-item {
+  /* border-bottom: 1px solid #c3c3c3; */
+  padding-bottom: 5px;
+  font-size: medium !important;
+}
+
+.favorite-container {
+    width: 100% !important;
+    height: 100vh !important;
+    overflow: scroll !important;
+    scroll-behavior: smooth;
+  }
+  .favorite::-webkit-scrollbar {
+    width: 7px;
+  }
+  .favorite::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+  }
+
+.mp-card {
+    display: flex;
+    flex-direction: column;
+    width: 180px;
+    height: 260px;
+    margin: 15px 10px;
+    background: #f8f8f8;
+    cursor: pointer;
+    /* border: 1px solid #c2c2c2; */
+    box-shadow: 0px 0px 3px #b3b3b3;
+    border-radius: 5px;
+    padding: 8px;
+    gap: 5px;
+    overflow: hidden;
+  }
+  
+  .mp-list {
+    width: 80%;
+    margin-inline: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .mp-list .img-list {
+    width: 100%;
+    height: 140px;
+  }
+  
+  .mp-list .details {
+    width: 100%;
+    height: 90px;
+    color: #313131;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important ;
+    border-top: 1px solid #c3c3c3;
+    /* padding-left: 5px; */
+  }
+  
+  .mp-list .details .product-name {
+    font-weight: 900;
+  }
+  .favorite-btn {
+    background-color: #f03131;
+    width: 100%;
+    color: #fff;
+    padding: 7px;
+    border-radius: 4px;
+    text-align: center;
+  }

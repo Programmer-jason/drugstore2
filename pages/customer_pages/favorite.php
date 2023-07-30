@@ -20,10 +20,6 @@ if (isset($_SESSION["user"])) {
     $userProfile = $row7['userProfile'];
 }
 
-$getFavorite = "SELECT * FROM `user_favorite`";
-$getFavoriteResult = mysqli_query($conn, $getFavorite);
-$fetchFavorite = mysqli_fetch_assoc($getFavoriteResult);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +34,7 @@ $fetchFavorite = mysqli_fetch_assoc($getFavoriteResult);
     <link rel="shortcut icon" href="../../images/sample logo.png" type="image/x-icon" />
     <link rel="stylesheet" href="../../style/navbar.css" />
     <link rel="stylesheet" href="../../style/sidenav.css" />
-    <link rel="stylesheet" href="../../style/profile.css" />
+    <link rel="stylesheet" href="../../style/favorite.css" />
     <script src="../js/jsChart.js"></script>
 </head>
 
@@ -60,7 +56,7 @@ $fetchFavorite = mysqli_fetch_assoc($getFavoriteResult);
 
         <a href="./favorite.php" class="box edit-profile">
             <div><i id ='heart' class='fa-solid fa-heart fa-xl' style='color: #ffffff;' id ='heart'></i></div>
-            <div>Favorite</div>
+            <div>My Likes</div>
         </a>
 
         <a href="./edit_profile.php" class="box edit-profile">
@@ -76,22 +72,63 @@ $fetchFavorite = mysqli_fetch_assoc($getFavoriteResult);
 
 
     <div class="content-container">
-        <nav>
-            <div class="head-title">Favorite</div>
+      <nav>
+        <div class="head-title">My Likes</div>
 
-            <ul>
-                <li><a href="./profile.php"><?php echo $_SESSION['firstname']; ?><img src='../../profile/<?php echo $userProfile; ?>' alt='User Profile' class='user-profile' /> </a></li>
-            </ul>
-        </nav>
+        <ul>
+          <li><a href="./profile.php"><?php echo $_SESSION['firstname']; ?><img src='../../profile/<?php echo $userProfile; ?>' alt='User Profile' class='user-profile' /> </a></li>
+        </ul>
+      </nav>
+        
 
-        <div class="user-container">
+      <div class="mp-list">
+        <?php
+        $getFavorite = "SELECT * FROM user_favorite";
+        $favoriteResult = mysqli_query($conn, $getFavorite);
+    
+        if (mysqli_num_rows($favoriteResult) > 0) {
+          while ($fetchFavorite = mysqli_fetch_assoc($favoriteResult)) {
+            $favId = $fetchFavorite['product_id'];
+
+            $sql = "SELECT * FROM product WHERE productId = $favId";
+            $result = mysqli_query($conn, $sql);
+            
+
+            if($result){ 
+                $rows = mysqli_fetch_assoc($result);
+        ?>
+        <div class="mp-card" >
+            <img src="<?php echo '../../uploads/' . $rows['productImg']; ?>" alt='<?php ?>' class="img-list">
+
+            <div class="details">
+              <div class="product-name">
+                <?php echo $rows['productName']; ?>
+              </div>
+
+              <h2>
+                <?php echo '₱'.' '.$rows['productPrice']; ?>
+              </h2>
+
+              <!-- <div>
+                <?php echo $rows['productQty'] == 0 ? 'Not Available' : 'Available' ?>
+              </div> -->
+
+            </div>
+
+            <a href="../validation/deleteFavorite.php?favId=<?php echo $rows['productId']; ?>" class='favorite-btn'><i class="fa-solid fa-trash" style="color: #ffffff;"></i></a>
         </div>
+
+        <?php }} ?>
+        <?php } ?>
+
+        <?php if (mysqli_num_rows($favoriteResult) == 0) {
+        echo "<h2>No Likes To Show</h2>";
+        } ?>
+
+      </div>
     </div>
-
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="../js/jsAnimation.js"></script>
-    
 </body>
 
 </html>

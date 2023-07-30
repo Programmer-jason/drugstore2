@@ -56,7 +56,7 @@ if (isset($_SESSION["user"])) {
 
         <a href="./favorite.php" class="box edit-profile">
             <div><i id ='heart' class='fa-solid fa-heart fa-xl' style='color: #ffffff;' id ='heart'></i></div>
-            <div>Favorite</div>
+            <div>My Likes</div>
         </a>
 
         <a href="./edit_profile.php" class="box edit-profile">
