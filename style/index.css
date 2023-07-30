@@ -1,0 +1,84 @@
+:root {
+  --primary-color: #007430;
+  --black-color: #000;
+  --white-color: #f0f0f0;
+  --bg-shadow: 1px 1px 4px #6d6d6d;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container nav {
+  box-shadow: none;
+  border: none;
+}
+
+.container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+  /* background-image: url(../images/green_geometric.jpg);
+  background-position: 100% 100%;
+  background-size: contain;
+  background-repeat: no-repeat; */
+  background-color: transparent;
+}
+
+div.clip {
+  position: absolute;
+  z-index: -1;
+  background-color: #15a3502c;
+  clip-path: circle(50% at 6% 50%);
+  width: 100%;
+  height: 100vh;
+}
+.intro {
+  display: flex;
+  align-items: center;
+  height: 90vh;
+  width: 100%;
+}
+.intro > .introduction {
+  flex: 1;
+  text-align: center;
+}
+
+.intro .introduction > .title {
+  color: var(--primary-color);
+  text-shadow: 0.6px 0.6px 2px rgb(0, 0, 0);
+  font-size: min(12vh, 40px);
+}
+.intro .introduction > .intro-paragraph {
+  color: #313131;
+  margin-bottom: 20px;
+}
+
+.intro .introduction > a {
+  background-color: var(--primary-color);
+  text-align: center;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 1px 1px 4px #707070;
+  color: var(--white-color);
+  /* font-weight: bold; */
+  font-size: 1.8vh;
+  position: relative;
+  transition: 0.3s ease-in-out;
+}
+
+.intro a:hover {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+}
+
+.intro .img-intro {
+  flex: 1;
+}
+
+.intro .img-intro img {
+  width: 700px;
+}

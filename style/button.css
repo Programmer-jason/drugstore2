@@ -1,0 +1,47 @@
+.btn-primary {
+  width: 60px !important;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  color: #fff;
+  margin-right: 3px;
+  padding: 7px !important;
+  display: inline-block;
+  border-radius: 3px;
+  cursor: pointer;
+  background: #0965dd;
+  text-align: center;
+  box-shadow: 1px 1px 4px #c3c3c3;
+
+}
+
+.btn-danger {
+  width: 60px !important;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  color: #fff;
+  padding: 7px !important;
+  display: inline-block;
+  border-radius: 3px;
+  cursor: pointer;
+  background: #f03131;
+  text-align: center;
+  box-shadow: 1px 1px 4px #c3c3c3;
+
+}
+.btn-success {
+  width: 60px !important;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  color: #fff;
+  padding: 7px !important;
+  display: inline-block;
+  border-radius: 3px;
+  cursor: pointer;
+  background: #00ad48;
+  text-align: center;
+  box-shadow: 1px 1px 4px #c3c3c3;
+
+}

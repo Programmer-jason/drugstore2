@@ -1,0 +1,131 @@
+:root {
+  --primary-color: #007430;
+  --black-color: #000;
+  --white-color: #fff;
+  --bg-shadow: 1px 1px 4px #6d6d6d;
+}
+
+.main-page {
+  background: url("../images/background.jpg") no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+}
+.gradient-btn {
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+  color: #fff;
+  background-image: linear-gradient(
+    to right,
+    #4162cf 0%,
+    #0072ff 51%,
+    #4162cf 100%
+  );
+  border-radius: 10px;
+  background-size: 200% auto;
+  transition: 0.3s ease-in-out;
+}
+
+.gradient-btn:hover {
+  background-position: right center;
+}
+
+.gradient-btn {
+  width: 175px;
+  height: 40px;
+  font-size: 0.8rem;
+}
+.about {
+  padding: 1rem;
+  text-align: center;
+}
+
+.about > h1 {
+  font-size: 3rem;
+  margin: 1rem 0;
+}
+
+.about-sub {
+  display: flex;
+  max-width: 800px;
+  margin: 1rem auto;
+  text-align: left;
+}
+
+.about-sub > img {
+  /* margin-top: 40px; */
+  max-height: 250px;
+  width: 300px;
+  max-width: 90%;
+  animation: animateimage 1s linear;
+}
+
+@keyframes animateimage {
+  from {
+    transform: translateY(-15px);
+    opacity: 0.5;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.about-sub .sub-sub-about {
+  padding: 1rem;
+  animation: animatetext 0.5s linear;
+}
+
+@keyframes animatetext {
+  from {
+    transform: translateY(15px);
+    opacity: 0.5;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.about-sub .sub-sub-about p {
+  font-size: 14px;
+}
+
+.about-sub .gradient-btn {
+  width: 100px;
+  margin-top: 5px;
+  height: 30px;
+  font-size: 12px;
+  text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+  .about-sub {
+    flex-direction: column;
+  }
+
+  .about-sub:nth-child(3) {
+    flex-direction: column-reverse;
+  }
+}
+#search {
+  outline: none;
+  box-shadow: 0.4px 0.4px 3px var(--black-color);
+  width: 250px;
+  border-radius: 3px;
+  border: none;
+  position: relative;
+  padding: 6px;
+}
+#submit {
+  position: relative;
+  left: -77px;
+  font-size: 1.9vh;
+  width: 70px;
+  border: none;
+  padding: 2px;
+  background-color: var(--primary-color);
+  border-radius: 3px;
+  /* box-shadow: 0.4px 0.4px 3px  var(--black-color); */
+  color: #fff;
+}

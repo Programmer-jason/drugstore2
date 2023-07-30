@@ -1,0 +1,103 @@
+@import url("./button.css");
+
+:root {
+  --primary-color: #007430;
+  --text-color: #474747;
+  --black-color: #000;
+  --white-color: #fff;
+  --bg-shadow: 1px 1px 6px #6d6d6d;
+}
+
+* {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body,
+html {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+}
+.admin-box .manage-account2 {
+  background-color: #008537;
+  border-radius: 5px;
+}
+
+.manage-account-content2 {
+  padding: 10px 40px;
+  width: 100%;
+  height: 100vh;
+}
+/* UPDATE */
+.manage-account-content2 .modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color);
+  padding: 15px;
+  width: 100%;
+  height: 100vh;
+  border: 1px solid #c2c2c2;
+  margin-bottom: 20px;
+  background: #5e5d5d49;
+}
+.manage-account-content2 .modal form {
+  display: none;
+  color: var(--text-color);
+  padding: 15px;
+  border-radius: 5px;
+  width: 25%;
+  height: 530px;
+  box-shadow: 0.3px 0.3px 4px #505050;
+  margin-bottom: 20px;
+  background: #f8f8f8;
+  box-shadow: 1px 1px 4px #c3c3c3 !important;
+}
+input[type="text"],
+[type="number"],
+[type="date"],
+[type="password"] {
+  color: var(--text-color);
+  padding-left: 7px;
+  width: 100%;
+  height: 30px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 2px #313131;
+}
+.btn-success {
+  margin-top: 10px;
+  margin-left: 75px;
+  border-radius: 5px;
+}
+
+
+.head-title {
+  padding: 5px;
+  /* border-bottom: 1px solid #ddd;
+  margin-bottom: 20px; */
+}
+.add-sales {
+  width: 100%;
+  padding: 7px;
+  border-bottom: 1px solid #9c9c9c;
+  margin-bottom: 10px;
+}
+.btn-success{
+  width: 80px !important;
+  margin-left: 0;
+}
+
+.add-sales > button > a{
+  color: #fff;
+  text-decoration: none;
+}

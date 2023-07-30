@@ -1,0 +1,148 @@
+:root {
+  --primary-color: #007430;
+  --black-color: #000;
+  --white-color: #fff;
+  --bg-shadow: 1px 1px 4px #6d6d6d;
+}
+
+.contact-main {
+  background: url("../images/cover.jpg");
+  background-size: cover;
+  color: white;
+  min-height: 100vh;
+}
+
+.contact-main-text {
+  color: black;
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  padding: 1rem;
+  padding-right: 10rem;
+  min-width: 75%;
+}
+
+.contact-main-text h1 {
+  font-size: 3rem;
+}
+
+.contact-main-text p {
+  font-size: 1.5rem;
+  margin: 1rem 0 2rem 0;
+}
+
+.contact-main-text a {
+  text-decoration: none;
+  color: black;
+  padding: 10px 25px;
+  border: 1px solid black;
+  position: relative;
+}
+
+.contact-main-text a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #3d8a06;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  transform: scaleX(0);
+  transition: 0.2s ease-in-out;
+}
+
+.contact-main-text a:hover::before {
+  transform: scaleX(1);
+}
+#search {
+  outline: none;
+  box-shadow: 0.4px 0.4px 3px var(--black-color);
+  width: 250px;
+  border-radius: 3px;
+  border: none;
+  position: relative;
+  padding: 6px;
+}
+#submit {
+  position: relative;
+  left: -77px;
+  font-size: 1.9vh;
+  width: 70px;
+  border: none;
+  padding: 2px;
+  background-color: var(--primary-color);
+  border-radius: 3px;
+  /* box-shadow: 0.4px 0.4px 3px  var(--black-color); */
+  color: #fff;
+}
+
+@media screen and (max-width: 722px) {
+  .contact-main-text {
+    color: black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 1rem;
+    min-width: 75%;
+    text-align: center;
+  }
+
+  .contact-main-text {
+    width: 90%;
+  }
+
+  .contact-main-text h1 {
+    font-size: 2rem;
+  }
+
+  .contact-main-text p {
+    font-size: 1rem;
+  }
+}
+
+.contact-form {
+  text-align: center;
+  padding: 1rem;
+}
+
+.contact-form form {
+  max-width: 500px;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form form input {
+  height: 40px;
+  padding: 5px 10px;
+  outline: none;
+  margin-bottom: 5px;
+}
+
+.contact-form form textarea {
+  padding: 5px 10px;
+  outline: none;
+}
+
+.contact-form form input:focus,
+.contact-form form textarea:focus {
+  outline: 1px solid green;
+}
+
+.contact-form form button {
+  background-color: royalblue;
+  height: 40px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+  margin: 5px 0;
+  transition: 0.3s eas;
+}
+
+.contact-form form button:hover {
+  background-color: rgb(10, 38, 120);
+}

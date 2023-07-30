@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit&display=swap");
+:root {
+  --primary-color: #018136;
+  --bg-shadow: #29292969;
+  --white-color: #fff;
+}
+* {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif !important;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: #f0f0f0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  font-size: 2vh;
+  border-radius: 15px;
+  width: 60%;
+  height: 570px;
+  padding: 10px;
+  background: #f0f0f0;
+  box-shadow: 2px 2px 6px #dadada, -2px -2px 6px #dadada;
+}
+.container .titleHead {
+  color: var(--primary-color);
+  border-bottom: var(--primary-color) 2px solid;
+  width: 53%;
+  text-align: center;
+}
+.container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-group {
+  width: 50%;
+}
+
+.form-control {
+  width: 97%;
+  width: 100%;
+  background-color: #f0f0f0;
+}
+
+.container .submit {
+  width: 52%;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  text-align: center;
+  box-shadow: 0.6px 0.6px 4px var(--bg-shadow);
+  background-color: var(--primary-color);
+  color: var(--white-color);
+}
+.container .right-side {
+  background-color: transparent;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 15px;
+}
+.container .right-side .btn-signup {
+  color: var(--white-color);
+  border-radius: 7px;
+  width: 120px;
+  padding: 4px;
+  background-color: var(--primary-color);
+  box-shadow: 5px 5px 6px #dadada, -5px -5px 6px #ffffff;
+  text-decoration: none;
+  text-align: center;
+}
+
+.container .right-side .btn-signin {
+  color: var(--primary-color);
+  border-radius: 7px;
+  width: 120px;
+  padding: 4px;
+  background-color: white;
+  background: #f0f0f0;
+  box-shadow: 5px 5px 6px #dadada, -5px -5px 6px #ffffff;
+  text-decoration: none;
+  text-align: center;
+}
+.links a {
+  color: var(--primary-color);
+}

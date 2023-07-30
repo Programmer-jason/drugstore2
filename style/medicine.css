@@ -1,0 +1,144 @@
+:root {
+  --primary-color: #007430;
+  --bg-shadow: 1px 1px 4px #a02727;
+  --white-color: #fff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body,
+html {
+  /* overflow: hidden !important; */
+  background-color: #f0f0f0;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo img {
+  width: 80px;
+  height: 80px;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+.medicine-container {
+  width: 100% !important;
+  height: 100vh !important;
+  overflow: scroll !important;
+  scroll-behavior: smooth;
+}
+.medicine-container::-webkit-scrollbar {
+  width: 7px;
+}
+.medicine-container::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+}
+
+.mp-card {
+  display: flex;
+  flex-direction: column;
+  width: 180px;
+  height: 260px;
+  margin: 15px 10px;
+  background: #f8f8f8;
+  cursor: pointer;
+  /* border: 1px solid #c2c2c2; */
+  box-shadow: 0px 0px 3px #b3b3b3;
+  border-radius: 5px;
+  padding: 8px;
+  gap: 5px;
+  overflow: hidden;
+}
+
+.mp-list {
+  width: 80%;
+  margin-inline: auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.mp-list .img-list {
+  width: 100%;
+  height: 140px;
+}
+
+.mp-list .details {
+  width: 100%;
+  height: 90px;
+  color: #313131;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important ;
+  border-top: 1px solid #c3c3c3;
+  /* padding-left: 5px; */
+}
+
+.mp-list .details .product-name {
+  font-weight: 900;
+}
+
+form {
+  border-bottom: 1px solid #c3c3c3;
+
+  /* display: flex; */
+  text-align: end;
+  /* align-items: center; */
+  margin-inline: auto;
+  padding-top: 15px;
+  width: 90%;
+  height: 60px;
+}
+
+#search {
+  outline: none;
+  width: 17%;
+  padding: 7px;
+  margin-inline: auto;
+  border-radius: 3px;
+  border: none;
+  background: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 1px 1px 2px #c3c3c3 !important;
+
+}
+#submit {
+  font-size: 1.8vh;
+  width: 70px;
+  outline: none;
+  border: none;
+  padding: 7px;
+  background-color: var(--primary-color);
+  /* border-radius: 3px; */
+  color: #fff;
+  border-radius: 3px;
+  box-shadow: 1px 1px 4px #c3c3c3 !important;
+
+}
+.cart-btn{
+  display: flex;
+  /* justify-content: end; */
+  gap: 3px;
+}
+.buy-btn {
+  background-color: #007430;
+  color: #fff;
+  width: 50%;
+  padding: 7px;
+  border-radius: 4px;
+  text-align: center;
+}
+.favorite-btn {
+  background-color: #007430;
+  width: 50%;
+  color: #fff;
+  padding: 7px;
+  border-radius: 4px;
+  text-align: center;
+}

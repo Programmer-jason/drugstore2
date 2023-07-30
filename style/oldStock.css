@@ -1,0 +1,85 @@
+@import url("./button.css");
+
+:root {
+  --primary-color: #007430;
+  --text-color: #474747;
+  --black-color: #000;
+  --white-color: #fff;
+  --bg-shadow: 1px 1px 4px #6d6d6d;
+}
+* {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body,
+html {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+}
+a {
+  text-decoration: none;
+}
+
+.stock-links > a:nth-child(2) {
+  color: var(--primary-color);
+}
+
+.inventory-content .modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color);
+  padding: 15px;
+  border-radius: 3px;
+  width: 100%;
+  height: 100vh;
+  box-shadow: 0px 0px 2px #313131;
+  margin-bottom: 20px;
+  background: #5e5d5d49;
+}
+.inventory-content .modal form {
+  display: none;
+  color: var(--text-color);
+  padding: 15px;
+  border-radius: 3px;
+  width: 25%;
+  height: 300px;
+  box-shadow: 0.3px 0.3px 4px #505050;
+  margin-bottom: 20px;
+  background: #fff;
+  box-shadow: 0px 0px 2px #313131;
+}
+input[type="text"],
+[type="number"],
+[type="date"] {
+  color: var(--text-color);
+  padding-left: 7px;
+  width: 100%;
+  height: 30px;
+  outline: none;
+  border: none;
+  border-radius: 2px;
+  box-shadow: 0px 0px 2px #313131;
+}
+.btn-success {
+  /* margin-top: 10px; */
+  margin-inline: auto;
+}
+.btn-primary {
+  /* margin-top: 10px; */
+  margin-inline: auto;
+}
+.admin-box .stock {
+  background-color: #008537;
+  border-radius: 5px;
+}

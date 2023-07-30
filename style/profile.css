@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit&display=swap");
+
+:root {
+  --primary-color: #007430;
+  --text-color: #313131;
+  --black-color: #000;
+  --white-color: #fff;
+  --bg-shadow: #8f8f8f;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body,
+html {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+}
+
+.user-container {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  gap: 10px;
+}
+
+.dashboard-content {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+  margin-bottom: 15px;
+  font-size: 2vh;
+  padding: 15px;
+  /* border-bottom: 1px solid #797878; */
+  background-color: #f8f8f8;
+  box-shadow: 1px 1px 4px #bebebe;
+  border-radius: 5px;
+}
+
+.dashboard-content .total-medicine,
+.total-product,
+.total-expired,
+.total-sales {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+  width: 34%;
+  height: 130px;
+  color: var(--text-color);
+  background-color: #f8f8f8;
+  border-radius: 5px;
+  box-shadow: 1px 1px 4px #d6d6d6, -1px -1px 4px #d6d6d6;
+  color: #313131 !important;
+}
+
+.total-medicine {
+  border: #007430 1px solid;
+  background-color: #00743025 !important;
+}
+.total-product {
+  border: #007430 1px solid;
+  background-color: #00743025 !important;
+}
+.total-expired {
+  border: #007430 1px solid;
+  background-color: #00743025 !important;
+}
+.total-sales {
+  border: #007430 1px solid;
+  background-color: #00743025 !important;
+}
+
+.total-user-graph {
+  width: 30%;
+}
+
+.total-user-graph .total-users,
+.total-user-graph .user-gender {
+  /* border: #007430 1px solid; */
+  background-color: #f8f8f8 !important;
+
+  border-radius: 5px !important;
+  width: 100%;
+  margin-bottom: 15px;
+  box-shadow: 1px 1px 4px #bebebe;
+}
+
+.admin-box .dashboard {
+  background-color: #008537;
+  border-radius: 5px;
+}
+div.down-side {
+  display: flex;
+  width: 100%;
+  gap: 15px;
+}
+div.new-stocklist {
+  padding: 20px;
+  background-color: #f8f8f8;
+  box-shadow: 1px 1px 4px #bebebe;
+  width: 70%;
+  border-radius: 5px;
+}
+
+table td,
+table th {
+  border-bottom: 1px solid #c2c2c2 !important;
+  padding: 4px;
+}
+.new-item {
+  /* border-bottom: 1px solid #c3c3c3; */
+  padding-bottom: 5px;
+  font-size: medium !important;
+}

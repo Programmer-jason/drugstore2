@@ -1,0 +1,97 @@
+@import url("./button.css");
+
+:root {
+  --primary-color: #007430;
+  --primary-color-low: #64646449;
+  --white-color: #fff;
+  --bg-shadow: 1px 1px 6px 6px #6d6d6d;
+}
+
+* {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body,
+html {
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+}
+
+.add-product-content {
+  padding: 30px;
+  width: 100%;
+  height: 100vh;
+  font-size: small;
+}
+
+.add-product-content .form {
+  height: 65vh;
+  background-color: transparent;
+  border-radius: 5px;
+  box-shadow: 1px 1px 4px #c3c3c3 !important;
+  /* border-block: 1px solid #c4c4c4dd; */
+  padding: 20px 50px;
+  background-color: #f8f8f8;
+}
+
+.add-product-content .form .upload-product .image {
+  width: 120px;
+  height: 120px;
+  border-radius: 2px;
+  margin-bottom: 5px;
+  border: 1px solid #c2c2c2;
+}
+.add-product-content .form .upload-product .image img {
+  border: 1px solid #c2c2c2;
+}
+.file-upload {
+  border: 1px solid #c3c3c3;
+  padding: 3px;
+  border-radius: 5px;
+  width: 24%;
+}
+.add-product-content .form .upload-product {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  margin-inline: auto;
+}
+
+.inputGroups {
+  border-radius: 5px;
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.one,
+.two,
+.three {
+  width: 50%;
+  padding: 5px;
+}
+input[type="text"],
+[type="number"],
+[type="date"],
+select {
+  padding: 10px;
+  border: none;
+  width: 90%;
+  height: 50px;
+  border-radius: 5px;
+  border: 1px solid #c2c2c2;
+  background-color: #f0f0f0;
+}
+.btn-success {
+  margin-top: 20px;
+  /* width: 100%; */
+  border-radius: 5px;
+}
+.admin-box .add-medicine {
+  background-color: #008537;
+  border-radius: 5px;
+}

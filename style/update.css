@@ -1,0 +1,71 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit&display=swap");
+
+:root {
+  --primary-color: #00ad48;
+  --primary-color-low: #64646449;
+  --black-color: #000;
+  --white-color: #fff;
+  --bg-shadow: 1px 1px 4px #6d6d6d;
+}
+
+* {
+  font-family: "Mukta", sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body,
+html {
+  width: 100%;
+  height: 100vh;
+  background-color: #f0f0f0;
+}
+
+.manage-account-content {
+  width: 84%;
+  height: 100vh;
+}
+
+table {
+  width: 100%;
+  text-align: center;
+}
+table th {
+  border-bottom: gray 1px solid;
+}
+table td {
+  border-bottom: gray 1px solid;
+  height: 40px;
+}
+.form {
+  height: 380px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.form .change-profile {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  padding-left: 150px;
+  gap: 20px;
+}
+.form .change-profile .image {
+  width: 40%;
+  margin-top: 5px;
+  height: 110px;
+  border: black 2px solid;
+}
+
+.form .inputs {
+  flex-wrap: wrap;
+  width: 50%;
+  height: 200px;
+  gap: 30px;
+}
+.add-product-content .btn-add {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 5px;
+}

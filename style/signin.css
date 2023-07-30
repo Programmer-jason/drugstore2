@@ -1,0 +1,94 @@
+:root {
+  --primary-color: #018136;
+  --bg-shadow: #a8a8a850;
+  --white-color: #fff;
+}
+* {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif !important;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: #f0f0f0;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  font-size: 2vh;
+  border-radius: 15px;
+  width: min(60vh, 550px);
+  height: 550px;
+  padding: 10px;
+  background: #f0f0f0;
+  box-shadow: 2px 2px 6px #dadada, -2px -2px 6px #dadada;
+}
+.container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 80px;
+}
+
+.container .titleHead {
+  color: var(--primary-color);
+  border-bottom: var(--primary-color) 2px solid;
+  width: 85%;
+  text-align: center;
+}
+
+.form-group {
+  width: 85%;
+}
+
+.form-control {
+  width: 100%;
+  background-color: #f0f0f0;
+}
+
+.container .submit {
+  width: 85%;
+  height: 40px;
+  border-radius: 6px;
+  border: none;
+  text-align: center;
+  background-color: var(--primary-color);
+  color: var(--white-color);
+}
+.container .head-links {
+  background-color: transparent;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 15px;
+}
+.container .btn-signup {
+  color: var(--primary-color);
+  border-radius: 7px;
+  padding: 4px;
+  width: 120px;
+  background: #f0f0f0;
+  box-shadow: 5px 5px 6px #dadada, -5px -5px 6px #ffffff;
+  text-decoration: none;
+  text-align: center;
+}
+
+.container .btn-signin {
+  color: var(--white-color);
+  padding: 4px;
+  background-color: var(--primary-color);
+  border-radius: 7px;
+  width: 120px;
+  box-shadow: 5px 5px 6px #dadada, -5px -5px 6px #ffffff;
+  text-decoration: none;
+  text-align: center;
+}
+.links a {
+  color: var(--primary-color);
+  font-size: clamp(0.5rem, 2vh, 2rem);
+  margin-top: 40px;
+  margin-left: 10px;
+}
