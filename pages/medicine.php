@@ -12,7 +12,11 @@ if (isset($_SESSION["user"])) {
   $userProfile = $row['userProfile'];
 }
 
-$prodId;
+$user = $_SESSION['user'];
+$getUser = "SELECT * FROM signUp WHERE email = '$user'";
+$getUserResult = mysqli_query($conn, $getUser);
+$fetchUser = mysqli_fetch_assoc($getUserResult);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -81,10 +85,7 @@ $prodId;
           $favoriteResult = mysqli_query($conn, $getFavorite);
           $fetchFavorite = mysqli_fetch_assoc($favoriteResult);
 
-          // $getUserId = $fetchFavorite['user_id'];
-          $getUser = "SELECT * FROM signup";
-          $getUserResult = mysqli_query($conn, $getUser);
-          $fetchUser = mysqli_fetch_assoc($getUserResult);
+         
       ?>
           <div class="mp-card" >
             <img src="<?php echo '../uploads/' . $rows['productImg']; ?>" alt='product-image' class="img-list" ondblclick="loadDoc()">
@@ -112,8 +113,8 @@ $prodId;
                 <i id ='heart'
                    class='fa-solid fa-heart'
                   style='color:<?php 
-                                  if($fetchFavorite['product_id'] == $rows['productId']){
                                     if($fetchUser['userId'] == $fetchFavorite['user_id']){
+                                  if($fetchFavorite['product_id'] == $rows['productId']){
                                       echo "red";
                                     }
                                     else{}
