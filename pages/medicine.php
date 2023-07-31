@@ -48,10 +48,10 @@ $prodId;
           <?php if(isset($_SESSION["user"])){
                     switch($_SESSION["role"]){
                     case "admin" :
-                        echo "<a href ='./pages/admin_pages/profile.php'>$firstName <img src='../profile/$userProfile' alt='User Profile' class='user-profile'/></a>";
+                        echo "<a href ='./pages/admin_pages/profile.php'>$firstName<img src='../profile/$userProfile' alt='User Profile' class='user-profile'/></a>";
                         break;
                     case "customer" :
-                        echo "<a href ='./customer_pages/profile.php'>$firstName <img src='../profile/$userProfile' alt='User Profile' class='user-profile'/></a>";
+                        echo "<a href ='./customer_pages/favorite.php'>$firstName<img src='../profile/$userProfile' alt='User Profile' class='user-profile'/></a>";
                         break;
                     }   
                 }else{
@@ -73,15 +73,21 @@ $prodId;
       $sql = "SELECT * FROM product WHERE stockType BETWEEN 'n' AND 'o' ORDER BY productId desc";
       $result = mysqli_query($conn, $sql);
 
-      $getFavorite = "SELECT * FROM user_favorite";
-      $favoriteResult = mysqli_query($conn, $getFavorite);
-      
       if (mysqli_num_rows($result) > 0) {
         while ($rows = mysqli_fetch_assoc($result)) {
+          $prodId2 = $rows['productId'];
+
+          $getFavorite = "SELECT * FROM user_favorite WHERE product_id = $prodId2";
+          $favoriteResult = mysqli_query($conn, $getFavorite);
           $fetchFavorite = mysqli_fetch_assoc($favoriteResult);
+
+          // $getUserId = $fetchFavorite['user_id'];
+          $getUser = "SELECT * FROM signup";
+          $getUserResult = mysqli_query($conn, $getUser);
+          $fetchUser = mysqli_fetch_assoc($getUserResult);
       ?>
           <div class="mp-card" >
-            <img src="<?php echo '../uploads/' . $rows['productImg']; ?>" alt='<?php ?>' class="img-list" ondblclick="loadDoc()">
+            <img src="<?php echo '../uploads/' . $rows['productImg']; ?>" alt='product-image' class="img-list" ondblclick="loadDoc()">
 
             <div class="details" ondblclick="loadDoc()">
               <div class="product-name">
@@ -102,12 +108,25 @@ $prodId;
             </div>
 
             <div class="cart-btn">
-              <a href="./validation/add_to_favorite.php?favId=<?php echo $rows['productId'];?>" class='favorite-btn'><i id ='heart' class='fa-solid fa-heart' style='color: #ffffff;' id ='heart'></i></a>
+              <a href="./validation/add_to_favorite.php?favId=<?php echo $rows['productId'];?>" class='favorite-btn'>
+                <i id ='heart'
+                   class='fa-solid fa-heart'
+                  style='color:<?php 
+                                  if($fetchFavorite['product_id'] == $rows['productId']){
+                                    if($fetchUser['userId'] == $fetchFavorite['user_id']){
+                                      echo "red";
+                                    }
+                                    else{}
+                                  }
+                                  else{}
+                               ?>'
+                >
+                </i>
+              </a>
 
               <div class="buy-btn" ><i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i></div>
-
-              <!-- <div class='favorite-btn'><i id ='heart' class='fa-solid fa-heart' style='color: #ffffff;'></i></div> -->
             </div>
+
           </div>
 
         <?php } ?>

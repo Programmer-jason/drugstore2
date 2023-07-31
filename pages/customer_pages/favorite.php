@@ -80,7 +80,6 @@ if (isset($_SESSION["user"])) {
         </ul>
       </nav>
         
-
       <div class="mp-list">
         <?php
         $getFavorite = "SELECT * FROM user_favorite";
@@ -89,12 +88,15 @@ if (isset($_SESSION["user"])) {
         if (mysqli_num_rows($favoriteResult) > 0) {
           while ($fetchFavorite = mysqli_fetch_assoc($favoriteResult)) {
             $favId = $fetchFavorite['product_id'];
+            $userId2 = $fetchFavorite['user_id'];
 
             $sql = "SELECT * FROM product WHERE productId = $favId";
             $result = mysqli_query($conn, $sql);
-            
 
-            if($result){ 
+            $getUser = "SELECT * FROM signup WHERE userId = $userId2";
+            $userResult = mysqli_query($conn, $getUser);
+
+            if($result && $userResult){ 
                 $rows = mysqli_fetch_assoc($result);
         ?>
         <div class="mp-card" >
