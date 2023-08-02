@@ -48,7 +48,7 @@ $resultSales = mysqli_query($conn, $sqlSales);
    <div class="admin-box">
       <div class="brand">
          <img src="../../images/sample logo.png" alt="no image" />
-         <a href="../../index.php">Medicure Drug</a>
+         <a href="#">Medicure Drug</a>
       </div>
 
 

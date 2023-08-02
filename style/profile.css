@@ -89,6 +89,7 @@ html {
   width: 100%;
   margin-bottom: 15px;
   box-shadow: 1px 1px 4px #bebebe;
+  
 }
 
 .admin-box .dashboard {
@@ -116,5 +117,5 @@ table th {
 .new-item {
   /* border-bottom: 1px solid #c3c3c3; */
   padding-bottom: 5px;
-  font-size: medium !important;
+  font-size: 1.8vh !important;
 }
