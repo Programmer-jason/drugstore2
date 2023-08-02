@@ -88,7 +88,7 @@ body {
 }
 .links a {
   color: var(--primary-color);
-  font-size: clamp(0.5rem, 2vh, 2rem);
+  font-size: 1.8vh !important;
   margin-top: 40px;
   margin-left: 10px;
 }

@@ -8,7 +8,6 @@
 }
 *::-webkit-scrollbar{
   width: 7px;
-  border-radius: 100px;
 }
 *::-webkit-scrollbar-thumb{
   background-color: #5a5a5a;
@@ -16,11 +15,4 @@
 
 body {
   min-height: 100vh;
-}
-.user-profile {
-  width: 25px;
-  vertical-align: middle;
-  border: 1px solid #303030;
-  border-radius: 50%;
-  margin-left: 5px;
 }

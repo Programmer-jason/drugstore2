@@ -20,6 +20,11 @@ if (isset($_SESSION["user"])) {
     $userProfile = $row7['userProfile'];
 }
 
+$user = (isset($_SESSION["user"])) ? $_SESSION['user'] : '';
+$getUser = "SELECT * FROM signUp WHERE email = '$user'";
+$getUserResult = mysqli_query($conn, $getUser);
+$fetchUser = mysqli_fetch_assoc($getUserResult);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -82,22 +87,26 @@ if (isset($_SESSION["user"])) {
         
       <div class="mp-list">
         <?php
-        $getFavorite = "SELECT * FROM user_favorite";
+		$userIds = $fetchUser['userId'];
+        
+        $getFavorite = "SELECT * FROM user_favorite WHERE user_id = $userIds";
         $favoriteResult = mysqli_query($conn, $getFavorite);
     
         if (mysqli_num_rows($favoriteResult) > 0) {
           while ($fetchFavorite = mysqli_fetch_assoc($favoriteResult)) {
             $favId = $fetchFavorite['product_id'];
-            $userId2 = $fetchFavorite['user_id'];
-
+            // $userId2 = $fetchFavorite['user_id'];
+			
             $sql = "SELECT * FROM product WHERE productId = $favId";
             $result = mysqli_query($conn, $sql);
+			$rows = mysqli_fetch_assoc($result);
 
-            $getUser = "SELECT * FROM signup WHERE userId = $userId2";
-            $userResult = mysqli_query($conn, $getUser);
+            // $getUser = "SELECT * FROM signup WHERE userId = $userId2";
+            // $userResult = mysqli_query($conn, $getUser);
+			// $fetchUser = mysqli_fetch_assoc($userResult);
 
-            if($result && $userResult){ 
-                $rows = mysqli_fetch_assoc($result);
+
+            if($result){
         ?>
         <div class="mp-card" >
             <img src="<?php echo '../../uploads/' . $rows['productImg']; ?>" alt='<?php ?>' class="img-list">
@@ -129,6 +138,7 @@ if (isset($_SESSION["user"])) {
 
       </div>
     </div>
+	
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="../js/jsAnimation.js"></script>
 </body>

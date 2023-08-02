@@ -9,7 +9,7 @@
   background: url("../images/cover.jpg");
   background-size: cover;
   color: white;
-  min-height: 100vh;
+  height: 100vh;
 }
 
 .contact-main-text {
@@ -56,6 +56,7 @@
 .contact-main-text a:hover::before {
   transform: scaleX(1);
 }
+
 #search {
   outline: none;
   box-shadow: 0.4px 0.4px 3px var(--black-color);

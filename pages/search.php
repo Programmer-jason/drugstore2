@@ -18,6 +18,12 @@ if (isset($_SESSION["user"])) {
    $userProfile = $row2['userProfile'];
 }
 
+
+$user = (isset($_SESSION["user"])) ? $_SESSION['user'] : '';
+$getUser = "SELECT * FROM signUp WHERE email = '$user'";
+$getUserResult = mysqli_query($conn, $getUser);
+$fetchUser = mysqli_fetch_assoc($getUserResult);
+
 ?>
 
 <!DOCTYPE html>
@@ -73,8 +79,15 @@ if (isset($_SESSION["user"])) {
         <input type="submit" value="Search" id="submit">
     </form>
 
-    <?php if (mysqli_num_rows($result) > 0) : ?>
-    <?php while ($rows = mysqli_fetch_assoc($result)) : ?>
+    <?php
+      $sqls = "SELECT * FROM product WHERE stockType BETWEEN 'n' AND 'o' ORDER BY productId desc";
+      $results = mysqli_query($conn, $sql);
+
+      if (mysqli_num_rows($result) > 0) {
+        while ($rows = mysqli_fetch_assoc($result)) {
+          $prodId2 = $rows['productId'];
+
+      ?>
         <div class="mp-card">
             <img src="<?php echo '../uploads/' . $rows['productImg']; ?>" alt='image' class="img-list">
 
@@ -97,17 +110,38 @@ if (isset($_SESSION["user"])) {
             </div>
 
             <div class="cart-btn">
-              <div class="favorite-btn" onclick="addToFavorite(<?php echo $rows['productId']; ?>)"><i class="fa-solid fa-heart" style="color: #ffffff;" ></i></div>
-              <div class="buy-btn" ><i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i></div>
+                <a href="./validation/add_to_favorite.php?favId=<?php echo $rows['productId'];?>" class='favorite-btn'>
+                    <i id ='heart'
+                    class='fa-solid fa-heart'
+                    style='color:<?php 
+                                        
+                                    if(isset($_SESSION["user"])){
+                                            $userId =  $fetchUser['userId'];
+                                            $getFavorite = "SELECT * FROM user_favorite WHERE product_id = $prodId2 AND user_id = $userId";
+                                            $favoriteResult = mysqli_query($conn, $getFavorite);
+                                            $fetchFavorite = mysqli_fetch_assoc($favoriteResult);
+                                            echo (mysqli_num_rows($favoriteResult) > 0) ? "red" : "#313131";
+
+                                        }
+                                        else{}
+                                    
+                                ?>'
+                    >
+                    </i>
+                </a>
+
+              <div class="buy-btn" >Buy</div>
             </div>
 
         </div>
-    <?php endwhile; ?>
-    <?php endif; ?>
+        <?php } ?>
+      <?php } ?>
 
-    <?php if (mysqli_num_rows($result) == 0) {
+    <!-- <?php if (mysqli_num_rows($result) == 0) {
     echo "<h2>Not Found</h2>";
-    } ?>
+    } ?> -->
+
+
    </div>
   </div>
 

@@ -12,10 +12,13 @@ if (isset($_SESSION["user"])) {
   $userProfile = $row['userProfile'];
 }
 
-$user = $_SESSION['user'];
+
+$user = (isset($_SESSION["user"])) ? $_SESSION['user'] : '';
 $getUser = "SELECT * FROM signUp WHERE email = '$user'";
 $getUserResult = mysqli_query($conn, $getUser);
 $fetchUser = mysqli_fetch_assoc($getUserResult);
+
+
 
 ?>
 <!DOCTYPE html>
@@ -81,9 +84,7 @@ $fetchUser = mysqli_fetch_assoc($getUserResult);
         while ($rows = mysqli_fetch_assoc($result)) {
           $prodId2 = $rows['productId'];
 
-          $getFavorite = "SELECT * FROM user_favorite WHERE product_id = $prodId2";
-          $favoriteResult = mysqli_query($conn, $getFavorite);
-          $fetchFavorite = mysqli_fetch_assoc($favoriteResult);
+            
 
          
       ?>
@@ -113,19 +114,23 @@ $fetchUser = mysqli_fetch_assoc($getUserResult);
                 <i id ='heart'
                    class='fa-solid fa-heart'
                   style='color:<?php 
-                                    if($fetchUser['userId'] == $fetchFavorite['user_id']){
-                                  if($fetchFavorite['product_id'] == $rows['productId']){
-                                      echo "red";
+                                    
+                                  if(isset($_SESSION["user"])){
+                                        $userId =  $fetchUser['userId'];
+                                        $getFavorite = "SELECT * FROM user_favorite WHERE product_id = $prodId2 AND user_id = $userId";
+                                        $favoriteResult = mysqli_query($conn, $getFavorite);
+                                        $fetchFavorite = mysqli_fetch_assoc($favoriteResult);
+                                        echo (mysqli_num_rows($favoriteResult) > 0) ? "red" : "#313131";
+
                                     }
                                     else{}
-                                  }
-                                  else{}
+                                 
                                ?>'
                 >
                 </i>
               </a>
 
-              <div class="buy-btn" ><i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i></div>
+              <div class="buy-btn" >Buy</div>
             </div>
 
           </div>
