@@ -55,7 +55,7 @@ $fetchUser = mysqli_fetch_assoc($getUserResult);
           <?php if(isset($_SESSION["user"])){
                     switch($_SESSION["role"]){
                     case "admin" :
-                        echo "<a href ='./pages/admin_pages/profile.php'>$firstName<img src='../profile/$userProfile' alt='User Profile' class='user-profile'/></a>";
+                        echo "<a href ='./profile.php'>$firstName<img src='../profile/$userProfile' alt='User Profile' class='user-profile'/></a>";
                         break;
                     case "customer" :
                         echo "<a href ='./customer_pages/favorite.php'>$firstName<img src='../profile/$userProfile' alt='User Profile' class='user-profile'/></a>";

@@ -27,9 +27,7 @@ if (isset($_SESSION["user"])) {
     <link rel="stylesheet" href="../style/about.css" />
     <link rel="stylesheet" href="../style/navbar.css" />
     <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400&display=swap" rel="stylesheet">
-
-
-    <head>
+<head>
 
     <body>
         <section class="main-page">
@@ -48,7 +46,7 @@ if (isset($_SESSION["user"])) {
                     <?php if(isset($_SESSION["user"])){
                         switch($_SESSION["role"]){
                         case "admin" :
-                            echo "<a href ='./pages/admin_pages/profile.php'>$firstName<img src='../profile/$userProfile' alt='User Profile' class='user-profile'/></a>";
+                            echo "<a href ='./profile.php'>$firstName<img src='../profile/$userProfile' alt='User Profile' class='user-profile'/></a>";
                             break;
                         case "customer" :
                             echo "<a href ='./customer_pages/favorite.php'>$firstName<img src='../profile/$userProfile' alt='User Profile' class='user-profile'/></a>";

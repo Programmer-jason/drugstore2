@@ -68,13 +68,12 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
    <link rel="stylesheet" href="../../style/inventory.css" />
 
 </head>
-
 <body>
 
    <div class="admin-box">
       <div class="brand">
          <img src="../../images/sample logo.png" alt="no image" />
-         <a href="#">Medicure Drug</a>
+         <a href="../../index.php">Medicure Drug</a>
       </div>
 
       <div class="profile-pic">

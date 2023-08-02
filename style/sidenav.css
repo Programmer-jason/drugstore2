@@ -272,3 +272,10 @@ div.table-container {
   height: 500px;
   overflow-y: scroll;
 }
+div.table-container::-webkit-scrollbar {
+  width: 4px;
+}
+div.table-container::-webkit-scrollbar-thumb {
+  background-color: #5a5a5a;
+}
+

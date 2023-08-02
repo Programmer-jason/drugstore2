@@ -88,7 +88,7 @@ $result9 = mysqli_query($conn, $sql9);
     <div class="admin-box">
         <div class="brand">
             <img src="../images/sample logo.png" alt="no image" />
-            <a href="#">Medicure Drug</a>
+            <a href="../index.php">Medicure Drug</a>
         </div>
 
         <div class="profile-pic">
