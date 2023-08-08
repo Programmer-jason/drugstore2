@@ -12,7 +12,6 @@ if (isset($_SESSION["user"])) {
   $userProfile = $row['userProfile'];
 }
 
-
 $user = (isset($_SESSION["user"])) ? $_SESSION['user'] : '';
 $getUser = "SELECT * FROM signUp WHERE email = '$user'";
 $getUserResult = mysqli_query($conn, $getUser);
@@ -35,6 +34,7 @@ $fetchUser = mysqli_fetch_assoc($getUserResult);
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="../style/medicine.css">
   <link rel="stylesheet" href="../style/navbar.css" />
+  <link rel="stylesheet" href="../style/button.css" />
 </head>
 
 <body>
@@ -69,7 +69,6 @@ $fetchUser = mysqli_fetch_assoc($getUserResult);
       </ul>
     </nav>
 
-    
     <div class="mp-list">
       <form action="./search.php" method="post">
         <input type="search" name="search" id="search">
@@ -83,10 +82,6 @@ $fetchUser = mysqli_fetch_assoc($getUserResult);
       if (mysqli_num_rows($result) > 0) {
         while ($rows = mysqli_fetch_assoc($result)) {
           $prodId2 = $rows['productId'];
-
-            
-
-         
       ?>
           <div class="mp-card" >
             <img src="<?php echo '../uploads/' . $rows['productImg']; ?>" alt='product-image' class="img-list" ondblclick="loadDoc()">
@@ -114,29 +109,29 @@ $fetchUser = mysqli_fetch_assoc($getUserResult);
                 <i id ='heart'
                    class='fa-solid fa-heart'
                   style='color:<?php 
-                                    
                                   if(isset($_SESSION["user"])){
                                         $userId =  $fetchUser['userId'];
                                         $getFavorite = "SELECT * FROM user_favorite WHERE product_id = $prodId2 AND user_id = $userId";
                                         $favoriteResult = mysqli_query($conn, $getFavorite);
                                         $fetchFavorite = mysqli_fetch_assoc($favoriteResult);
                                         echo (mysqli_num_rows($favoriteResult) > 0) ? "red" : "#313131";
-
                                     }
                                     else{}
-                                 
                                ?>'
                 >
                 </i>
               </a>
 
-              <div class="buy-btn" >Buy</div>
+              <div class="buy-btn" onclick="checkout(<?php echo $rows['productId']; ?>)">Buy</div>
             </div>
 
           </div>
 
         <?php } ?>
       <?php } ?>
+
+      <div class="checkout">
+      </div>
 
       <?php if (mysqli_num_rows($result) == 0) {
         echo "<h2>No Medicine To Show</h2>";
@@ -145,19 +140,21 @@ $fetchUser = mysqli_fetch_assoc($getUserResult);
     </div>
   </div>
 
-  <!-- <script>
-    function addToFavorite(getProductId) {
-      document.getElementById("heart").style.color = 'pink';
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="../js/jsAnimation.js"></script>
+  
+  <script>
+    function checkout(getProductId) {
       var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function(getProductId) {
               if (this.readyState == 4 && this.status == 200) {
+                document.querySelector(".checkout").innerHTML = this.responseText;
               }
           };
-          xhttp.open("GET", `./validation/add_to_favorite.php?favId=${getProductId}`, true);
+          xhttp.open("GET", `./validation/buyValidation.php?buyId=${getProductId}`, true);
           xhttp.send();
-
       }
-      
-  </script> -->
+
+  </script>
 </body>
 </html>

@@ -10,6 +10,10 @@ $(document).ready(function () {
   $("#notifShow").click(function () {
     $(".notifContent").slideToggle("slow");
   });
+
+  $(".buy-btn").click(function () {
+    $(".checkout").slideDown("slow");
+  });
   
   
 
