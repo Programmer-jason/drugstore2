@@ -37,6 +37,8 @@ $fetchUser = mysqli_fetch_assoc($getUserResult);
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
    <link rel="stylesheet" href="../style/medicine.css">
    <link rel="stylesheet" href="../style/navbar.css">
+  <link rel="stylesheet" href="../style/button.css" />
+
 </head>
 
 <body>
@@ -57,10 +59,10 @@ $fetchUser = mysqli_fetch_assoc($getUserResult);
           <?php if(isset($_SESSION["user"])){
                     switch($_SESSION["role"]){
                     case "admin" :
-                        echo "<a href ='./pages/admin_pages/profile.php'>$firstName <img src='../profile/$userProfile' alt='User Profile' class='user-profile'/></a>";
+                        echo "<a href ='./pages/admin_pages/profile.php'>$firstName<img src='../profile/$userProfile' alt='User Profile' class='user-profile'/></a>";
                         break;
                     case "customer" :
-                        echo "<a href ='./customer_pages/profile.php'>$firstName <img src='../profile/$userProfile' alt='User Profile' class='user-profile'/></a>";
+                        echo "<a href ='./customer_pages/profile.php'>$firstName<img src='../profile/$userProfile' alt='User Profile' class='user-profile'/></a>";
                         break;
                     }   
                 }else{
@@ -130,12 +132,15 @@ $fetchUser = mysqli_fetch_assoc($getUserResult);
                     </i>
                 </a>
 
-              <div class="buy-btn" >Buy</div>
+                <div class="buy-btn" onclick="checkout(<?php echo $rows['productId']; ?>)">Buy</div>
             </div>
 
         </div>
         <?php } ?>
       <?php } ?>
+
+      <div class="checkout">
+      </div>
 
     <!-- <?php if (mysqli_num_rows($result) == 0) {
     echo "<h2>Not Found</h2>";
@@ -145,17 +150,26 @@ $fetchUser = mysqli_fetch_assoc($getUserResult);
    </div>
   </div>
 
-  <script>
-    function addToFavorite(getProductId) {
-      var xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function(getProductId) {
+ 
+  <?php if(isset($_SESSION["user"])){ ?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="../js/jsAnimation.js"></script>
+    <script>
+      function checkout(getProductId) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(getProductId) {
               if (this.readyState == 4 && this.status == 200) {
-                  document.querySelector(".favorite-btn").innerHTML = this.responseText;
+                document.querySelector(".checkout").innerHTML = this.responseText;
               }
           };
-          xhttp.open("GET", `./validation/add_to_favorite.php?favId=${getProductId}`, true);
+          xhttp.open("GET", `./validation/buyValidation.php?buyId=${getProductId}`, true);
           xhttp.send();
-    }
-  </script>
+      }
+    </script>
+
+   <?php  } else{
+                header("location: ./signIn.php?message=You need to signin");
+              } ?>
+              
 </body>
 </html>

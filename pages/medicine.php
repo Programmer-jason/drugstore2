@@ -140,13 +140,14 @@ $fetchUser = mysqli_fetch_assoc($getUserResult);
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="../js/jsAnimation.js"></script>
   
-  <script>
-    function checkout(getProductId) {
-      var xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function(getProductId) {
+  <?php if(isset($_SESSION["user"])){ ?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="../js/jsAnimation.js"></script>
+    <script>
+      function checkout(getProductId) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(getProductId) {
               if (this.readyState == 4 && this.status == 200) {
                 document.querySelector(".checkout").innerHTML = this.responseText;
               }
@@ -154,7 +155,11 @@ $fetchUser = mysqli_fetch_assoc($getUserResult);
           xhttp.open("GET", `./validation/buyValidation.php?buyId=${getProductId}`, true);
           xhttp.send();
       }
+    </script>
 
-  </script>
+   <?php  } else{
+                header("location: ./signIn.php?message=You need to signin");
+              } ?>
+              
 </body>
 </html>

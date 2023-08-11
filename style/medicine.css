@@ -154,7 +154,7 @@ div.checkout {
   position: absolute;
   top: 0;
   right: 0;
-  width: 20%;
+  width: 220px;
   background-color: #f0f0f0;
   box-shadow: 1px 1px 6px #b3b3b3 !important;
   height: 100vh;
@@ -163,7 +163,10 @@ div.checkout {
 
 }
 div.checkout > img{
-  width: 150px;
-  height: 150px;
+  width: 160px;
+  height: 160px;
   border: 1px solid #313131;
+}
+.btn-success {
+  width: 100% !important;
 }
