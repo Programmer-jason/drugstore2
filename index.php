@@ -73,9 +73,10 @@ if (isset($_SESSION["user"])) {
       <div class="img-intro">
         <img src="./images/drugstore.png" alt="img">
       </div>
-
+      
     </div>
-
+    
+    <div class="copyright">Copyright © 2023 Medicure Drug.</div>
   </div>
 </body>
 
