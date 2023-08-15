@@ -21,8 +21,8 @@ html {
   display: flex;
   overflow: hidden;
 }
-.admin-box .manage-account2 {
-  background-color: #008537;
+.admin-box .sales {
+  background-color: #01a144;
   border-radius: 5px;
 }
 

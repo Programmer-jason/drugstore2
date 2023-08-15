@@ -51,16 +51,6 @@ $resultSales = mysqli_query($conn, $sqlSales);
          <a href="../../index.php">Medicure Drug</a>
       </div>
 
-
-      <div class="profile-pic">
-         <img src="<?php echo '../../profile/' . $row6['userProfile']; ?>" alt='<?php echo "profile"; ?>' class="user-image">
-         <div>
-            <?php echo $_SESSION['firstname'] . ' ' . $_SESSION['lastname']; ?>
-         </div>
-      </div>
-
-
-
       <a href="../profile.php" class="box dashboard">
          <div><img src="../../assets/dashboard.svg" alt="dashboard" width="25px"></div>
          <div> Dashboard</div>

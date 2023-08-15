@@ -34,8 +34,8 @@ html {
   border-radius: 5px;
 }
 
-.admin-box .dashboard {
-  background-color: #008537;
+.admin-box .favorite {
+  background-color: #01a144;
   border-radius: 5px;
 }
 div.down-side {
@@ -93,10 +93,9 @@ table th {
   
   .mp-list {
     width: 100%;
-    margin-inline: auto;
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
+    padding: 30px;
   }
   
   .mp-list .img-list {

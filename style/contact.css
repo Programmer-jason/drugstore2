@@ -134,7 +134,7 @@
 }
 
 .contact-form form button {
-  background-color: royalblue;
+  background-color: #007430;
   height: 40px;
   color: white;
   border-radius: 5px;
@@ -145,5 +145,5 @@
 }
 
 .contact-form form button:hover {
-  background-color: rgb(10, 38, 120);
+  background-color: #008a39;
 }

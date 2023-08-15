@@ -6,10 +6,10 @@
 }
 
 .main-page {
-  background: url("../images/background.jpg") no-repeat;
-  background-size: cover;
+  width: 100%;
   min-height: 100vh;
 }
+
 .gradient-btn {
   display: grid;
   place-items: center;
@@ -17,9 +17,9 @@
   color: #fff;
   background-image: linear-gradient(
     to right,
-    #4162cf 0%,
-    #0072ff 51%,
-    #4162cf 100%
+    #007430 0%,
+    #4faf77  51%,
+    #2caf65 100%
   );
   border-radius: 10px;
   background-size: 200% auto;
@@ -43,6 +43,7 @@
 .about > h1 {
   font-size: 3rem;
   margin: 1rem 0;
+  color: #007430;
 }
 
 .about-sub {
@@ -58,6 +59,7 @@
   width: 300px;
   max-width: 90%;
   animation: animateimage 1s linear;
+  background-image: url("../images/intro-image.png");
 }
 
 @keyframes animateimage {
@@ -128,4 +130,17 @@
   border-radius: 3px;
   /* box-shadow: 0.4px 0.4px 3px  var(--black-color); */
   color: #fff;
+}
+.for-clippath {
+  position: absolute;
+  top: 0;
+  z-index: -2;
+  width: 100%;
+  min-height: 100vh;
+  /* background-color: #15a3502c; */
+  background-image: url("../images/background.jpg");
+  background-size: cover;
+  /* clip-path: circle(51.4% at 93% 35%); */
+  clip-path: circle(60.9% at 100% 47%);
+
 }

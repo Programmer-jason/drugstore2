@@ -101,23 +101,22 @@ nav ul li a {
   text-decoration: none;
   color: inherit;
   /* border-radius: 5px; */
-  margin-bottom: 5px;
+  margin-top: 10px;
   /* border-bottom: #464646 solid 1px; */
 
   gap: 15px;
 }
 .admin-box .box:last-child {
-  border-top: #c3c3c3 1px solid;
   position: absolute;
-  bottom: 0;
+  bottom: 5px;
   /* border-radius: 5px; */
   /* background-color: #00ad48; */
   color: #ebebeb;
-  width: 100%;
+  width: 90%;
 }
 
 .admin-box .box:hover {
-  background-color: #008537;
+  background-color: #01a144;
   border-radius: 5px;
 }
 .user-profile {

@@ -95,6 +95,7 @@ if (isset($_SESSION["user"])) {
                 </div>
             </section>
             <script src="./js/navbar.js"></script>
+            <div class="for-clippath"></div>
     </body>
 </head>
 </head>

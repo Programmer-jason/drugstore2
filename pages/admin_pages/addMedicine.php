@@ -52,14 +52,6 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
             <a href="../../index.php">Medicure Drug</a>
         </div>
 
-        <div class="profile-pic">
-            <img src="<?php echo '../../profile/' . $row6['userProfile']; ?>" alt='<?php echo "profile"; ?>' class="user-image">
-            <div><br>
-                <?php echo $_SESSION['firstname'] . ' ' . $_SESSION['lastname']; ?>
-            </div>
-        </div>
-
-
         <a href="../profile.php" class="box dashboard">
             <div><img src="../../assets/dashboard.svg" alt="dashboard" width="25px"></div>
             <div> Dashboard</div>
@@ -113,7 +105,7 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
             <div class="head-title">Add Item</div>
 
             <ul>
-                <li><a href="../profile.php"><?php echo $_SESSION['firstname']; ?> <img src='../../profile/<?php echo $userProfile ?>' alt='User Profile' class='user-profile' /></a></li>
+                <li><a href="../profile.php"><?php echo $_SESSION['firstname']; ?><img src='../../profile/<?php echo $userProfile ?>' alt='User Profile' class='user-profile' /></a></li>
                 <li>
                     <div class="notif">
                         <img src="../../assets/notif.svg" alt="home" width="20px" id="notifShow" onclick="loadDoc()">

@@ -51,15 +51,7 @@ $fetchUser = mysqli_fetch_assoc($getUserResult);
             <a href="../../index.php">Medicure Drug</a>
         </div>
 
-        <div class="profile-pic">
-            <img src="<?php echo '../../profile/' . $row7['userProfile']; ?>" alt='<?php echo "profile"; ?>' class="user-image">
-
-            <div>
-                <?php echo $_SESSION['firstname'] . ' ' . $_SESSION['lastname']; ?>
-            </div>
-        </div>
-
-        <a href="./favorite.php" class="box edit-profile">
+        <a href="./favorite.php" class="box favorite">
             <div><i id ='heart' class='fa-solid fa-heart fa-xl' style='color: #ffffff;' id ='heart'></i></div>
             <div>My Likes</div>
         </a>
@@ -81,7 +73,7 @@ $fetchUser = mysqli_fetch_assoc($getUserResult);
         <div class="head-title">My Likes</div>
 
         <ul>
-          <li><a href="./profile.php"><?php echo $_SESSION['firstname']; ?><img src='../../profile/<?php echo $userProfile; ?>' alt='User Profile' class='user-profile' /> </a></li>
+          <li><a href="#"><?php echo $_SESSION['firstname']; ?><img src='../../profile/<?php echo $userProfile; ?>' alt='User Profile' class='user-profile' /></a></li>
         </ul>
       </nav>
         

@@ -21,7 +21,7 @@ $getProductResult = mysqli_query($conn, $getproduct);
 $fetchProduct = mysqli_fetch_assoc($getProductResult);
 $fetchImg = $fetchProduct['productImg'];
 $fetchName = $fetchProduct['productName'];
-$fetchQty = $fetchProduct['productQty'];
+$fetchQuanty = $fetchProduct['productQty'];
 
 
 $imgUrl = "http://localhost/drugstore-management-system/uploads/$fetchImg";
@@ -42,7 +42,7 @@ curl_setopt_array($curl, [
                     'address' => [
                         'line1' => '742',
                         'line2' => '',
-                        'city' => 'manila',
+                        'city' => 'Manila',
                         'state' => 'none',
                         'postal_code' => '1013',
                         'country' => 'PH'
@@ -54,7 +54,7 @@ curl_setopt_array($curl, [
                 'send_email_receipt' => false,
                 'show_description' => true,
                 'show_line_items' => true,
-                'cancel_url' => 'https://www.paymongo.com/',
+                'cancel_url' => 'http://localhost/drugstore-management-system/pages/medicine.php',
                 'description' => 'medicure drug product',
                 'line_items' => [
                     [
@@ -62,10 +62,10 @@ curl_setopt_array($curl, [
                         'currency' => 'PHP',
                         'description' => 'medicure drug product',
                         'images' => [
-                        $imgUrl
+                        $imgUrl,
                         ],
                         'name' => $fetchName,
-                        'quantity' => $fetchQty
+                        'quantity' => 34,
                     ]
                 ],
                 'payment_method_types' => [
@@ -75,7 +75,7 @@ curl_setopt_array($curl, [
                                 'card',
                                 'billease' 
                 ],
-                'reference_number' => '34343fefwfw',
+                'reference_number' => '1843434545545334',
                 'success_url' => 'http://localhost/drugstore-management-system/pages/medicine.php',
                 'statement_descriptor' => 'medicure drugs product'
         ]
