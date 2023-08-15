@@ -89,7 +89,15 @@ table th {
     padding: 8px;
     gap: 5px;
     overflow: hidden;
+    transition: .5s all;
+
   }
+
+  .mp-card:hover{
+
+    transform: scale(1.1, 1.1);
+    }
+    
   
   .mp-list {
     width: 100%;

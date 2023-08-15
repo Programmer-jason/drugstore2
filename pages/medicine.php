@@ -99,9 +99,9 @@ $fetchUser = mysqli_fetch_assoc($getUserResult);
                 <?php echo $rows['productQty'] == 0 ? 'Not Available' : 'Available' ?>
               </div> -->
 
-              <div>
+              <!-- <div>
                 <?php echo 'Stock'.' '.$rows['productQty']; ?>
-              </div>
+              </div> -->
             </div>
 
             <div class="cart-btn">
