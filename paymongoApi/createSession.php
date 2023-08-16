@@ -21,8 +21,10 @@ $getProductResult = mysqli_query($conn, $getproduct);
 $fetchProduct = mysqli_fetch_assoc($getProductResult);
 $fetchImg = $fetchProduct['productImg'];
 $fetchName = $fetchProduct['productName'];
-$fetchQuanty = $fetchProduct['productQty'];
 $fetchPrice = $fetchProduct['productPrice'];
+$price = explode('.', $fetchPrice);
+$pricee = "$price[0]$price[1]";
+
 
 $imgUrl = "http://localhost/drugstore-management-system/uploads/$fetchImg";
 $curl = curl_init();
@@ -58,14 +60,14 @@ curl_setopt_array($curl, [
                 'description' => 'medicure drug product',
                 'line_items' => [
                     [
-                        'amount' => $price,
+                        'amount' => (int)$pricee,
                         'currency' => 'PHP',
                         'description' => 'medicure drug product',
                         'images' => [
                         $imgUrl,
                         ],
                         'name' => $fetchName,
-                        'quantity' => 4,
+                        'quantity' => 2,
                     ]
                 ],
                 'payment_method_types' => [

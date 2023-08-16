@@ -92,16 +92,16 @@ $fetchUser = mysqli_fetch_assoc($getUserResult);
               </div>
 
               <h2>
-                <?php echo '₱'.' '.$rows['productPrice']; ?>
+                <?php echo '₱'.$rows['productPrice']; ?>
               </h2>
 
               <!-- <div>
                 <?php echo $rows['productQty'] == 0 ? 'Not Available' : 'Available' ?>
               </div> -->
 
-              <!-- <div>
+              <div>
                 <?php echo 'Stock'.' '.$rows['productQty']; ?>
-              </div> -->
+              </div>
             </div>
 
             <div class="cart-btn">
@@ -131,6 +131,9 @@ $fetchUser = mysqli_fetch_assoc($getUserResult);
       <?php } ?>
 
       <div class="checkout">
+        <div class="transparent-bg">
+
+        </div>
       </div>
 
       <?php if (mysqli_num_rows($result) == 0) {
@@ -149,7 +152,7 @@ $fetchUser = mysqli_fetch_assoc($getUserResult);
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function(getProductId) {
               if (this.readyState == 4 && this.status == 200) {
-                document.querySelector(".checkout").innerHTML = this.responseText;
+                document.querySelector(".transparent-bg").innerHTML = this.responseText;
               }
           };
           xhttp.open("GET", `./validation/buyValidation.php?buyId=${getProductId}`, true);

@@ -145,7 +145,7 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
                     <input type="text" name="productName" id="productName" required>
 
                     <div>Price</div>
-                    <input type="number" name="productPrice" id="productPrice" required>
+                    <input type="number" name="productPrice" id="productPrice" value="0.00" required>
 
                     <div>Expiration</div>
                     <input type="date" name="productExpiration" id="productExpiration" required>
@@ -159,7 +159,7 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
                     </select>
 
                     <div>Stock</div>
-                    <input type="number" name="productQty" id="productQty" required>
+                    <input type="number" name="productQty" id="productQty" value="0" required>
 
                     <div>Stock Type</div>
                     <select name="stockType" id="stockType">

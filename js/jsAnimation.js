@@ -12,7 +12,7 @@ $(document).ready(function () {
   });
 
   $(".buy-btn").click(function () {
-    $(".checkout").slideDown("slow");
+    $(".checkout").fadeIn("slow");
   });
 
 

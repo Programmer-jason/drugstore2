@@ -17,20 +17,25 @@ $getProduct = "SELECT * FROM `product` WHERE productId = $getProductId";
 $getProductResult = mysqli_query($conn, $getProduct);
 $fetchProduct = mysqli_fetch_assoc($getProductResult);
 $getproductImage = $fetchProduct['productImg'];
+$getproductName = $fetchProduct['productName'];
+$getproductPrice = $fetchProduct['productPrice'];
 
 if(mysqli_num_rows($getUserResult) > 0 && mysqli_num_rows($getProductResult) > 0 ){
     echo "
+    <div>$getproductName</div>
     <img src='../uploads/$getproductImage' alt='product-image'>
     <br>
     <div>Quantity</div>
-    <input type='number' min='0' value='1'/>
-    <br>
-    <br>
-    <a href='../paymongoApi/createSession.php?productId=$getProductId' class='btn-success'>Buy</a>
-    <a href='./medicine.php' class='btn-danger'>Cancel</a>
+    <input type='number' min='0' value='1' class='quanty'/>
+    <div>₱$getproductPrice</div>
+      <br>
+      <a href ='' class='btn-success'>Proceed</a>
+      <a href='./medicine.php' class='btn-danger'>Cancel</a>
 
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js' integrity='sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==' crossorigin='anonymous' referrerpolicy='no-referrer'></script>
-    <script src='../../js/jsAnimation.js'></script>
+    <script>
+      let quantityValue = document.querySelector('.quanty').value;
+      document.querySelector('.btn-success').setAttribute('href','../paymongoApi/createSession.php?productId=$getProductId&quanty=quantityValue');
+    </script>
 
     ";
 }

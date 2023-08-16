@@ -99,7 +99,7 @@ $fetchUser = mysqli_fetch_assoc($getUserResult);
                 </div>
                 
                 <div>
-                <?php echo '₱'.' '.$rows['productPrice'] ?>
+                <?php echo '₱'.$rows['productPrice'] ?>
                 </div>
 
                 <!-- <div>
