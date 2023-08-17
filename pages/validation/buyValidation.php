@@ -26,21 +26,14 @@ if(mysqli_num_rows($getUserResult) > 0 && mysqli_num_rows($getProductResult) > 0
     <img src='../uploads/$getproductImage' alt='product-image'>
     <br>
     <div>Quantity</div>
-    <input type='number' min='0' value='1' class='quanty'/>
+    <input type='number' min='0' value='1' id='quanty'/>
     <div>₱$getproductPrice</div>
       <br>
-      <a href ='' class='btn-success'>Proceed</a>
+      <a href='#' class='btn-success' onclick='getQuantity($getProductId)'>Proceed</a>
       <a href='./medicine.php' class='btn-danger'>Cancel</a>
-
-    <script>
-      let quantityValue = document.querySelector('.quanty').value;
-      document.querySelector('.btn-success').setAttribute('href','../paymongoApi/createSession.php?productId=$getProductId&quanty=quantityValue');
-    </script>
 
     ";
 }
 }
-else {
-    header("location: ../signIn.php?message=You need to signin");
-}
+
 ?>

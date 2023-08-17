@@ -4,6 +4,7 @@ include '../pages/connect.php';
 
 $productId = $_GET['productId'];
 $user = $_SESSION['user'];
+$getQuantity = $_GET['quanty'];
 
 //GET USER
 $getUser = "SELECT * FROM signup WHERE email = '$user'";
@@ -67,7 +68,7 @@ curl_setopt_array($curl, [
                         $imgUrl,
                         ],
                         'name' => $fetchName,
-                        'quantity' => 2,
+                        'quantity' => (int)$getQuantity,
                     ]
                 ],
                 'payment_method_types' => [
