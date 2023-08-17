@@ -24,6 +24,14 @@
     <form action="./validation/signupValidation.php" method="post">
       <h1 class="titleHead">Sign up</h1>
 
+ 
+        <div class="form-group col-md-14">
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" placeholder="Email" class="form-control" required>
+        </div>
+   
+
+
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="firstName">Firstname</label>
@@ -35,10 +43,6 @@
         </div>
       </div>
 
-      <div class="form-group col-md-6">
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email" placeholder="Email" class="form-control" required>
-      </div>
 
       <div class="form-row">
         <div class="form-group col-md-6">
@@ -59,6 +63,17 @@
         <div class="form-group col-md-6">
           <label for="confirmpassword">Confirm Password</label>
           <input type="password" name="confirmpassword" id="confirmpassword" placeholder="Confirm Password" class="form-control" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="address">Address</label>
+          <input type="text" name="address" id="address" placeholder="address" class="form-control" required>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="brgy">Brgy/Zone</label>
+          <input type="text" name="brgy" id="brgy" placeholder="brgy" class="form-control" required>
         </div>
       </div>
 

@@ -11,15 +11,17 @@ if (isset($_POST['submit'])) {
     $confirmpassword = htmlspecialchars($_POST["confirmpassword"]);
     $gender = htmlspecialchars($_POST["gender"]);
     $role = htmlspecialchars($_POST["role"]);
-    $hash = password_hash($password, PASSWORD_DEFAULT);
+    $address = htmlspecialchars($_POST["address"]);
+    $brgy = htmlspecialchars($_POST["brgy"]);
+    // $hash = password_hash($password, PASSWORD_DEFAULT);
 
     $sql = "SELECT firstName FROM signup WHERE firstName = '$firstName';";
     $result = mysqli_query($conn, $sql);
 
     if (!mysqli_num_rows($result) > 0) {
         if ($password == $confirmpassword) {
-            $stmt = $conn->prepare("INSERT INTO signup (firstName, lastName, email, password, gender, age, contact, role) VALUES (?,?,?,?,?,?,?,?)");
-            $stmt->bind_param("sssssiis", $firstName, $lastName, $email, $hash, $gender, $age, $contact, $role);
+            $stmt = $conn->prepare("INSERT INTO signup (firstName, lastName, email, password, gender, age, contact, role,address,brgy) VALUES (?,?,?,?,?,?,?,?,?,?)");
+            $stmt->bind_param("sssssiisss", $firstName, $lastName, $email, $password, $gender, $age, $contact, $role,$address,$brgy);
             $stmt->execute();
             $stmt->close();
             $conn->close();

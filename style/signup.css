@@ -19,9 +19,9 @@ body {
 }
 .container {
   font-size: 2vh;
-  border-radius: 15px;
-  width: 60%;
-  height: 570px;
+  border-radius: 10px;
+  width: 40%;
+  height: 700px;
   padding: 10px;
   background: #f0f0f0;
   box-shadow: 2px 2px 6px #dadada, -2px -2px 6px #dadada;
@@ -29,34 +29,36 @@ body {
 .container .titleHead {
   color: var(--primary-color);
   border-bottom: var(--primary-color) 2px solid;
-  width: 53%;
+  width: 100%;
   text-align: center;
+  margin-inline: auto;
 }
 .container form {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  padding: 40px 30px;
 }
 
 .form-group {
-  width: 50%;
+  width: 100%;
 }
 
 .form-control {
-  width: 97%;
   width: 100%;
   background-color: #f0f0f0;
 }
 
 .container .submit {
-  width: 52%;
+  width: 100%;
   height: 40px;
-  border-radius: 10px;
+  border-radius: 4px;
   border: none;
   text-align: center;
   box-shadow: 0.6px 0.6px 4px var(--bg-shadow);
   background-color: var(--primary-color);
   color: var(--white-color);
+  margin-inline: auto;
+
 }
 .container .right-side {
   background-color: transparent;
@@ -68,7 +70,7 @@ body {
 }
 .container .right-side .btn-signup {
   color: var(--white-color);
-  border-radius: 7px;
+  border-radius: 5px;
   width: 120px;
   padding: 4px;
   background-color: var(--primary-color);
@@ -79,7 +81,7 @@ body {
 
 .container .right-side .btn-signin {
   color: var(--primary-color);
-  border-radius: 7px;
+  border-radius: 5px;
   width: 120px;
   padding: 4px;
   background-color: white;
@@ -88,6 +90,10 @@ body {
   text-decoration: none;
   text-align: center;
 }
-.links a {
+.links, a{
   color: var(--primary-color);
+  text-align: center;
+}
+div.gender{
+  margin-inline: auto;
 }
