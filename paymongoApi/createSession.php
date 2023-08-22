@@ -10,11 +10,15 @@ $getQuantity = $_GET['quanty'];
 $getUser = "SELECT * FROM signup WHERE email = '$user'";
 $getUserResult = mysqli_query($conn, $getUser);
 $fetchUser = mysqli_fetch_assoc($getUserResult);
+$fetchUserId = $fetchUser['userId'];
 $fetchfirstname = $fetchUser['firstName'];
 $fetchLastname = $fetchUser['lastName'];
 $fetchEmail = $fetchUser['email'];
 $fetchContact = $fetchUser['contact'];
 $username = "$fetchfirstname $fetchLastname";
+
+//PAYMENT 
+$getUser = "SELECT * FROM paymentdetails WHERE userId = $fetchUserId";
 
 //GET PRODUCT
 $getproduct = "SELECT * FROM product WHERE productId = $productId";
@@ -75,10 +79,9 @@ curl_setopt_array($curl, [
                                 'gcash',
                                 'paymaya',
                                 'grab_pay',
-                                'card',
-                                'billease' 
+                                
                 ],
-                'reference_number' => '1843434545545334',
+                'reference_number' => uniqid(),
                 'success_url' => 'http://localhost/drugstore-management-system/pages/medicine.php',
                 'statement_descriptor' => 'medicure drugs product'
         ]
@@ -103,4 +106,5 @@ if ($err) {
 } else {
     $geUrl = $getresponse->data->attributes->checkout_url;
     header("location: $geUrl");
+   
 }
