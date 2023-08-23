@@ -26,6 +26,7 @@ $getProductResult = mysqli_query($conn, $getproduct);
 $fetchProduct = mysqli_fetch_assoc($getProductResult);
 $fetchImg = $fetchProduct['productImg'];
 $fetchName = $fetchProduct['productName'];
+$fetchQty = $fetchProduct['productQty'];
 $fetchPrice = $fetchProduct['productPrice'];
 $price = explode('.', $fetchPrice);
 $pricee = "$price[0]$price[1]";
@@ -104,7 +105,9 @@ curl_close($curl);
 if ($err) {
   echo "cURL Error #:" . $err;
 } else {
+    $sqlUpdate = "UPDATE `product` SET `productQty`=($fetchQty - $getQuantity) WHERE productId = $productId";
+    mysqli_query($conn, $sqlUpdate);
     $geUrl = $getresponse->data->attributes->checkout_url;
     header("location: $geUrl");
-   
+
 }

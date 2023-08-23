@@ -3,7 +3,7 @@
 $curl = curl_init();
 
 curl_setopt_array($curl, [
-  CURLOPT_URL => "https://api.paymongo.com/v1/merchants/capabilities/payment_methods",
+  CURLOPT_URL => "https://api.paymongo.com/v1/checkout_sessions/cs_NBaJKvcugTP5qrRynRnXFNqM",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
   CURLOPT_MAXREDIRS => 10,

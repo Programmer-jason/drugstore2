@@ -95,13 +95,11 @@ $fetchUser = mysqli_fetch_assoc($getUserResult);
                 <?php echo '₱'.$rows['productPrice']; ?>
               </h2>
 
-              <!-- <div>
-                <?php echo $rows['productQty'] == 0 ? 'Not Available' : 'Available' ?>
-              </div> -->
-
               <div>
-                <?php echo 'Stock'.' '.$rows['productQty']; ?>
+                <?php echo $rows['productQty'] != 0 ? 'Stock'.' '.$rows['productQty']: '<div style="color: red;">Out Of Stock</div>' ?>
               </div>
+
+          
             </div>
 
             <div class="cart-btn">
@@ -114,7 +112,7 @@ $fetchUser = mysqli_fetch_assoc($getUserResult);
                                         $getFavorite = "SELECT * FROM user_favorite WHERE product_id = $prodId2 AND user_id = $userId";
                                         $favoriteResult = mysqli_query($conn, $getFavorite);
                                         $fetchFavorite = mysqli_fetch_assoc($favoriteResult);
-                                        echo (mysqli_num_rows($favoriteResult) > 0) ? "red" : "#313131";
+                                        echo (mysqli_num_rows($favoriteResult) > 0) ? "#fa81f4" : "#313131";
                                     }
                                     else{}
                                ?>'
