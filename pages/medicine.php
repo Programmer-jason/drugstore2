@@ -85,7 +85,7 @@ $fetchUser = mysqli_fetch_assoc($getUserResult);
       ?>
           <div class="mp-card" >
             <img src="<?php echo '../uploads/' . $rows['productImg']; ?>" alt='product-image' class="img-list" ondblclick="loadDoc()">
-
+            
             <div class="details" ondblclick="loadDoc()">
               <div class="product-name">
                 <?php echo $rows['productName']; ?>
@@ -99,7 +99,6 @@ $fetchUser = mysqli_fetch_assoc($getUserResult);
                 <?php echo $rows['productQty'] != 0 ? 'Stock'.' '.$rows['productQty']: '<div style="color: red;">Out Of Stock</div>' ?>
               </div>
 
-          
             </div>
 
             <div class="cart-btn">

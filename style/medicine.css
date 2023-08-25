@@ -62,7 +62,8 @@ a {
   overflow: hidden;
   font-family: 'Courier New', Courier, monospace !important;
   transition: .5s all;
-  /* border-top: 3px solid #007430; */
+  border-top: #007430 2px solid;
+  /* border-bottom: #007430 2px solid; */
 
 }
 .mp-card:hover{
@@ -89,7 +90,7 @@ transform: scale(1.1, 1.1);
   color: #313131;
 }
 
-.mp-list .details .product-name {
+.mp-list .product-name {
   font-weight: 900 !important;
   font-size: 1.9vh !important;
 }
@@ -166,7 +167,7 @@ div.checkout {
 }
 
 div.transparent-bg {
-  border-top: 3px solid #007430;
+  border-top: 2px solid #007430;
   width: 200px;
   margin-inline: auto;
   margin-top: 150px;

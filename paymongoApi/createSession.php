@@ -107,7 +107,7 @@ if ($err) {
 } else {
     $sqlUpdate = "UPDATE `product` SET `productQty`=($fetchQty - $getQuantity) WHERE productId = $productId";
     mysqli_query($conn, $sqlUpdate);
+    
     $geUrl = $getresponse->data->attributes->checkout_url;
     header("location: $geUrl");
-
 }
