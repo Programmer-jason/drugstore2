@@ -199,14 +199,14 @@ img {
   text-align: left;
   position: relative;
   z-index: 9999;
-  color: #313131 !important;
+  color: #f8f8f8 !important;
 }
 .notif-date {
   font-size: x-small !important;
   text-align: left;
   position: relative;
   z-index: 9999;
-  color: #313131;
+  color: #f8f8f8;
 }
 
 .head-title {
@@ -256,8 +256,7 @@ table tr:hover {
   justify-content: space-around;
   padding: 3px;
   text-decoration: none;
-  border-bottom: 1px solid #9c9c9c;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   color: #cfcfcf;
 }
 .stock-links > a {
@@ -265,6 +264,7 @@ table tr:hover {
 }
 div.table-container {
   background-color: #f8f8f8;
+  border-top: #007430 3px solid;
   box-shadow: 1px 1px 4px #c3c3c3 !important;
   border-radius: 5px;
   padding: 20px 0px;
@@ -272,9 +272,10 @@ div.table-container {
   overflow-y: scroll;
 }
 div.table-container::-webkit-scrollbar {
-  width: 4px;
+  width: 1px;
 }
+
 div.table-container::-webkit-scrollbar-thumb {
-  background-color: #5a5a5a;
+  background-color: #313131;
 }
 

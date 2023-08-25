@@ -20,10 +20,6 @@
   overflow: hidden;
   width: 100%;
   height: 100vh;
-  /* background-image: url(../images/green_geometric.jpg);
-  background-position: 100% 100%;
-  background-size: contain;
-  background-repeat: no-repeat; */
   background-color: transparent;
 }
 
@@ -49,7 +45,7 @@ div.clip {
 .intro .introduction > .title {
   color: var(--primary-color);
   text-shadow: 0.6px 0.6px 2px rgb(0, 0, 0);
-  font-size: min(12vh, 40px);
+  font-size: 5vh;
 }
 .intro .introduction > .intro-paragraph {
   color: #313131;
@@ -64,8 +60,6 @@ div.clip {
   border-radius: 4px;
   box-shadow: 1px 1px 4px #707070;
   color: var(--white-color);
-  /* font-weight: bold; */
-  font-size: 1.8vh;
   position: relative;
   transition: 0.3s ease-in-out;
 }

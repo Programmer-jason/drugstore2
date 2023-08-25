@@ -12,7 +12,7 @@ function userGenderChart() {
     title: "Total Users",
     colors: ["#00b368", "#c72b2b"],
     width: 330,
-    height: 220,
+    height: 230,
     backgroundColor: "transparent",
     // pieHole: 0.5,
   };
@@ -37,7 +37,7 @@ function drawChart() {
     title: "User Gender",
     colors: ["#0A6EBD", "#E966A0"],
     width: 330,
-    height: 220,
+    height: 230,
     // is3D: true,
 
     // chartArea: {

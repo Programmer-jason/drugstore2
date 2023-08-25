@@ -10,7 +10,6 @@
 
 * {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -22,6 +21,7 @@ html {
   display: flex;
   overflow: hidden;
 }
+
 .admin-box .manage-account {
   background-color: #01a144;
   border-radius: 5px;

@@ -40,11 +40,11 @@ a {
 }
 
 .medicine-container::-webkit-scrollbar {
-  width: 7px;
+  width: 4px;
 }
 
 .medicine-container::-webkit-scrollbar-thumb {
-  background-color: #5a5a5a;
+  background-color: #313131;
 }
 
 .mp-card {
@@ -60,7 +60,6 @@ a {
   padding: 6px;
   gap: 5px;
   overflow: hidden;
-  font-family: 'Courier New', Courier, monospace !important;
   transition: .5s all;
   border-top: #007430 2px solid;
   /* border-bottom: #007430 2px solid; */
@@ -91,8 +90,6 @@ transform: scale(1.1, 1.1);
 }
 
 .mp-list .product-name {
-  font-weight: 900 !important;
-  font-size: 1.9vh !important;
 }
 
 form {

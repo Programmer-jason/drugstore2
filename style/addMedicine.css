@@ -33,9 +33,9 @@ html {
   background-color: transparent;
   border-radius: 5px;
   box-shadow: 1px 1px 4px #c3c3c3 !important;
-  /* border-block: 1px solid #c4c4c4dd; */
   padding: 20px 50px;
   background-color: #f8f8f8;
+  border-top: #007430 3px solid;
 }
 
 .add-product-content .form .upload-product .image {

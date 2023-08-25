@@ -7,10 +7,10 @@
   scroll-behavior: smooth;
 }
 *::-webkit-scrollbar{
-  width: 7px;
+  width: 4px;
 }
 *::-webkit-scrollbar-thumb{
-  background-color: #5a5a5a;
+  background-color: #313131;
 }
 
 body {

@@ -41,7 +41,9 @@ html {
   background-color: #f8f8f8;
   box-shadow: 1px 1px 4px #c3c3c3 !important;
   padding: 20px 50px;
+  border-top: #007430 3px solid;
 }
+
 input[type="text"],
 [type="number"],
 [type="date"],

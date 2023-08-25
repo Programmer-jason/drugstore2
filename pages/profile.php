@@ -173,7 +173,7 @@ $result9 = mysqli_query($conn, $sql9);
     <div class="user-container">
         <div class="dashboard-content">
             <div class="box total-medicine">
-                <div><i class="fa-solid fa-capsules fa-2xl" style="color: #313131;"></i></div>
+                <div><i class="fa-solid fa-capsules fa-2xl" style="color: #007430;"></i></div>
 
                 <div>
                     <h2>
@@ -184,7 +184,7 @@ $result9 = mysqli_query($conn, $sql9);
             </div>
 
             <div class="box total-product">
-                <div><i class="fa-solid fa-box-open fa-2xl" style="color: #313131;"></i></div>
+                <div><i class="fa-solid fa-box-open fa-2xl" style="color: #007430;"></i></div>
                 <div>
                     <h2>
                         <?php echo $productType; ?>
@@ -195,7 +195,7 @@ $result9 = mysqli_query($conn, $sql9);
             </div>
 
             <div class="box total-expired">
-                <div><i class="fa-solid fa-bolt fa-2xl" style="color: #313131;"></i></div>
+                <div><i class="fa-solid fa-bolt fa-2xl" style="color: #007430;"></i></div>
 
                 <div>
                     <h2>
@@ -207,7 +207,7 @@ $result9 = mysqli_query($conn, $sql9);
             </div>
 
             <div class=" box total-sales">
-                <div><i class="fa-solid fa-chart-line fa-2xl" style="color: #313131;"></i></div>
+                <div><i class="fa-solid fa-chart-line fa-2xl" style="color: #007430;"></i></div>
 
                 <div>
                     <h2>
