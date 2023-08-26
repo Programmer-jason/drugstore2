@@ -33,10 +33,11 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
    <title>Inventory</title>
    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@500&display=swap" rel="stylesheet">
    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
    <link rel="shortcut icon" href="../images/sample logo.png" type="image/x-icon" />
    <link rel="stylesheet" href="../../style/navbar.css" />
    <link rel="stylesheet" href="../../style/sidenav.css" />
-   <link rel="stylesheet" href="../../style/inventory.css" />
+   <link rel="stylesheet" href="../../style/add_sales.css" />
 
 </head>
 
@@ -48,6 +49,13 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
          <a href="../../index.php">Medicure Drug</a>
       </div>
 
+      <div class="profile-pic">
+         <img src="<?php echo '../../profile/' . $row6['userProfile']; ?>" alt='<?php echo "profile"; ?>' class="user-image">
+         <div>
+            <?php echo $_SESSION['firstname'] . ' ' . $_SESSION['lastname']; ?>
+         </div>
+      </div>
+      
       <a href="../profile.php" class="box dashboard">
          <div><img src="../../assets/dashboard.svg" alt="dashboard" width="25px"></div>
          <div> Dashboard</div>
@@ -68,16 +76,15 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
          <div>Prescription</div>
       </a> -->
 
-
       <a href="../admin_pages/manageAccount.php" class="box manage-account">
          <div><img src="../../assets/manageUsers.svg" alt="dashboard" width="25px"></div>
          <div>Users</div>
       </a>
 
-      <!-- <a href="./reserved.php" class="box reserved">
-      <div><img src="../../assets/.png" alt="dashboard" width="100px"></div>
-      <div>Reserve</div>
-    </a> -->
+      <a href="./paymentDetails.php" class="box reserved">
+        <div><i class="fa-solid fa-money-check-dollar" style="color: #ffffff;"></i></div>
+        <div>Payment Details</div>
+      </a>
 
       <a href="../admin_pages/addMedicine.php" class="box add-medicine">
          <div><img src="../../assets/addProduct.svg" alt="dashboard" width="25px"></div>

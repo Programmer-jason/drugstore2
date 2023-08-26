@@ -73,6 +73,8 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
   <title>Update User</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="shortcut icon" href="../images/sample logo.png" type="image/x-icon" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <link rel="stylesheet" href="../../style/sidenav.css" />
   <link rel="stylesheet" href="../../style/navbar.css" />
   <link rel="stylesheet" href="../../style/manageAccount.css" />
@@ -83,6 +85,13 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
     <div class="brand">
       <img src="../../images/sample logo.png" alt="no image" />
       <a href="../../index.php">Medicure Drug</a>
+    </div>
+
+    <div class="profile-pic">
+         <img src="<?php echo '../../profile/' . $row6['userProfile']; ?>" alt='<?php echo "profile"; ?>' class="user-image">
+         <div>
+            <?php echo $_SESSION['firstname'] . ' ' . $_SESSION['lastname']; ?>
+         </div>
     </div>
 
     <a href="../profile.php" class="box dashboard">
@@ -110,10 +119,10 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
       <div>Users</div>
     </a>
 
-    <!-- <a href="./reserved.php" class="box reserved">
-      <div><img src="../../assets/.png" alt="dashboard" width="100px"></div>
-      <div>Reserve</div>
-    </a> -->
+    <a href="./paymentDetails.php" class="box reserved">
+         <div><i class="fa-solid fa-money-check-dollar" style="color: #ffffff;"></i></div>
+         <div>Payment Details</div>
+      </a>
 
     <a href="./addMedicine.php" class="box add-medicine">
       <div><img src="../../assets/addProduct.svg" alt="dashboard" width="25px"></div>

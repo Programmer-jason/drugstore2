@@ -91,6 +91,12 @@ $result9 = mysqli_query($conn, $sql9);
             <a href="../index.php">Medicure Drug</a>
         </div>
 
+        <div class="profile-pic">
+         <img src="<?php echo '../profile/' . $row6['userProfile']; ?>" alt='<?php echo "profile"; ?>' class="user-image">
+         <div>
+            <?php echo $_SESSION['firstname'] . ' ' . $_SESSION['lastname']; ?>
+         </div>
+      </div>
 
         <a href="./profile.php" class="box dashboard">
             <div><img src="../assets/dashboard.svg" alt="dashboard" width="25px"></div>
@@ -117,10 +123,10 @@ $result9 = mysqli_query($conn, $sql9);
             <div>Users</div>
         </a>
 
-        <!-- <a href="./admin_pages/reserved.php" class="box reserved">
-      <div><img src="../../assets/.png" alt="dashboard" width="100px"></div>
-      <div>Reserve</div>
-    </a> -->
+        <a href="./admin_pages/paymentDetails.php" class="box reserved">
+            <div><i class="fa-solid fa-money-check-dollar" style="color: #ffffff;"></i></div>
+            <div>Payment Details</div>
+        </a>
 
         <a href="./admin_pages/addMedicine.php" class="box add-medicine">
             <div style="color: red;"><img src="../assets/addProduct.svg" alt="dashboard" width="25px" style="color: red;"></div>
@@ -131,6 +137,7 @@ $result9 = mysqli_query($conn, $sql9);
             <div><img src="../assets/editProfile.svg" alt="dashboard" width="25px"></div>
             <div>Edit Profile</div>
         </a>
+        
 
         <a href="./logout.php" class="box logout">
             <div><img src="../assets/logout.svg" alt="dashboard" width="25px"></div>

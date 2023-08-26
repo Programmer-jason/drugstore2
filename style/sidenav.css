@@ -103,16 +103,19 @@ nav ul li a {
   /* border-radius: 5px; */
   margin-top: 10px;
   /* border-bottom: #464646 solid 1px; */
-
   gap: 15px;
+  transition: all 0.3s ease-out;
 }
+.admin-box .box:hover{
+  /* transform: scale(1.1,1.1); */
+  width: 95%;
+
+}
+
 .admin-box .box:last-child {
   position: absolute;
   bottom: 5px;
-  /* border-radius: 5px; */
-  /* background-color: #00ad48; */
-  color: #ebebeb;
-  width: 90%;
+  
 }
 
 .admin-box .box:hover {
@@ -264,7 +267,7 @@ table tr:hover {
 }
 div.table-container {
   background-color: #f8f8f8;
-  border-top: #007430 3px solid;
+  border-top: #007430 2px solid;
   box-shadow: 1px 1px 4px #c3c3c3 !important;
   border-radius: 5px;
   padding: 20px 0px;
@@ -276,6 +279,6 @@ div.table-container::-webkit-scrollbar {
 }
 
 div.table-container::-webkit-scrollbar-thumb {
-  background-color: #313131;
+  background-color: #007430;
 }
 
