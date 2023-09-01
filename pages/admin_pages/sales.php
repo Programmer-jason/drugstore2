@@ -86,7 +86,7 @@ $resultSales = mysqli_query($conn, $sqlSales);
       
       <a href="./paymentDetails.php" class="box reserved">
          <div><i class="fa-solid fa-money-check-dollar" style="color: #ffffff;"></i></div>
-         <div>Payment Details</div>
+         <div>Payment</div>
       </a>
 
       <a href="./addMedicine.php" class="box add-medicine">

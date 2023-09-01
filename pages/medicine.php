@@ -1,6 +1,7 @@
 <?php session_start();
 include './connect.php';
 
+
 if (isset($_SESSION["user"])) {
   $user = $_SESSION['user'];
   $firstName = $_SESSION['firstname'];
@@ -16,8 +17,6 @@ $user = (isset($_SESSION["user"])) ? $_SESSION['user'] : '';
 $getUser = "SELECT * FROM signUp WHERE email = '$user'";
 $getUserResult = mysqli_query($conn, $getUser);
 $fetchUser = mysqli_fetch_assoc($getUserResult);
-
-
 
 ?>
 <!DOCTYPE html>
@@ -94,7 +93,7 @@ $fetchUser = mysqli_fetch_assoc($getUserResult);
               </h2>
 
               <div>
-                <?php echo $rows['productQty'] != 0 ? 'Stock'.' '.$rows['productQty']: '<div style="color: red;">Out Of Stock</div>' ?>
+                <?php echo $rows['productQty'] <= 0 ? '<div style="color: red;">Out Of Stock</div>' : 'Stock'.' '.$rows['productQty'] ?>
               </div>
 
             </div>

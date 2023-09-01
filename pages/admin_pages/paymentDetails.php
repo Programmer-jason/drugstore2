@@ -2,6 +2,8 @@
 session_start();
 include '../connect.php';
 
+
+
 $sql = "SELECT * FROM `signUp`;";
 $result = mysqli_query($conn, $sql);
 // $row = mysqli_fetch_assoc($result);
@@ -31,6 +33,20 @@ if (isset($_SESSION["user"])) {
 
 $sqlNotifys = "SELECT * FROM product WHERE notificationType = 'nr'";
 $resultNotifys = mysqli_query($conn, $sqlNotifys);
+
+
+//
+
+// $cURLConnection = curl_init();
+
+// curl_setopt($cURLConnection, CURLOPT_URL, 'https://hostname.tld/phone-list');
+// curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
+
+// $phoneList = curl_exec($cURLConnection);
+// curl_close($cURLConnection);
+
+// $jsonArrayResponse - json_decode($phoneList);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -90,7 +106,7 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
 
       <a href="./paymentDetails.php" class="box reserved">
         <div><i class="fa-solid fa-money-check-dollar" style="color: #ffffff;"></i></div>
-        <div>Payment Details</div>
+        <div>Payment</div>
       </a>
 
       <a href="./addMedicine.php" class="box add-medicine">
@@ -149,14 +165,12 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
 
          <table>
             <tr>
-               <th>Fullname</th>
-               <th>Email</th>
-               <th>Gender</th>
-               <th>Age</th>
-               <!-- <th>Type</th> -->
-               <th>Contact</th>
-               <th>Address</th>
-               <th>Action</th>
+               <th>Reference</th>
+               <th>Payment Method</th>
+               <th>Date Created</th>
+               <th>Amount</th>
+               <th>Status</th>
+               <th>Name</th>
             </tr>
             <?php if (mysqli_num_rows($result) > 0) : ?>
                <?php while ($rows = mysqli_fetch_assoc($result)) : ?>
@@ -177,10 +191,6 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
                         <?php echo $rows["age"]; ?>
                      </td>
 
-                     <!-- <td>
-                        <?php echo $rows["role"]; ?>
-                     </td> -->
-                     
                      <td>
                         <?php echo '0' . $rows["contact"]; ?>
                      </td>

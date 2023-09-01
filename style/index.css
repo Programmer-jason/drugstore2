@@ -52,12 +52,12 @@ div.clip {
   margin-bottom: 20px;
 }
 
-.intro .introduction > a {
+.intro > .introduction > a {
   background-color: var(--primary-color);
   text-align: center;
   text-decoration: none;
   padding: 10px;
-  border-radius: 4px;
+  border-radius: 20px;
   box-shadow: 1px 1px 4px #707070;
   color: var(--white-color);
   position: relative;

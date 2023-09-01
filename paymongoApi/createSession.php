@@ -83,7 +83,7 @@ curl_setopt_array($curl, [
                                 
                 ],
                 'reference_number' => uniqid(),
-                'success_url' => 'http://localhost/drugstore-management-system/pages/medicine.php',
+                'success_url' => 'http://localhost/drugstore-management-system/paymongoApi/checkoutResource.php',
                 'statement_descriptor' => 'medicure drugs product'
         ]
     ]
@@ -105,9 +105,17 @@ curl_close($curl);
 if ($err) {
   echo "cURL Error #:" . $err;
 } else {
-    $sqlUpdate = "UPDATE `product` SET `productQty`=($fetchQty - $getQuantity) WHERE productId = $productId";
-    mysqli_query($conn, $sqlUpdate);
+    // $sqlUpdate = "UPDATE `product` SET `productQty`=($fetchQty - $getQuantity) WHERE productId = $productId";
+    // if($fetchQty != 0){
+    //   mysqli_query($conn, $sqlUpdate);
+    // }else {
+    //   return '';
+    // }
+
+
+    $_SESSION['checkoutId'] = $getresponse->data->id;
     
     $geUrl = $getresponse->data->attributes->checkout_url;
     header("location: $geUrl");
+    
 }

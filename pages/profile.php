@@ -125,7 +125,7 @@ $result9 = mysqli_query($conn, $sql9);
 
         <a href="./admin_pages/paymentDetails.php" class="box reserved">
             <div><i class="fa-solid fa-money-check-dollar" style="color: #ffffff;"></i></div>
-            <div>Payment Details</div>
+            <div>Payment</div>
         </a>
 
         <a href="./admin_pages/addMedicine.php" class="box add-medicine">

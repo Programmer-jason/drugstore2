@@ -65,7 +65,7 @@ if (isset($_SESSION["user"])) {
         <h4 class="intro-paragraph">
           Your shop for all your health and personal care needs.
         </h4>
-        <a href="./pages/medicine.php">View Product</a></li>
+        <a href="./pages/medicine.php">View Product</a>
       </div>
 
       <div class="img-intro">
