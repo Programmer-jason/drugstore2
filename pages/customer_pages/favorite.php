@@ -51,6 +51,13 @@ $fetchUser = mysqli_fetch_assoc($getUserResult);
             <a href="../../index.php">Medicure Drug</a>
         </div>
 
+        <div class="profile-pic">
+         <img src="<?php echo '../../profile/' . $row6['userProfile']; ?>" alt='<?php echo "profile"; ?>' class="user-image">
+         <div>
+            <?php echo $_SESSION['firstname'] . ' ' . $_SESSION['lastname']; ?>
+         </div>
+        </div>
+
         <a href="./favorite.php" class="box favorite">
             <div><i id ='heart' class='fa-solid fa-heart fa-xl' style='color: #ffffff;' id ='heart'></i></div>
             <div>My Likes</div>
@@ -59,6 +66,11 @@ $fetchUser = mysqli_fetch_assoc($getUserResult);
         <a href="./edit_profile.php" class="box edit-profile">
             <div><img src="../../assets/editProfile.svg" alt="dashboard" width="25px"></div>
             <div>Edit Profile</div>
+        </a>
+
+        <a href="./paymentTransaction.php" class="box payment-transaction">
+            <div><i class="fa-solid fa-money-check-dollar" style="color: #ffffff;"></i></div>
+            <div>Payment Transaction</div>
         </a>
 
         <a href="../logout.php" class="box logout">

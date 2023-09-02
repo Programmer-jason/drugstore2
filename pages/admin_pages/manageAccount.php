@@ -155,7 +155,6 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
                <th>Age</th>
                <!-- <th>Type</th> -->
                <th>Contact</th>
-               <th>Address</th>
                <th>Action</th>
             </tr>
             <?php if (mysqli_num_rows($result) > 0) : ?>
@@ -185,9 +184,6 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
                         <?php echo '0' . $rows["contact"]; ?>
                      </td>
                      
-                     <td>
-                        <?php echo $rows["address"]; ?>
-                     </td>
                      <td>
                         <!-- <a href="./update.php?id=<?php echo $rows['userId']; ?>" class="btn btn-primary btn-sm">Update</a> -->
                         <a href="./delete_user.php?deleteId=<?php echo $rows['userId']; ?>" class="btn btn-danger btn-sm">Delete</a>

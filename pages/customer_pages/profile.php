@@ -46,6 +46,13 @@ if (isset($_SESSION["user"])) {
             <a href="../../index.php">Medicure Drug</a>
         </div>
 
+        <div class="profile-pic">
+         <img src="<?php echo '../../profile/' . $row6['userProfile']; ?>" alt='<?php echo "profile"; ?>' class="user-image">
+         <div>
+            <?php echo $_SESSION['firstname'] . ' ' . $_SESSION['lastname']; ?>
+         </div>
+        </div>
+        
         <a href="./favorite.php" class="box edit-profile">
             <div><i id ='heart' class='fa-solid fa-heart fa-xl' style='color: #ffffff;' id ='heart'></i></div>
             <div>My Likes</div>

@@ -15,6 +15,8 @@ $fetchfirstname = $fetchUser['firstName'];
 $fetchLastname = $fetchUser['lastName'];
 $fetchEmail = $fetchUser['email'];
 $fetchContact = $fetchUser['contact'];
+$fetchAddress = $fetchUser['address'];
+$fetchBrgy = $fetchUser['brgy'];
 $username = "$fetchfirstname $fetchLastname";
 
 //PAYMENT 
@@ -48,8 +50,8 @@ curl_setopt_array($curl, [
         'attributes' => [
                 'billing' => [
                     'address' => [
-                        'line1' => '742',
-                        'line2' => '',
+                        'line1' => $fetchAddress,
+                        'line2' => $fetchBrgy,
                         'city' => 'Manila',
                         'state' => 'none',
                         'postal_code' => '1013',
@@ -83,7 +85,7 @@ curl_setopt_array($curl, [
                                 
                 ],
                 'reference_number' => uniqid(),
-                'success_url' => 'http://localhost/drugstore-management-system/paymongoApi/checkoutResource.php',
+                'success_url' => 'http://localhost/drugstore-management-system/paymongoApi/checkoutResource.php?productId='.$productId,
                 'statement_descriptor' => 'medicure drugs product'
         ]
     ]
@@ -105,15 +107,9 @@ curl_close($curl);
 if ($err) {
   echo "cURL Error #:" . $err;
 } else {
-    // $sqlUpdate = "UPDATE `product` SET `productQty`=($fetchQty - $getQuantity) WHERE productId = $productId";
-    // if($fetchQty != 0){
-    //   mysqli_query($conn, $sqlUpdate);
-    // }else {
-    //   return '';
-    // }
-
 
     $_SESSION['checkoutId'] = $getresponse->data->id;
+    $_SESSION['checkoutPrice'] = ($getresponse->data->attributes->line_items[0]->quantity * $fetchPrice);
     
     $geUrl = $getresponse->data->attributes->checkout_url;
     header("location: $geUrl");

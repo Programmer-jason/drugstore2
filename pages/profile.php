@@ -61,7 +61,7 @@ if (isset($_SESSION["user"])) {
 $sqlNotifys = "SELECT * FROM product WHERE notificationType = 'nr'";
 $resultNotifys = mysqli_query($conn, $sqlNotifys);
 
-$sql9 = "SELECT * FROM product WHERE stockType = 'n' LIMIT 13";
+$sql9 = "SELECT * FROM product WHERE stockType = 'n' ORDER BY productId DESC LIMIT 13";
 $result9 = mysqli_query($conn, $sql9);
 
 

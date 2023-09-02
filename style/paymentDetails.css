@@ -123,3 +123,17 @@ input[type="text"],
   /* border-bottom: 1px solid #ddd;
   margin-bottom: 20px; */
 }
+.payment-status {
+  background-color: #00c7533f;
+  color: #00c753;
+  border: 1px solid #00c753;
+  text-align: center;
+  width: 50px;
+}
+.payment-status-failed{
+  background-color: #c7000038;
+  color: #c70000;
+  border: 1px solid #c70000;
+  text-align: center;
+  width: 50px;
+}
