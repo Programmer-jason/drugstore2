@@ -1,6 +1,11 @@
 <?php session_start();
 include '../connect.php';
 
+if(isset($_GET['message'])){
+    $getMessage = $_GET['message'];
+    echo "<script>alert('$getMessage')</script>";
+}
+
 $sql = "SELECT * FROM product";
 $result = mysqli_query($conn, $sql);
 

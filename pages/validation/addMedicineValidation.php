@@ -28,7 +28,6 @@ if (isset($_POST["submit"])) {
             if (in_array($imageFileType, $typeFile)) {
                 if (file_exists($targetFile)) {
                     header("location: ../admin_pages/addMedicine.php?message=File Exist");
-                    exit();
                 } else {
                     if ($fileSize > 1000000) {
                         header("location: ../admin_pages/addMedicine.php?message=File To Big");
@@ -52,7 +51,7 @@ if (isset($_POST["submit"])) {
         $stmt->execute();
         $stmt->close();
         $conn->close();
-        header("location: ../admin_pages/addMedicine.php?message=Added Successfully");
+        // header("location: ../admin_pages/addMedicine.php?message=Added Successfully");
     } else {
         header("location: ../admin_pages/addMedicine.php?message=Name Exist Find Another");
     }

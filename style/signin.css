@@ -88,6 +88,9 @@ body {
   text-decoration: none;
   text-align: center;
 }
+.links{
+  text-align: center;
+}
 .links a {
   color: var(--primary-color);
   font-size: 1.8vh !important;
