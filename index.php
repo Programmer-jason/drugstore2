@@ -1,10 +1,10 @@
 <?php session_start();
 include './pages/connect.php';
 
-if(isset($_GET['message'])){
-  $getMessage = $_GET['message'];
-  echo "<script>alert('$getMessage')</script>";
-}
+// if(isset($_GET['message'])){
+//   $getMessage = $_GET['message'];
+//   echo "<script>alert('$getMessage')</script>";
+// }
 
 if (isset($_SESSION["user"])) {
   $user = $_SESSION['user'];

@@ -2,7 +2,7 @@
 session_start();
 include '../connect.php';
 
-$sql = "SELECT * FROM `signUp`;";
+$sql = "SELECT * FROM `signUp` WHERE `role` = 'customer';";
 $result = mysqli_query($conn, $sql);
 // $row = mysqli_fetch_assoc($result);
 
