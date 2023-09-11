@@ -1,5 +1,0 @@
-{
-    "require": {
-        "paymongo/paymongo-php": "^0.0.0"
-    }
-}
