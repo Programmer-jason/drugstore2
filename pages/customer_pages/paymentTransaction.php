@@ -71,16 +71,17 @@ $getPaymentDetailsResult = mysqli_query($conn, $getPaymentDetails);
             <div>My Likes</div>
         </a>
         
-        <a href="./edit_profile.php" class="box edit-profile">
-            <div><img src="../../assets/editProfile.svg" alt="dashboard" width="25px"></div>
-            <div>Edit Profile</div>
-        </a>
-
+        
         <a href="./paymentTransaction.php" class="box payment-transaction">
-            <div><i class="fa-solid fa-money-check-dollar" style="color: #ffffff;"></i></div>
-            <div>Payment Transaction</div>
-        </a>
-
+           <div><i class="fa-solid fa-money-check-dollar" style="color: #ffffff;"></i></div>
+           <div>Payment Transaction</div>
+         </a>
+         
+         <a href="./edit_profile.php" class="box edit-profile">
+             <div><img src="../../assets/editProfile.svg" alt="dashboard" width="25px"></div>
+             <div>Edit Profile</div>
+         </a>
+         
         <a href="../logout.php" class="box logout">
             <div><img src="../../assets/logout.svg" alt="dashboard" width="25px"></div>
             <div>Logout</div>

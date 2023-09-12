@@ -22,12 +22,12 @@
 <body>
   <div class="container"  onclick="createInvoice()">
     <div class="head-links">
-      <a href="./signin.php" class="btn-signin">Sign in</a>
-      <a href="./signup.php" class="btn-signup">Sign up</a>
+      <a href="./signin.php" class="btn-signin">SignIn</a>
+      <a href="./signup.php" class="btn-signup">SignUp</a>
     </div>
 
     <form action="./validation/signinValidation.php" method="post">
-      <h1 class="titleHead">Sign in</h1>
+      <h1 class="titleHead">SignIn</h1>
 
       <div class="form-group">
         <label for="userLogin">Email</label>

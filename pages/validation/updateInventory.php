@@ -75,7 +75,7 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
    <div class="admin-box">
       <div class="brand">
          <img src="../../images/sample logo.png" alt="no image" />
-         <a href="../../index.php">Medicure Drug</a>
+         <a href="#">Medicure Drug</a>
       </div>
 
       <div class="profile-pic">
@@ -96,21 +96,23 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
          <div>Inventory</div>
       </a>
 
-      <a href="../admin_pages/sales.php" class="box sales">
-         <div><img src="../../assets/sales.svg" alt="dashboard" width="25px"></div>
-         <div>Sales</div>
-      </a>
+    <?php if($row6['role'] == 'admin') {?>
+         <a href="../admin_pages/sales.php" class="box sales">
+            <div><img src="../../assets/sales.svg" alt="dashboard" width="25px"></div>
+            <div>Sales</div>
+         </a>
 
-      <!-- <a href="../admin_pages/prescription.php" class="box prescription">
-         <div><img src="../../assets/prescription.png" alt="dashboard" width="25px"></div>
-         <div>Prescription</div>
-      </a> -->
+         <!-- <a href="../admin_pages/prescription.php" class="box prescription">
+            <div><img src="../../assets/prescription.png" alt="dashboard" width="25px"></div>
+            <div>Prescription</div>
+         </a> -->
 
 
-      <a href="../admin_pages/manageAccount.php" class="box manage-account">
-         <div><img src="../../assets/manageUsers.svg" alt="dashboard" width="25px"></div>
-         <div>Users</div>
-      </a>
+         <a href="../admin_pages/manageAccount.php" class="box manage-account">
+            <div><img src="../../assets/manageUsers.svg" alt="dashboard" width="25px"></div>
+            <div>Users</div>
+         </a>
+      <?php } ?>
 
       <a href="./paymentDetails.php" class="box reserved">
          <div><i class="fa-solid fa-money-check-dollar" style="color: #ffffff;"></i></div>

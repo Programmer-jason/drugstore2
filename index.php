@@ -56,7 +56,7 @@ if (isset($_SESSION["user"])) {
                 break;
             }
           }else{
-            echo "<a href ='./pages/signIn.php'>Sign In </a>";
+            echo "<a href ='./pages/signIn.php'>SignIn </a>";
 
           }
           ?>

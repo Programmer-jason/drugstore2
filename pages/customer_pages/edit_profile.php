@@ -114,15 +114,16 @@ if (isset($_SESSION["user"])) {
             <div>My Likes</div>
         </a>
         
-        <a href="./edit_profile.php" class="box edit-profile">
-            <div><img src="../../assets/editProfile.svg" alt="dashboard" width="25px"></div>
-            <div>Edit Profile</div>
-        </a>
-
+		
         <a href="./paymentTransaction.php" class="box payment-transaction">
-            <div><i class="fa-solid fa-money-check-dollar" style="color: #ffffff;"></i></div>
+			<div><i class="fa-solid fa-money-check-dollar" style="color: #ffffff;"></i></div>
             <div>Payment Transaction</div>
         </a>
+		
+		<a href="./edit_profile.php" class="box edit-profile">
+			<div><img src="../../assets/editProfile.svg" alt="dashboard" width="25px"></div>
+			<div>Edit Profile</div>
+		</a>
 
         <a href="../logout.php" class="box logout">
             <div><img src="../../assets/logout.svg" alt="dashboard" width="25px"></div>
@@ -177,14 +178,14 @@ if (isset($_SESSION["user"])) {
 						<input type="number" name="age" id="age" value="<?php echo $row["age"]; ?>" required>
 
 						<div>Type</div>
-						<input type="text" name="role" id="role" value="<?php echo $row["role"]; ?>" required />
+						<input type="text" name="role" id="role" value="<?php echo $row["role"]; ?>" required disabled/>
 
 						<div>Contact</div>
 						<input type="number" name="contact" id="contact" value="<?php echo '0' . $row["contact"]; ?>" required>
 					</div>
 				</div>
 
-				<input type="submit" value="Update" name="submit" id="add" class="btn-success">
+				<input type="submit" value="Update" name="submit" id="add" class="btn-primary">
 			</form>
 		</div>
 

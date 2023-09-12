@@ -55,7 +55,7 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
     <div class="admin-box">
         <div class="brand">
             <img src="../../images/sample logo.png" alt="no image" />
-            <a href="../../index.php">Medicure Drug</a>
+            <a href="#">Medicure Drug</a>
         </div>
 
         <div class="profile-pic">
@@ -75,20 +75,22 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
             <div>Inventory</div>
         </a>
 
-        <a href="./sales.php" class="box sales">
+        <?php if($row6['role'] == 'admin') {?>
+         <a href="../admin_pages/sales.php" class="box sales">
             <div><img src="../../assets/sales.svg" alt="dashboard" width="25px"></div>
             <div>Sales</div>
-        </a>
-        <!-- 
-        <a href="./prescription.php" class="box prescription">
-            <div><img src="../../assets/prescription.png" alt="dashboard" width="25px"></div>
-            <div>Prescription</div>
-        </a> -->
+         </a>
 
-        <a href="./manageAccount.php" class="box manage-account">
+      <!-- <a href="../admin_pages/prescription.php" class="box prescription">
+         <div><img src="../../assets/prescription.png" alt="dashboard" width="25px"></div>
+         <div>Prescription</div>
+      </a> -->
+
+         <a href="../admin_pages/manageAccount.php" class="box manage-account">
             <div><img src="../../assets/manageUsers.svg" alt="dashboard" width="25px"></div>
             <div>Users</div>
-        </a>
+         </a>
+      <?php } ?>
 
         <a href="./paymentDetails.php" class="box reserved">
          <div><i class="fa-solid fa-money-check-dollar" style="color: #ffffff;"></i></div>
@@ -135,14 +137,13 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
 
                                 <div class="notif-message">The Item <?php echo $rw['productName']; ?> is Expired</div>
                                 <div class="notif-message"><?php echo date('s') . ' ' . 'seconds ago' ?></div>
+                            </div>
+                            <?php } ?>
                         </div>
-                    <?php } ?>
-
                     </div>
-    </div>
-    </li>
-    </ul>
-    </nav>
+                </li>
+            </ul>
+        </nav>
 
     <div class="add-product-content">
 
@@ -155,7 +156,7 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
             <div class="inputGroups">
                 <div class="one">
                     <div>Product Name</div>
-                    <input type="text" name="productName" id="productName" required>
+                    <input type="text" name="productName" id="productName" placeholder="Productname" required>
 
                     <div>Price</div>
                     <input type="number" name="productPrice" id="productPrice" value="0.00" required>
@@ -185,7 +186,6 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
 
                 <input type="submit" value="Add" name="submit" id="add" class="btn-success">
         </form>
-
     </div>
 
     </div>

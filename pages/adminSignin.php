@@ -23,8 +23,8 @@ if(isset($_GET['message'])){
   <div class="container">
 
     <div class="head-links">
-      <a href="./signin.php" class="btn-signin">Sign in</a>
-      <a href="./signup.php" class="btn-signup">Sign up</a>
+      <a href="./signin.php" class="btn-signin">Signin</a>
+      <a href="./signup.php" class="btn-signup">Signup</a>
     </div>
 
     <form action="./validation/adminSigninValidation.php" method="post">

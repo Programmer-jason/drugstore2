@@ -19,18 +19,14 @@ if (isset($_POST['submit'])) {
     $result = mysqli_query($conn, $sql);
 
     if (!mysqli_num_rows($result) > 0) {
-        if ($password == $confirmpassword) {
             $stmt = $conn->prepare("INSERT INTO signup (firstName, lastName, email, password, gender, age, contact, role,address,brgy) VALUES (?,?,?,?,?,?,?,?,?,?)");
             $stmt->bind_param("sssssiisss", $firstName, $lastName, $email, $password, $gender, $age, $contact, $role,$address,$brgy);
             $stmt->execute();
             $stmt->close();
             $conn->close();
-            header("location: ../signIn.php?message=added successfully");
-        } else {
-            header("location: ../signup.php?message=password not match");
-        }
+            header("location: ../admin_pages/add_employee.php?message=added successfully");
     } else {
-        header("location: ../signup.php?message=name exist!");
+        header("location: ../admin_pages/add_employee.php?message=name exist!");
     }
 }
 ?>

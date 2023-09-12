@@ -53,7 +53,7 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
    <div class="admin-box">
       <div class="brand">
          <img src="../../images/sample logo.png" alt="no image" />
-         <a href="../../index.php">Medicure Drug</a>
+         <a href="#">Medicure Drug</a>
       </div>
 
       <div class="profile-pic">
@@ -73,20 +73,22 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
          <div>Inventory</div>
       </a>
 
-      <a href="./sales.php" class="box sales">
-         <div><img src="../../assets/sales.svg" alt="dashboard" width="25px"></div>
-         <div>Sales</div>
-      </a>
+      <?php if($row6['role'] == 'admin') {?>
+         <a href="../admin_pages/sales.php" class="box sales">
+            <div><img src="../../assets/sales.svg" alt="dashboard" width="25px"></div>
+            <div>Sales</div>
+         </a>
 
-      <!-- <a href="./prescription.php" class="box prescription">
+      <!-- <a href="../admin_pages/prescription.php" class="box prescription">
          <div><img src="../../assets/prescription.png" alt="dashboard" width="25px"></div>
          <div>Prescription</div>
       </a> -->
 
-      <a href="./manageAccount.php" class="box manage-account">
-         <div><img src="../../assets/manageUsers.svg" alt="dashboard" width="25px"></div>
-         <div>Users</div>
-      </a>
+         <a href="../admin_pages/manageAccount.php" class="box manage-account">
+            <div><img src="../../assets/manageUsers.svg" alt="dashboard" width="25px"></div>
+            <div>Users</div>
+         </a>
+      <?php } ?>
 
       <a href="./paymentDetails.php" class="box reserved">
          <div><i class="fa-solid fa-money-check-dollar" style="color: #ffffff;"></i></div>
@@ -108,13 +110,11 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
          <div>Logout</div>
       </a>
 
-
-
    </div>
 
    <div class="content-container">
       <nav>
-         <div class="head-title">Users</div>
+         <div class="head-title">Users/Customer</div>
 
          <ul>
             <li><a href="../profile.php"><?php echo $_SESSION['firstname']; ?><img src='../../profile/<?php echo $userProfile ?>' alt='User Profile' class='user-profile' /></a></li>
@@ -145,6 +145,11 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
 
 
    <div class="manage-account-content">
+      <div class="header-content">
+        <a href="./manageAccount.php" class="customer">Customer</a>
+        <a href="./employee.php" class="customer">Employee</a>
+      </div>
+
       <div class="customer-employee">
          <a href="" class="user"></a>
       </div>
@@ -197,7 +202,6 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
          </table>
       </div>
    </div>
-   </div>
 
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
    <script src="../../js/jsAnimation.js"></script>
@@ -214,6 +218,7 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
 
          document.querySelector(".notifCount").style.display = "none"
       }
+
    </script>
 
 </body>

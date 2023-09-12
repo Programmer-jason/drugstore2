@@ -1,5 +1,14 @@
-<?php session_start();
+<?php
+session_start();
 include '../connect.php';
+
+$sql = "SELECT * FROM `signUp` WHERE `role` = 'employee';";
+$result = mysqli_query($conn, $sql);
+// $row = mysqli_fetch_assoc($result);
+
+$sql2 = "SELECT * FROM `signUp`;";
+$result2 = mysqli_query($conn, $sql2);
+$row = mysqli_fetch_assoc($result2);
 
 $userProf = $_SESSION['user'];
 
@@ -22,7 +31,6 @@ if (isset($_SESSION["user"])) {
 $sqlNotifys = "SELECT * FROM product WHERE notificationType = 'nr'";
 $resultNotifys = mysqli_query($conn, $sqlNotifys);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,15 +38,13 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Inventory</title>
-   <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@500&display=swap" rel="stylesheet">
+   <title>Profile</title>
    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
    <link rel="shortcut icon" href="../images/sample logo.png" type="image/x-icon" />
    <link rel="stylesheet" href="../../style/navbar.css" />
-   <link rel="stylesheet" href="../../style/sidenav.css" />
-   <link rel="stylesheet" href="../../style/add_sales.css" />
-
+   <link rel="stylesheet" href="../../style/sidenav.css">
+   <link rel="stylesheet" href="../../style/manageAccount.css" />
 </head>
 
 <body>
@@ -61,7 +67,7 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
          <div> Dashboard</div>
       </a>
 
-      <a href="../admin_pages/inventory.php" class="box stock">
+      <a href="./inventory.php" class="box stock">
          <div><img src="../../assets/inventory.svg" alt="dashboard" width="25px"></div>
          <div>Inventory</div>
       </a>
@@ -82,13 +88,13 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
             <div>Users</div>
          </a>
       <?php } ?>
-      
-      <a href="./paymentDetails.php" class="box reserved">
-        <div><i class="fa-solid fa-money-check-dollar" style="color: #ffffff;"></i></div>
-        <div>Payment</div>
-      </a>
 
-      <a href="../admin_pages/addMedicine.php" class="box add-medicine">
+      <a href="./paymentDetails.php" class="box reserved">
+         <div><i class="fa-solid fa-money-check-dollar" style="color: #ffffff;"></i></div>
+         <div>Payment</div>
+      </a>
+      
+      <a href="./addMedicine.php" class="box add-medicine">
          <div><img src="../../assets/addProduct.svg" alt="dashboard" width="25px"></div>
          <div>Add Product</div>
       </a>
@@ -103,58 +109,96 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
          <div>Logout</div>
       </a>
 
-
    </div>
 
    <div class="content-container">
       <nav>
-         <div class="head-title">Sales/Add Sales</div>
+         <div class="head-title">Users/Employee</div>
 
          <ul>
-            <i class="fa fa-times" aria-hidden="true"></i>
             <li><a href="../profile.php"><?php echo $_SESSION['firstname']; ?><img src='../../profile/<?php echo $userProfile ?>' alt='User Profile' class='user-profile' /></a></li>
             <li>
-                <div class="notif">
-                    <img src="../../assets/notif.svg" alt="home" width="20px" id="notifShow" onclick="loadDoc()">
-                    <?php echo (mysqli_num_rows($resultNotifys) > 0) ? '<div class="notifCount">' . mysqli_num_rows($resultNotifys) . '</div>' : ''; ?>
+                    <div class="notif">
+                        <img src="../../assets/notif.svg" alt="home" width="20px" id="notifShow" onclick="loadDoc()">
+                        <?php echo (mysqli_num_rows($resultNotifys) > 0) ? '<div class="notifCount">' . mysqli_num_rows($resultNotifys) . '</div>' : ''; ?>
 
-                    <div class="notifContent">
-                        <div class="notifTittle">Notification</div>
+                        <div class="notifContent">
+                            <div class="notifTittle">Notification</div>
 
-                        <?php
-                        $sql8 = "SELECT * FROM product WHERE notificationType = 'nr' ORDER BY productId DESC";
-                        $result8 = mysqli_query($conn, $sql8);
-                        while ($rw = mysqli_fetch_assoc($result8)) { ?>
-                            <?php echo ($rw['notificationType'] == "nr") ? "<div class='notif-inbox-nr'>" : "<div class='notif-inbox'>"; ?>
+                            <?php
+                            $sql8 = "SELECT * FROM product WHERE notificationType = 'nr' ORDER BY productId DESC";
+                            $result8 = mysqli_query($conn, $sql8);
+                            while ($rw = mysqli_fetch_assoc($result8)) { ?>
+                                <?php echo ($rw['notificationType'] == "nr") ? "<div class='notif-inbox-nr'>" : "<div class='notif-inbox'>"; ?>
 
-                            <div class="notif-message">The Item <?php echo $rw['productName']; ?> is Expired</div>
-                            <div class="notif-message"><?php echo date('s') . ' ' . 'seconds ago' ?></div>
+                                <div class="notif-message">The Item <?php echo $rw['productName']; ?> is Expired</div>
+                                <div class="notif-message"><?php echo date('s') . ' ' . 'seconds ago' ?></div>
+                        </div>
+                    <?php } ?>
+
                     </div>
-                <?php } ?>
-
-                </div>
     </div>
     </li>
    </ul>
    </nav>
 
-   <div class="inventory-content">
 
-      <div class="modal">
-         <form action="../validation/sales_add.php" method="post">
-            <div>From Year</div>
-            <input type="text" name="from" id="from" maxlength="4" placeholder="Ex: 1990" required>
-
-            <div>To Year</div>
-            <input type="text" name="to" id="to" maxlength="4" placeholder="Ex: 1991" required>
-
-            <div>Total Sales</div>
-            <input type="text" name="addSales" id="addSales" required>
-
-            <input type="submit" value="Add" name="submit" id="Add" class="btn-success">
-         </form>
+   <div class="manage-account-content">
+      <div class="header-content">
+        <a href="./manageAccount.php" class="customer">Customer</a>
+        <a href="#" class="customer">Employee</a>
       </div>
-   </div>
+
+      <div class="table-container">
+
+         <table>
+            <tr>
+               <th>Fullname</th>
+               <th>Email</th>
+               <th>Gender</th>
+               <th>Age</th>
+               <!-- <th>Type</th> -->
+               <th>Contact</th>
+               <th>Action</th>
+            </tr>
+            <?php if (mysqli_num_rows($result) > 0) : ?>
+               <?php while ($rows = mysqli_fetch_assoc($result)) : ?>
+                  <tr>
+                     <td>
+                        <?php echo $rows["firstName"] . " " . $rows["lastName"]; ?>
+                     </td>
+
+                     <td>
+                        <?php echo $rows["email"]; ?>
+                     </td>
+
+                     <td>
+                        <?php echo $rows["gender"]; ?>
+                     </td>
+
+                     <td>
+                        <?php echo $rows["age"]; ?>
+                     </td>
+
+                     <!-- <td>
+                        <?php echo $rows["role"]; ?>
+                     </td> -->
+                     
+                     <td>
+                        <?php echo '0' . $rows["contact"]; ?>
+                     </td>
+                     
+                     <td>
+                        <!-- <a href="./update.php?id=<?php echo $rows['userId']; ?>" class="btn btn-primary btn-sm">Update</a> -->
+                        <a href="./delete_user.php?deleteId=<?php echo $rows['userId']; ?>" class="btn btn-danger btn-sm">Delete</a>
+                     </td>
+                  </tr>
+               <?php endwhile; ?>
+            <?php endif; ?>
+         </table>
+      </div>
+      <a href="./add_employee.php" class="add-employee btn-success">Add Employee</a>
+
    </div>
 
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -172,7 +216,22 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
 
          document.querySelector(".notifCount").style.display = "none"
       }
+
+      function addEmployee() {
+         var xhttp = new XMLHttpRequest();
+         xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.querySelector(".manage-account-content").innerHTML = this.responseText
+            }
+         };
+         xhttp.open("GET", "../signup.php", true);
+         xhttp.send();
+
+      }
+
+    
    </script>
+
 </body>
 
 </html>

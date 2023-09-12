@@ -33,7 +33,7 @@ html {
   background-color: transparent;
   border-radius: 5px;
   box-shadow: 1px 1px 4px #c3c3c3 !important;
-  padding: 20px 50px;
+  padding: 50px;
   background-color: #f8f8f8;
   border-top: #007430 2px solid;
 }
@@ -66,13 +66,14 @@ html {
   flex: 1;
   display: flex;
   flex-wrap: wrap;
+  margin-top: 20px;
 }
 
 .one,
 .two,
 .three {
   width: 50%;
-  padding: 5px;
+  padding-right: 10px;
 }
 input[type="text"],
 [type="number"],
@@ -80,16 +81,18 @@ input[type="text"],
 select {
   padding: 10px;
   border: none;
-  width: 90%;
-  height: 50px;
+  width: 100%;
+  height: 40px;
   border-radius: 5px;
   border: 1px solid #c2c2c2;
   background-color: #f0f0f0;
 }
 .btn-success {
   margin-top: 20px;
-  /* width: 100%; */
-  border-radius: 5px;
+  width: 99% !important;
+  height: 40px !important;
+  border-radius: 4px;
+  border: none;
 }
 .admin-box .add-medicine {
   background-color: #01a144;

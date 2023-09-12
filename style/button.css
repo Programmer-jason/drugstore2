@@ -5,13 +5,13 @@
   text-decoration: none;
   color: #fff;
   margin-right: 3px;
-  padding: 7px !important;
+  padding: 5px !important;
   display: inline-block;
   border-radius: 3px;
   cursor: pointer;
   background: #0965dd;
   text-align: center;
-  box-shadow: 1px 1px 4px #c3c3c3;
+  /* box-shadow: 1px 1px 4px #c3c3c3; */
 
 }
 
@@ -21,13 +21,13 @@
   border: none;
   text-decoration: none;
   color: #fff;
-  padding: 7px !important;
+  padding: 5px !important;
   display: inline-block;
   border-radius: 3px;
   cursor: pointer;
-  background: #f03131;
+  background: #b40000;
   text-align: center;
-  box-shadow: 1px 1px 4px #c3c3c3;
+  /* box-shadow: 1px 1px 4px #c3c3c3; */
 
 }
 .btn-success {
@@ -36,12 +36,12 @@
   border: none;
   text-decoration: none;
   color: #fff;
-  padding: 7px !important;
+  padding: 5px !important;
   display: inline-block;
   border-radius: 3px;
   cursor: pointer;
-  background: #00ad48;
+  background: #007430 !important;
   text-align: center;
-  box-shadow: 1px 1px 4px #c3c3c3;
+  /* box-shadow: 1px 1px 4px #c3c3c3; */
 
 }
