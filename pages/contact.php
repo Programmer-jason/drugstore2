@@ -42,22 +42,21 @@ if (isset($_SESSION["user"])) {
                 <li><a href="./medicine.php">Product</a></li>
                 <li><a href="./about.php">About</a></li>
                 <li><a href="./contact.php">Contact</a></li>
-                <li> 
-                    <?php if(isset($_SESSION["user"])){
-                        switch($_SESSION["role"]){
-                        case "admin" :
-                            echo "<a href ='./profile.php'>$firstName<img src='../profile/$userProfile' alt='User Profile' class='user-profile'/></a>";
-                            break;
-                        case "customer" :
-                            echo "<a href ='./customer_pages/favorite.php'>$firstName<img src='../profile/$userProfile' alt='User Profile' class='user-profile'/></a>";
-                            break;
+                <!-- <li> 
+                    <?php if (isset($_SESSION["user"])) {
+                        switch ($_SESSION["role"]) {
+                            case "admin":
+                                echo "<a href ='./profile.php'>$firstName<img src='../profile/$userProfile' alt='User Profile' class='user-profile'/></a>";
+                                break;
+                            case "customer":
+                                echo "<a href ='./customer_pages/favorite.php'>$firstName<img src='../profile/$userProfile' alt='User Profile' class='user-profile'/></a>";
+                                break;
                         }
-                    }else{
+                    } else {
                         echo "<a href ='./signIn.php'>Sign In </a>";
-
                     }
                     ?>
-                </li>
+                </li> -->
             </ul>
         </nav>
 

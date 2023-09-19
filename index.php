@@ -45,22 +45,21 @@ if (isset($_SESSION["user"])) {
         <li><a href="./pages/medicine.php">Product</a></li>
         <li><a href="./pages/about.php">About</a></li>
         <li><a href="./pages/contact.php">Contact</a></li>
-        <li> 
-          <?php if(isset($_SESSION["user"])){
-            switch($_SESSION["role"]){
-              case "admin" :
+        <!-- <li> 
+          <?php if (isset($_SESSION["user"])) {
+            switch ($_SESSION["role"]) {
+              case "admin":
                 echo "<a href ='./pages/profile.php'>$firstName<img src='./profile/$userProfile' alt='User Profile' class='user-profile'/></a>";
                 break;
-              case "customer" :
+              case "customer":
                 echo "<a href ='./pages/customer_pages/favorite.php'>$firstName<img src='./profile/$userProfile' alt='User Profile' class='user-profile'/></a>";
                 break;
             }
-          }else{
+          } else {
             echo "<a href ='./pages/signIn.php'>SignIn </a>";
-
           }
           ?>
-        </li>
+        </li> -->
       </ul>
     </nav>
 
@@ -76,9 +75,9 @@ if (isset($_SESSION["user"])) {
       <div class="img-intro">
         <img src="./images/drugstore.png" alt="img">
       </div>
-      
+
     </div>
-    
+
     <div class="copyright">Copyright © 2023 Medicure Drug.</div>
   </div>
 </body>

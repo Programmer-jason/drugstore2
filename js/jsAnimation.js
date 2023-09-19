@@ -11,8 +11,12 @@ $(document).ready(function () {
     $(".notifContent").slideToggle("slow");
   });
 
-  $(".buy-btn").click(function () {
-    $(".checkout").fadeIn("slow");
+  $(".lastchild").click(function () {
+    $(".checkout").slideDown("slow");
+  });
+
+  $("#btn-close").click(function () {
+    $(".checkout").slideUp("fast");
   });
 
 

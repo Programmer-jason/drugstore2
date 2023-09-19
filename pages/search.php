@@ -2,28 +2,8 @@
 include './connect.php';
 
 $search_term = $_POST['search'];
-
 $sql = "SELECT * FROM product WHERE productName LIKE '%$search_term%' AND stockType BETWEEN 'n' AND 'o' ORDER BY productId desc";
 $result = mysqli_query($conn, $sql);
-
-
-if (isset($_SESSION["user"])) {
-   $user = $_SESSION['user'];
-   $firstName = $_SESSION['firstname'];
-   $lastName = $_SESSION['lastname'];
-   $sql2 = "SELECT * FROM signUp WHERE email = '$user'";
-   $result2 = mysqli_query($conn, $sql2);
-   $row2 = mysqli_fetch_assoc($result2);
-
-   $userProfile = $row2['userProfile'];
-}
-
-
-$user = (isset($_SESSION["user"])) ? $_SESSION['user'] : '';
-$getUser = "SELECT * FROM signUp WHERE email = '$user'";
-$getUserResult = mysqli_query($conn, $getUser);
-$fetchUser = mysqli_fetch_assoc($getUserResult);
-
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +18,6 @@ $fetchUser = mysqli_fetch_assoc($getUserResult);
    <link rel="stylesheet" href="../style/medicine.css">
    <link rel="stylesheet" href="../style/navbar.css">
   <link rel="stylesheet" href="../style/button.css" />
-
 </head>
 
 <body>
@@ -55,32 +34,16 @@ $fetchUser = mysqli_fetch_assoc($getUserResult);
          <li><a href="./medicine.php">Product</a></li>
          <li><a href="./about.php">About</a></li>
          <li><a href="./contact.php">Contact</a></li>
-         <li> 
-          <?php if(isset($_SESSION["user"])){
-                    switch($_SESSION["role"]){
-                    case "admin" :
-                        echo "<a href ='./pages/admin_pages/profile.php'>$firstName<img src='../profile/$userProfile' alt='User Profile' class='user-profile'/></a>";
-                        break;
-                    case "customer" :
-                        echo "<a href ='./customer_pages/profile.php'>$firstName<img src='../profile/$userProfile' alt='User Profile' class='user-profile'/></a>";
-                        break;
-                    }   
-                }else{
-                    echo "<a href ='./signIn.php'>Sign In </a>";
-                }
-          ?>
-        </li>
-
+         <li class='lastchild'><i class="fa-solid fa-cart-shopping" style="color: #fff;"></i> <span class="checkout-number">0</span></li>
       </ul>
    </nav>
 
+   <form action="./search.php" method="post">
+       <input type="search" name="search" id="search">
+       <input type="submit" value="Search" id="submit">
+   </form>
    
    <div class="mp-list">
-    <form action="./search.php" method="post">
-        <input type="search" name="search" id="search">
-        <input type="submit" value="Search" id="submit">
-    </form>
-
     <?php
       $sqls = "SELECT * FROM product WHERE stockType BETWEEN 'n' AND 'o' ORDER BY productId desc";
       $results = mysqli_query($conn, $sql);
@@ -88,6 +51,12 @@ $fetchUser = mysqli_fetch_assoc($getUserResult);
       if (mysqli_num_rows($result) > 0) {
         while ($rows = mysqli_fetch_assoc($result)) {
           $prodId2 = $rows['productId'];
+
+           //DELETE QUERY
+           $sqlDelete = "DELETE FROM `product` WHERE `productId` = $prodId2";
+           if($rows['productQty'] <= 0){
+               mysqli_query($conn, $sqlDelete);
+           }
 
       ?>
         <div class="mp-card">
@@ -101,71 +70,50 @@ $fetchUser = mysqli_fetch_assoc($getUserResult);
                 <div>
                 <?php echo '₱'.$rows['productPrice'] ?>
                 </div>
-
-                <div>
-                <?php echo $rows['productQty'] != 0 ? 'Stock'.' '.$rows['productQty']: '<div style="color: red;">Out Of Stock</div>' ?>
-              </div>
             </div>
 
             <div class="cart-btn">
-                <a href="./validation/add_to_favorite.php?favId=<?php echo $rows['productId'];?>" class='favorite-btn'>
-                    <i id ='heart'
-                    class='fa-solid fa-heart'
-                    style='color:<?php 
-                                        
-                                    if(isset($_SESSION["user"])){
-                                            $userId =  $fetchUser['userId'];
-                                            $getFavorite = "SELECT * FROM user_favorite WHERE product_id = $prodId2 AND user_id = $userId";
-                                            $favoriteResult = mysqli_query($conn, $getFavorite);
-                                            $fetchFavorite = mysqli_fetch_assoc($favoriteResult);
-                                            echo (mysqli_num_rows($favoriteResult) > 0) ? "#fa81f4" : "#313131";
-
-                                        }
-                                        else{}
-                                    
-                                ?>'
-                    >
-                    </i>
-                </a>
-
-                <div class="buy-btn" onclick="checkout(<?php echo $rows['productId']; ?>)">Buy</div>
+                <div class="buy-btn" onclick="checkout(<?php echo $rows['productId']; ?>)">Add to cart</div>
             </div>
-
-        </div>
+          </div>
         <?php } ?>
       <?php } ?>
 
+      
       <div class="checkout">
+        <h1 style='font-size: 2vh; border-bottom: #007430 2px solid; padding: 10px; color: #007430;'>My Cart</h1>
+        <div class="add-to-cart">
+        </div>
+        <div class="checkout-buttons">
+            <a href="#" class="btn-success">Checkout</a>
+            <a href="#" class="btn-danger">Close</a>
+        </div>
       </div>
 
-    <!-- <?php if (mysqli_num_rows($result) == 0) {
+    <?php if (mysqli_num_rows($result) == 0) {
     echo "<h2>Not Found</h2>";
-    } ?> -->
+    } ?>
 
 
    </div>
   </div>
-
  
-  <?php if(isset($_SESSION["user"])){ ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="../js/jsAnimation.js"></script>
     <script>
-      function checkout(getProductId) {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function(getProductId) {
-              if (this.readyState == 4 && this.status == 200) {
-                document.querySelector(".checkout").innerHTML = this.responseText;
-              }
-          };
-          xhttp.open("GET", `./validation/buyValidation.php?buyId=${getProductId}`, true);
-          xhttp.send();
-      }
-    </script>
+     function checkout ( getProductId ) {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function (getProductId) {
+        if (this.readyState == 4 && this.status == 200) {
+          document.querySelector(".add-to-cart").innerHTML += this.responseText ;
 
-   <?php  } else{
-                header("location: ./signIn.php?message=You need to signin");
-              } ?>
-              
+        }
+      };
+      xhttp.open("GET", `./validation/buyValidation.php?buyId=${getProductId}`, true);
+      xhttp.send();
+      
+      // getQuantity(getProductId)
+    }
+    </script>
 </body>
 </html>

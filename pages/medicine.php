@@ -1,23 +1,5 @@
 <?php session_start();
 include './connect.php';
-
-
-if (isset($_SESSION["user"])) {
-  $user = $_SESSION['user'];
-  $firstName = $_SESSION['firstname'];
-  $lastName = $_SESSION['lastname'];
-  $sql = "SELECT * FROM signUp WHERE email = '$user'";
-  $result = mysqli_query($conn, $sql);
-  $row = mysqli_fetch_assoc($result);
-
-  $userProfile = $row['userProfile'];
-}
-
-$user = (isset($_SESSION["user"])) ? $_SESSION['user'] : '';
-$getUser = "SELECT * FROM signUp WHERE email = '$user'";
-$getUserResult = mysqli_query($conn, $getUser);
-$fetchUser = mysqli_fetch_assoc($getUserResult);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +10,10 @@ $fetchUser = mysqli_fetch_assoc($getUserResult);
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Medicine</title>
   <link rel="shortcut icon" href="./Images/sample logo.png" type="image/x-icon" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="../style/medicine.css">
   <link rel="stylesheet" href="../style/navbar.css" />
   <link rel="stylesheet" href="../style/button.css" />
@@ -48,30 +33,16 @@ $fetchUser = mysqli_fetch_assoc($getUserResult);
         <li><a href="./medicine.php">Product</a></li>
         <li><a href="./about.php">About</a></li>
         <li><a href="./contact.php">Contact</a></li>
-        <li> 
-          <?php if(isset($_SESSION["user"])){
-                    switch($_SESSION["role"]){
-                    case "admin" :
-                        echo "<a href ='./profile.php'>$firstName<img src='../profile/$userProfile' alt='User Profile' class='user-profile'/></a>";
-                        break;
-                    case "customer" :
-                        echo "<a href ='./customer_pages/favorite.php'>$firstName<img src='../profile/$userProfile' alt='User Profile' class='user-profile'/></a>";
-                        break;
-                    }   
-                }else{
-                    echo "<a href ='./signIn.php'>Sign In </a>";
-                }
-          ?>
-        </li>
+        <li class='lastchild'><i class="fa-solid fa-cart-shopping" style="color: #fff;"></i> <span class="checkout-number"><?php echo (isset($_SESSION['shoppingCart'])) ? count($_SESSION['shoppingCart']) : '0';?></span></li>
       </ul>
     </nav>
+    
+    <form action="./search.php" method="post">
+      <input type="search" name="search" id="search">
+      <input type="submit" value="Search" id="submit">
+    </form>
 
     <div class="mp-list">
-      <form action="./search.php" method="post">
-        <input type="search" name="search" id="search">
-        <input type="submit" value="Search" id="submit">
-      </form>
-
       <?php
       $sql = "SELECT * FROM product WHERE stockType BETWEEN 'n' AND 'o' ORDER BY productId desc";
       $result = mysqli_query($conn, $sql);
@@ -79,54 +50,64 @@ $fetchUser = mysqli_fetch_assoc($getUserResult);
       if (mysqli_num_rows($result) > 0) {
         while ($rows = mysqli_fetch_assoc($result)) {
           $prodId2 = $rows['productId'];
-      ?>
-          <div class="mp-card" >
-            <img src="<?php echo '../uploads/' . $rows['productImg']; ?>" alt='product-image' class="img-list" ondblclick="loadDoc()">
+
+            //DELETE QUERY
+            $sqlDelete = "DELETE FROM `product` WHERE `productId` = $prodId2";
+            if($rows['productQty'] <= 0){
+                mysqli_query($conn, $sqlDelete);
+            }
             
-            <div class="details" ondblclick="loadDoc()">
+          ?>
+          <form action="./validation/buyValidation.php?cartId=<?php echo $rows['productId'];?>" method="post" class="mp-card">
+            <img src="<?php echo '../uploads/' . $rows['productImg']; ?>" alt='product-image' class="img-list">
+
+            <div class="details">
               <div class="product-name">
                 <?php echo $rows['productName']; ?>
               </div>
-
               <h2>
-                <?php echo '₱'.$rows['productPrice']; ?>
+                <?php echo '₱' . $rows['productPrice']; ?>
               </h2>
-
-              <div>
-                <?php echo $rows['productQty'] <= 0 ? '<div style="color: red;">Out Of Stock</div>' : 'Stock'.' '.$rows['productQty'] ?>
-              </div>
-
             </div>
 
             <div class="cart-btn">
-              <a href="./validation/add_to_favorite.php?favId=<?php echo $rows['productId'];?>" class='favorite-btn'>
-                <i id ='heart'
-                   class='fa-solid fa-heart'
-                  style='color:<?php 
-                                  if(isset($_SESSION["user"])){
-                                        $userId =  $fetchUser['userId'];
-                                        $getFavorite = "SELECT * FROM user_favorite WHERE product_id = $prodId2 AND user_id = $userId";
-                                        $favoriteResult = mysqli_query($conn, $getFavorite);
-                                        $fetchFavorite = mysqli_fetch_assoc($favoriteResult);
-                                        echo (mysqli_num_rows($favoriteResult) > 0) ? "#fa81f4" : "#313131";
-                                    }
-                                    else{}
-                               ?>'
-                >
-                </i>
-              </a>
-                <?php $productID = $rows['productId']; ?>
-              <div class="buy-btn" onclick='checkout(<?php echo $productID ?>)'>Buy</div>
+                <input type='number'  name='quanty' id='quanty' placeholder='Quantity' min='0' max='<?php echo $rows["productQty"]?>'/>
+                <?php $productID = $rows['productId'];?>
+              <input type="submit" class="buy-btn" value="Add to cart"/>
             </div>
-
-          </div>
+        </form>
 
         <?php } ?>
       <?php } ?>
 
       <div class="checkout">
-        <div class="transparent-bg">
+        <h1 style='font-size: 2vh; border-bottom: #007430 2px solid; padding: 10px; color: #007430;'>My Cart</h1>
+        <div class="add-to-cart">
+        <?php 
+          if(!empty($_SESSION['shoppingCart'])){
+            $total = 0;
+            foreach($_SESSION['shoppingCart'] as $keys => $values){
+        ?>
+                <div class='transparent-bg'>
+                    <div class='name-and-image'>
+                    <div style='text-align: center;'><?php echo $values['itemName'];?></div>
+                    <img src='../uploads/<?php echo $values['itemImage'];?>' alt='product-image'>
+                    </div>
+                    <div>₱ <?php echo $values['itemPrice'];?></div>
+                    <div><?php echo $values['ítemQuantity'];?></div>
+                    <div><i class="fa-solid fa-trash" style="color: #007430;" onclick="deleteItem(<?php echo $keys?>)"></i></i></div>
+                </div>
+                <br>
 
+                <?php $total = $total + ($values['itemPrice'] * $values['ítemQuantity']);} ?>
+                <?php } else{ echo "<div style='text-align: center;'>No item</div>"; }?>
+                <hr>
+                <h2>total : ₱<?php echo (!empty($_SESSION['shoppingCart'])) ? $total : '0'?></h2>
+            </div>
+        
+        <div class="checkout-buttons">
+            <a href="./validation/customerInformation.php" class="btn-success">Checkout</a>
+            <div class="btn-danger" id="btn-close">Close</div>
         </div>
       </div>
 
@@ -137,42 +118,21 @@ $fetchUser = mysqli_fetch_assoc($getUserResult);
     </div>
   </div>
 
-  
-  <?php if(isset($_SESSION["user"])){ ?>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="../js/jsAnimation.js"></script>
+  <!-- JAVASCRIPT -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+    integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="../js/jsAnimation.js"></script>
+  <script>
+    //  function addToCart(cartId){
+    //     let quanty = document.getElementById('quanty');
+    //     console.log(quanty);
+    //     window.location = './validation/buyValidation.php?cartId='+cartId;
+    //  }
+     function deleteItem(deleteId) {
+        window.location = './validation/deleteCartItem.php?deleteId='+deleteId;
 
-    <script>
-      function checkout(getProductId) {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function(getProductId) {
-          if (this.readyState == 4 && this.status == 200) {
-            document.querySelector(".transparent-bg").innerHTML = this.responseText;
-          }
-        };
-        xhttp.open("GET", `./validation/buyValidation.php?buyId=${getProductId}`, true);
-        xhttp.send();
-
-        getQuantity(getProductId)
-      }
-
-      function getQuantity(getProductId){
-        let quantityValue = document.querySelector('#quanty').value;
-        location.replace('../paymongoApi/createSession.php?productId=' + getProductId + '&quanty=' + quantityValue);
-      }
-      </script>
-
-      <?php } else { ?>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="../js/jsAnimation.js"></script>
-        
-        <script>
-          function checkout(getProductId) {
-            location.replace("http://localhost/drugstore-management-system/pages/signIn.php");
-          }
-        </script>
-      <?php } ?>
-  
-              
+     }
+  </script>
 </body>
 </html>

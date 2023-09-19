@@ -14,6 +14,7 @@ body,
 html {
   overflow: hidden !important;
   background-color: #f0f0f0;
+  
 }
 
 .logo {
@@ -51,8 +52,8 @@ a {
   display: flex;
   flex-direction: column;
   width: 180px;
-  height: 280px;
-  margin: 15px 10px;
+  height: 270px;
+  margin: 10px;
   background-color: #f8f8f8;
   cursor: pointer;
   box-shadow: 1px 1px 4px #b3b3b3;
@@ -66,12 +67,11 @@ a {
 
 }
 .mp-card:hover{
-
-transform: scale(1.1, 1.1);
+  border-top: #00ad48 2px solid;
 }
 
 .mp-list {
-  width: 90%;
+  width: 80%;
   margin-inline: auto;
   display: flex;
   justify-content: center;
@@ -79,43 +79,41 @@ transform: scale(1.1, 1.1);
 }
 
 .mp-list .img-list {
-  width: 100%;
-  height: 140px !important;
+  width: 10%0;
+  height: 130px !important;
 }
 
 .mp-list .details {
   width: 100%;
   height: 90px;
   color: #313131;
-}
-
-.mp-list .product-name {
+  text-align: center;
 }
 
 form {
-  border-bottom: 1px solid #c3c3c3;
-  text-align: end;
+  /* border-bottom: 1px solid #c3c3c3; */
   margin-inline: auto;
-  padding-block: 15px;
-  width: 90%;
+  padding-top: 15px;
+  width: 69%;
 }
 
 #search {
   position: relative;
-  right: -80px;
+  right: -5px;
   outline: none;
-  width: 380px;
+  width:910px;
   padding: 7px;
   margin-inline: auto;
   border-radius: 4px;
   border: none;
-  background-color: #fff;
-  box-shadow: 1px 1px 4px #c3c3c3 !important;
+  background-color: #ffffff;
+  border: 1px solid #c3c3c3;
+  /* box-shadow: 1px 1px 4px #dbdbdb !important; */
 }
 
 #submit {
   position: relative;
-  right: -10px;
+  left: -0px;
   font-size: 1.8vh;
   width: 70px;
   outline: none;
@@ -132,8 +130,7 @@ form {
 .cart-btn{
   display: flex;
   flex-direction: column;
-  align-items: end;
-  gap: 2px;
+  gap: 4px;
 }
 
 .buy-btn {
@@ -143,6 +140,11 @@ form {
   padding: 7px;
   border-radius: 4px;
   text-align: center;
+  border: none;
+}
+
+.buy-btn:hover {
+  background-color: #00ad48;
 }
 
 .favorite-btn {
@@ -154,39 +156,78 @@ form {
 
 div.checkout {
   position: absolute;
-  top: 0%;
-  width: 100%;
-  background-color: #f0f0f02a;
+  top: 0;
+  right: 0;
+  width: 25%;
+  background-color: #f0f0f0;
   height: 100vh;
   display: none;
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(2px);
+  box-shadow: -1px -1px 6px #b3b3b3 !important;
+  padding-inline: 30px;
+  padding-block: 10px;
+  overflow-x: scroll;
+}
+
+div.checkout::-webkit-scrollbar{
+  width: 4px;;
+} 
+div.checkout::-webkit-scrollbar-thumb{
+  background-color: #00642a;
+} 
+
+div.checkout > div.checkout-buttons{
+  /* position: absolute;
+  bottom: 0; */
+  display: flex;
+  gap: 5px;
 }
 
 div.transparent-bg {
-  border-top: 2px solid #007430;
-  width: 200px;
+  width: 100%;
   margin-inline: auto;
-  margin-top: 150px;
-  background-color: #f0f0f0;
-  box-shadow: 1px 1px 6px #b3b3b3 !important;
-  height: 370px;
-  padding: 15px;
+  margin-top: 10px;
+  background-color: #fff;
+  box-shadow: 1px 1px 6px #cacaca !important;
+  height: 100px;
+  padding: 5px;
   border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
-div.transparent-bg > img{
-  width: 100%;
-  height: 160px;
+div.transparent-bg > .name-and-image > img{
+  width: 60px;
+  border-radius: 5px;
+  height: 60px;
   border: 1px solid #313131;
 }
 
-a.btn-success, a.btn-danger {
-  width: 100% !important;
+a.btn-success, div#btn-close {
+  width: 50% !important;
   margin-bottom: 10px;
+  margin-top: 10px;
+  flex: 1;
 }
 
 a.btn-success {
   width: 100% !important;
   background-color: #007430 !important;
+}
+
+ul li.lastchild{
+  background-color: #007430 !important;
+  color: #fff !important;
+  padding: 5px !important;
+  border-radius: 3px;
+}
+.checkout-number {
+  color: #fff !important;
+}
+#quanty {
+  border: 1px solid gray;
+  border-radius: 2px;
+  padding-left: 3px;
 }

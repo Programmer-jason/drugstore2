@@ -29,6 +29,7 @@ nav {
   background-color: transparent;
   box-shadow: 1px 1px 4px #c3c3c3;
   width: 100%;
+  padding-right: 20px;
 }
 nav .brand {
   display: flex;
@@ -53,13 +54,12 @@ nav .brand a {
   text-align: center;
 }
 nav ul {
-  width: 28%;
   height: 40px;
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 25px;
 }
+
 nav ul li {
   list-style: none;
   text-decoration: none;
@@ -75,19 +75,14 @@ nav ul li a {
   transition: 0.3s ease-in;
 }
 
-
 nav ul li a:hover{
-  /* transform: scale(1.1,1.1); */
   color: #007430 !important;
   
 }
 nav ul li:hover{
-  /* transform: scale(1.1,1.1); */
-  padding: 6px;
-  /* background-color: #0074303f; */
+  padding-block: 6px;
   border-block: 1px solid #007430;
   color: #007430 !important;
-  
 }
 
 nav .fa {
