@@ -71,7 +71,7 @@ include './connect.php';
             </div>
 
             <div class="cart-btn">
-                <input type='number'  name='quanty' id='quanty' placeholder='Quantity' min='0' max='<?php echo $rows["productQty"]?>'/>
+                <input type='number' name='quanty' id='quanty'  value="1" min='1' max='<?php echo $rows["productQty"]?>'/>
                 <?php $productID = $rows['productId'];?>
               <input type="submit" class="buy-btn" value="Add to cart"/>
             </div>
@@ -79,10 +79,11 @@ include './connect.php';
 
         <?php } ?>
       <?php } ?>
-
+      
       <div class="checkout">
         <h1 style='font-size: 2vh; border-bottom: #007430 2px solid; padding: 10px; color: #007430;'>My Cart</h1>
         <div class="add-to-cart">
+
         <?php 
           if(!empty($_SESSION['shoppingCart'])){
             $total = 0;
@@ -101,6 +102,7 @@ include './connect.php';
 
                 <?php $total = $total + ($values['itemPrice'] * $values['ítemQuantity']);} ?>
                 <?php } else{ echo "<div style='text-align: center;'>No item</div>"; }?>
+
                 <hr>
                 <h2>total : ₱<?php echo (!empty($_SESSION['shoppingCart'])) ? $total : '0'?></h2>
             </div>
@@ -124,11 +126,13 @@ include './connect.php';
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="../js/jsAnimation.js"></script>
   <script>
+
     //  function addToCart(cartId){
     //     let quanty = document.getElementById('quanty');
     //     console.log(quanty);
     //     window.location = './validation/buyValidation.php?cartId='+cartId;
     //  }
+
      function deleteItem(deleteId) {
         window.location = './validation/deleteCartItem.php?deleteId='+deleteId;
 

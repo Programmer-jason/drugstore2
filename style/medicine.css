@@ -198,11 +198,15 @@ div.transparent-bg {
   justify-content: space-around;
 }
 
+div.transparent-bg > .name-and-image{
+  text-align: center;
+
+}
+
 div.transparent-bg > .name-and-image > img{
   width: 60px;
   border-radius: 5px;
   height: 60px;
-  border: 1px solid #313131;
 }
 
 a.btn-success, div#btn-close {
