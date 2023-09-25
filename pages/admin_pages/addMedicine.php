@@ -76,26 +76,21 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
         </a>
 
         <?php if($row6['role'] == 'admin') {?>
-         <a href="../admin_pages/sales.php" class="box sales">
-            <div><img src="../../assets/sales.svg" alt="dashboard" width="25px"></div>
-            <div>Sales</div>
-         </a>
+            <a href="../admin_pages/sales.php" class="box sales">
+                <div><img src="../../assets/sales.svg" alt="dashboard" width="25px"></div>
+                <div>Sales</div>
+            </a>
 
-      <!-- <a href="../admin_pages/prescription.php" class="box prescription">
-         <div><img src="../../assets/prescription.png" alt="dashboard" width="25px"></div>
-         <div>Prescription</div>
-      </a> -->
-
-         <a href="../admin_pages/manageAccount.php" class="box manage-account">
-            <div><img src="../../assets/manageUsers.svg" alt="dashboard" width="25px"></div>
-            <div>Users</div>
-         </a>
-      <?php } ?>
+            <a href="../admin_pages/manageAccount.php" class="box manage-account">
+                <div><img src="../../assets/manageUsers.svg" alt="dashboard" width="25px"></div>
+                <div>Users</div>
+            </a>
+        <?php } ?>
 
         <a href="./paymentDetails.php" class="box reserved">
-         <div><i class="fa-solid fa-money-check-dollar" style="color: #ffffff;"></i></div>
-         <div>Payment</div>
-      </a>
+            <div><i class="fa-solid fa-money-check-dollar" style="color: #ffffff;"></i></div>
+            <div>Payment</div>
+        </a>
 
         <a href="./addMedicine.php" class="box add-medicine">
             <div><img src="../../assets/addProduct.svg" alt="dashboard" width="25px"></div>

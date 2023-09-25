@@ -40,8 +40,8 @@ $resultSales = mysqli_query($conn, $sqlSales);
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
    <link rel="shortcut icon" href="../images/sample logo.png" type="image/x-icon" />
    <link rel="stylesheet" href="../../style/navbar.css" />
-   <link rel="stylesheet" href="../../style/sales.css" />
    <link rel="stylesheet" href="../../style/sidenav.css">
+   <link rel="stylesheet" href="../../style/sales.css">
 </head>
 
 <body>
@@ -74,11 +74,6 @@ $resultSales = mysqli_query($conn, $sqlSales);
             <div><img src="../../assets/sales.svg" alt="dashboard" width="25px"></div>
             <div>Sales</div>
          </a>
-  
-      <!-- <a href="../admin_pages/prescription.php" class="box prescription">
-         <div><img src="../../assets/prescription.png" alt="dashboard" width="25px"></div>
-         <div>Prescription</div>
-      </a> -->
 
          <a href="../admin_pages/manageAccount.php" class="box manage-account">
             <div><img src="../../assets/manageUsers.svg" alt="dashboard" width="25px"></div>

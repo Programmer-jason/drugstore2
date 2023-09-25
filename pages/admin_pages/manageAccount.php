@@ -79,10 +79,6 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
             <div>Sales</div>
          </a>
 
-      <!-- <a href="../admin_pages/prescription.php" class="box prescription">
-         <div><img src="../../assets/prescription.png" alt="dashboard" width="25px"></div>
-         <div>Prescription</div>
-      </a> -->
 
          <a href="../admin_pages/manageAccount.php" class="box manage-account">
             <div><img src="../../assets/manageUsers.svg" alt="dashboard" width="25px"></div>
@@ -146,7 +142,6 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
 
    <div class="manage-account-content">
       <div class="header-content">
-        <a href="./manageAccount.php" class="customer">Customer</a>
         <a href="./employee.php" class="customer">Employee</a>
       </div>
 
