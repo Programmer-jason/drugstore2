@@ -1,40 +1,34 @@
-<?php
-session_start();
-
+<?php session_start();
 include '../pages/connect.php';
-$productId = $_GET['productId'];
-$getQuantity = $_GET['quanty'];
 
-//GET USER
-// $user = $_SESSION['user'];
-// $getUser = "SELECT * FROM signup WHERE email = '$user'";
-// $getUserResult = mysqli_query($conn, $getUser);
-// $fetchUser = mysqli_fetch_assoc($getUserResult);
-// $fetchUserId = $fetchUser['userId'];
-// $fetchfirstname = $fetchUser['firstName'];
-// $fetchLastname = $fetchUser['lastName'];
-// $fetchEmail = $fetchUser['email'];
-// $fetchContact = $fetchUser['contact'];
-// $fetchAddress = $fetchUser['address'];
-// $fetchBrgy = $fetchUser['brgy'];
-// $username = "$fetchfirstname $fetchLastname";
+//CUSTOMER INFORMATION
+$fullname = htmlspecialchars($_POST['fullname']);
+$email = htmlspecialchars($_POST['email']);
+// $contact = htmlspecialchars($_POST['contact']);
+$_SESSION['totalAmount'] = 0;
 
-//PAYMENT 
-// $getUser = "SELECT * FROM paymentdetails WHERE userId = $fetchUserId";
+$lineItem = array();
+foreach($_SESSION['shoppingCart'] as $keys => $values) {
+	$img = $values['itemImage'];
+	$name = $values['itemName'];
+	$price = $values['itemPrice'];
+	$priceOrig = str_replace('.', '', $price);
+	$quantity = $values['itemQuantity'];
 
-//GET PRODUCT
-$getproduct = "SELECT * FROM product WHERE productId = $productId";
-$getProductResult = mysqli_query($conn, $getproduct);
-$fetchProduct = mysqli_fetch_assoc($getProductResult);
-$fetchImg = $fetchProduct['productImg'];
-$fetchName = $fetchProduct['productName'];
-$fetchQty = $fetchProduct['productQty'];
-$fetchPrice = $fetchProduct['productPrice'];
-$price = explode('.', $fetchPrice);
-$pricee = "$price[0]$price[1]";
+	$lineItem[$keys] = array(
+			'amount' => (int)$priceOrig,
+			'currency' => 'PHP',
+			'description' => 'medicure drug product',
+			'images' => [
+				"http://localhost/drugstore-management-system/uploads/$img"
+			],
+			'name' => $name,
+			'quantity' => (int)$quantity,
+	);
 
+  $_SESSION['totalAmount'] = $_SESSION['totalAmount'] + ($price * $quantity);
+}	
 
-$imgUrl = "http://localhost/drugstore-management-system/uploads/$fetchImg";
 $curl = curl_init();
 
 curl_setopt_array($curl, [
@@ -49,33 +43,22 @@ curl_setopt_array($curl, [
     'data' => [
       'attributes' => [
         'billing' => [
-          'name' => 'dwd',
-          'email' => 'fwfw@gmail.com ',
-          'phone' => 'wdw'
+          'name' => "$fullname",
+          'email' => "$email",
+          'phone' => ""
         ],
         'send_email_receipt' => false,
         'show_description' => true,
         'show_line_items' => true,
-        'cancel_url' => 'http://localhost/drugstore-management-system/pages/medicine.php',
+        'cancel_url' => 'http://localhost/drugstore-management-system/',
         'description' => 'medicure drug product',
-        'line_items' => [
-          [
-            'amount' => (int)$pricee,
-            'currency' => 'PHP',
-            'description' => 'medicure drug product',
-            'images' => [
-              $imgUrl,
-            ],
-            'name' => $fetchName,
-            'quantity' => (int)$getQuantity,
-          ]
-        ],
+        'line_items' => [...$lineItem],
         'payment_method_types' => [
           'gcash',
           'paymaya',
         ],
         // 'reference_number' => uniqid(),
-        'success_url' => 'http://localhost/drugstore-management-system/paymongoApi/checkoutResource.php?productId=' . $productId,
+        'success_url' => 'http://localhost/drugstore-management-system/paymongoApi/checkoutResource.php',
         'statement_descriptor' => 'medicure drugs product'
       ]
     ]
@@ -98,12 +81,23 @@ curl_close($curl);
 if ($err) {
   echo "cURL Error #:" . $err;
 } else {
-  echo $response;
-  $_SESSION['checkoutId'] = $getresponse->data->id;
-  $_SESSION['checkoutPrice'] = ($getresponse->data->attributes->line_items[0]->quantity * $fetchPrice);
+  // echo $response;
+  
+  $checkout_id = $_SESSION['checkoutId'] = $getresponse->data->id;
+  $total_amount = $_SESSION['totalAmount'];
+  $get_checkout_name = $getresponse->data->attributes->billing->name;
+  $get_checkout_status = $getresponse->data->attributes->payment_intent->attributes->payments[0]->attributes->status;
+  $get_paymentMethod = $getresponse->data->attributes->payment_method_used;
+
+  $sql_insert = "INSERT INTO `paymentdetails`(`paymentId`,`checkoutId`,`name`,`price`,`paymentStatus`) 
+                 VALUES (null, '$checkout_id', '$get_checkout_name', '$total_amount', 'pending')";
+
+  mysqli_query($conn, $sql_insert);
 
   $geUrl = $getresponse->data->attributes->checkout_url;
   header("location: $geUrl");
 
-} ?>
+}
+
+?>
 

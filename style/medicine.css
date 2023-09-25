@@ -54,18 +54,20 @@ a {
   width: 180px;
   height: 270px;
   margin: 10px;
-  background-color: #f8f8f8;
+  background-color: #f0f0f0;
   cursor: pointer;
-  box-shadow: 1px 1px 4px #c9c9c9;
+  box-shadow: 1px 1px 4px #b3b3b3;
   border-radius: 5px;
-  padding: 6px;
   gap: 5px;
   overflow: hidden;
-  transition: .5s all ease-in
+  transition: .5s all ease;
+  /* border: 1px solid #c9c9c9; */
 
 }
+
 .mp-card:hover{
-  border-top: 2px solid #00ad48;
+  border-top: 1px solid #007430;
+  transform: translateY(-5px);
 }
 
 .mp-list {
@@ -77,13 +79,15 @@ a {
 }
 
 .mp-list .img-list {
-  width: 10%0;
-  height: 130px !important;
+  padding: 2px;
+  width: 100%;
+  height: 150px !important;
+  background-color: #fff;
 }
 
 .mp-list .details {
   width: 100%;
-  height: 90px;
+  height: 70px;
   color: #313131;
   text-align: center;
 }
@@ -99,31 +103,28 @@ form {
   position: relative;
   right: -5px;
   outline: none;
-  width: 910px;
+  width: 912px;
   padding: 7px;
   margin-inline: auto;
   border-radius: 4px;
   outline: none;
   border: none;
-  background-color: #f8f8f8;
-  box-shadow: 1px 1px 4px #c9c9c9;
-
+  background-color: #fff;
+  box-shadow: 1px 1px 4px #a7a7a7;
 }
 
 #submit {
   position: relative;
-  left: -0px;
+  left: -2px;
   font-size: 1.8vh;
   width: 70px;
   outline: none;
   border: none;
   padding: 7px;
   background-color: var(--primary-color);
-  /* border-radius: 3px; */
+  border-radius: 5px;
   color: #fff;
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
-  box-shadow: 1px 1px 4px #c9c9c9 !important;
+  box-shadow: 1px 1px 4px #a7a7a7;
 
 }
 
@@ -136,11 +137,14 @@ form {
 .buy-btn {
   background-color: #007430;
   color: #f8f8f8;
-  width: 100%;
+  width: 90%;
+  margin: auto;
   padding: 7px;
   border-radius: 4px;
   text-align: center;
   border: none;
+  box-shadow: 1px 1px 4px #a7a7a7;
+
 }
 
 .buy-btn:hover {
@@ -231,6 +235,8 @@ ul li.lastchild{
   color: #fff !important;
   padding: 5px !important;
   border-radius: 3px;
+  box-shadow: 1px 1px 4px #a7a7a7;
+
 }
 
 .checkout-number {
@@ -240,19 +246,21 @@ ul li.lastchild{
 div.input-quanty {
   display: flex;
   cursor: pointer;
+  width: 50px;
 }
 
 div.add, div.minus {
 background-color: #007430;
 color: #fff;
-width: 20px;
+width: 40px;
 text-align: center;
 font-weight: bold;
 }
 
-div#quantity{
-  background-color: #f8f8f8;
+div.quantity{
+  background-color: #f0f0f0;
+  border: 1px solid #c9c9c9;
   border-radius: 3px;
-  width: 30px;
+  width: 40px;
   text-align: center;
 }

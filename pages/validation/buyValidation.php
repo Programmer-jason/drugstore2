@@ -2,7 +2,6 @@
 include '../connect.php';
   
 $getProductId = $_GET['cartId'];
-// $getQuanty = $_POST['quanty'];
 $getProduct = "SELECT * FROM `product` WHERE productId = $getProductId";
 $getProductResult = mysqli_query($conn, $getProduct);
 $fetchProduct = mysqli_fetch_assoc($getProductResult);
@@ -23,7 +22,7 @@ if(mysqli_num_rows($getProductResult) > 0 ){
         'itemName' => " $getproductName",
         'itemPrice' => "$getproductPrice",
         'itemStock' => "$getproductQty",
-        'itemQuantity' => "1",
+        'itemQuantity' => "0",
       );
 
       $_SESSION['shoppingCart'][$count] = $itemArray;
@@ -40,7 +39,7 @@ if(mysqli_num_rows($getProductResult) > 0 ){
         'itemName' => " $getproductName",
         'itemPrice' => "$getproductPrice",
         'itemStock' => "$getproductQty",
-        'itemQuantity' => "1",
+        'itemQuantity' => "0",
     );
     $_SESSION['shoppingCart'][0] = $itemArray;
     header("location: ../medicine.php");

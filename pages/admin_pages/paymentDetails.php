@@ -80,11 +80,6 @@ $getPaymentDetailsResult = mysqli_query($conn, $getPaymentDetails);
             <div>Sales</div>
          </a>
 
-      <!-- <a href="../admin_pages/prescription.php" class="box prescription">
-         <div><img src="../../assets/prescription.png" alt="dashboard" width="25px"></div>
-         <div>Prescription</div>
-      </a> -->
-
          <a href="../admin_pages/manageAccount.php" class="box manage-account">
             <div><img src="../../assets/manageUsers.svg" alt="dashboard" width="25px"></div>
             <div>Users</div>
@@ -117,101 +112,148 @@ $getPaymentDetailsResult = mysqli_query($conn, $getPaymentDetails);
 
    <div class="content-container">
       <nav>
-         <div class="head-title">Users</div>
+         <div class="head-title">Payment</div>
 
          <ul>
             <li><a href="../profile.php"><?php echo $_SESSION['firstname']; ?><img src='../../profile/<?php echo $userProfile ?>' alt='User Profile' class='user-profile' /></a></li>
             <li>
-                    <div class="notif">
-                        <img src="../../assets/notif.svg" alt="home" width="20px" id="notifShow" onclick="loadDoc()">
-                        <?php echo (mysqli_num_rows($resultNotifys) > 0) ? '<div class="notifCount">' . mysqli_num_rows($resultNotifys) . '</div>' : ''; ?>
+				<div class="notif">
+					<img src="../../assets/notif.svg" alt="home" width="20px" id="notifShow" onclick="loadDoc()">
 
-                        <div class="notifContent">
-                            <div class="notifTittle">Notification</div>
+					<?php 
+					  echo (mysqli_num_rows($resultNotifys) > 0) ? '<div class="notifCount">' . mysqli_num_rows($resultNotifys) . '</div>' : ''; 
+					?>
 
-                            <?php
-                            $sql8 = "SELECT * FROM product WHERE notificationType = 'nr' ORDER BY productId DESC";
-                            $result8 = mysqli_query($conn, $sql8);
-                            while ($rw = mysqli_fetch_assoc($result8)) { ?>
-                                <?php echo ($rw['notificationType'] == "nr") ? "<div class='notif-inbox-nr'>" : "<div class='notif-inbox'>"; ?>
+						<div class="notifContent">
+							<div class="notifTittle">Notification</div>
 
-                                <div class="notif-message">The Item <?php echo $rw['productName']; ?> is Expired</div>
-                                <div class="notif-message"><?php echo date('s') . ' ' . 'seconds ago' ?></div>
-                        </div>
-                    <?php } ?>
+							  <?php
+							    $sql8 = "SELECT * FROM product WHERE notificationType = 'nr' ORDER BY productId DESC";
+							    $result8 = mysqli_query($conn, $sql8);
+							    while ($rw = mysqli_fetch_assoc($result8)) { 
+							  ?>
 
-                    </div>
-    </div>
-    </li>
-   </ul>
-   </nav>
+							  <?php 
+								echo ($rw['notificationType'] == "nr") ? "<div class='notif-inbox-nr'>" : "<div class='notif-inbox'>"; 
+							  ?>
+
+								<div class="notif-message">The Item <?php echo $rw['productName']; ?> is Expired</div>
+								<div class="notif-message"><?php echo date('s') . ' ' . 'seconds ago' ?></div>
+							</div>
+					<?php } ?>
+				</div>
+    		</li>
+   		  </ul>
+       </nav>
 
 
-   <div class="manage-account-content">
-      <div class="table-container">
+	  <div class="manage-account-content">
 
-         <table>
-            <tr>
-               <th>Payment Method</th>
-               <th>Name</th>
-               <th>Amount</th>
-               <th>Status</th>
-               <th>Address</th>
-               <th>Brgy</th>
-               <th>Date Created</th>
-               <!-- <th>Action</th> -->
-            </tr>
-            <?php if (mysqli_num_rows($getPaymentDetailsResult) > 0) : ?>
-               <?php while ($rows = mysqli_fetch_assoc($getPaymentDetailsResult)) : ?>
-                  <tr>
-                     <td>
-                        <?php echo $rows["paymentType"]?>
-                     </td>
+      <section class="search">
+         <input type="search" onchange="paymentSearch()" name="search" id="search" placeholder="search" >
+         <div class="submit" onclick="paymentSearch()">search</div>
+      </section>
 
-                     <td>
-                        <?php echo $rows["name"]?>
-                     </td>
+		<div class="table-container">
+			<table>
+				<tr>
+					<th>Reference Number</th>
+					<th>Payment Method</th>
+					<th>Name</th>
+					<th>Amount</th>
+					<!-- <th>Status</th> -->
+					<th>Item Recieve</th>
+					<th>Date Recieved</th>
+				</tr>
+            	<?php if (mysqli_num_rows($getPaymentDetailsResult) > 0) : ?>
+            	  <?php while ($rows = mysqli_fetch_assoc($getPaymentDetailsResult)) : ?>
 
-                     <td>
-                        <?php echo '₱ '.$rows["amount"].'.00'; ?>
-                     </td>
+					<tr>
+						<td>
+							<?php echo $rows["refId"]?>
+						</td>
 
-                     <td>
-                        <?php echo ($rows["paymentStatus"] == 'paid') ? '<div class="payment-status">'.$rows["paymentStatus"].'</div>' : '<div class="payment-status-failed">'.$rows["paymentStatus"].'</div>';?>
-                     </td>
+						<td>
+							<?php echo $rows["paymentType"]?>
+						</td>
 
-                     <td>
-                        <?php echo $rows["address"]; ?>
-                     </td>
+						<td>
+							<?php echo $rows["name"]?>
+						</td>
 
-                     <td>
-                        <?php echo $rows["brgy"]; ?>
-                     </td>
+						<td>
+							<?php echo '₱ '.$rows["price"]; ?>
+						</td>
 
-                     <td>
-                        <?php echo $rows["createdAt"]; ?>
-                     </td>
+						<!-- <td>
+							<?php 
+								switch($rows["paymentStatus"]){
+									case 'paid':
+										echo '<div class="payment-success">'.$rows["paymentStatus"].'</div>';
+										break;
 
-                     <!-- <td> -->
-                        <!-- <a href="./update.php?id=<?php echo $rows['userId']; ?>" class="btn btn-primary btn-sm">Update</a> -->
-                        <!-- <a href="./delete_user.php?deleteId=<?php echo $rows['userId']; ?>" class="btn btn-danger btn-sm">Delete</a> -->
-                     <!-- </td> -->
-                  </tr>
-               <?php endwhile; ?>
-            <?php endif; ?>
-         </table>
-      </div>
-   </div>
+									case 'failed':
+										echo '<div class="payment-failed">'.$rows["paymentStatus"].'</div>';
+										break;
+
+									default:
+										echo '<div class="payment-pending">'.$rows["paymentStatus"].'</div>';
+									}
+                     		?>
+						</td> -->
+
+						<td class='payment-action-container'>
+							<?php 
+								$payment_action = $rows["paymentAction"];
+								$payment_id = $rows["paymentId"];
+								switch($rows["paymentAction"]){
+									case 'recieve':
+										echo "<div class='recieve' onclick='recieve($payment_id)'>Recieve</div>";
+										break;
+										
+									case 'not_recieve':
+										echo "<div class='not-recieve' onclick='recieve($payment_id)'>Recieve</div>";
+										break;
+											
+									default:
+										echo '<div class="payment-pending">Pending</div>';
+								}
+							?>
+						</td>
+
+						<td>
+							<?php echo $rows["dateRecieved"]; ?>
+						</td>
+
+					</tr>
+                <?php endwhile; ?>
+              <?php endif; ?>
+        	</table>
+      	</div>
+      </divvalue=>
    </div>
 
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
    <script src="../../js/jsAnimation.js"></script>
    <script>
+
+      function paymentSearch(){
+         let search = document.getElementById("search").value
+
+         var xhttp = new XMLHttpRequest();
+         xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+               document.querySelector('.table-container').innerHTML = this.responseText
+            }
+         };
+         xhttp.open("GET", "./paymentDetailsSearch.php?searching="+search, true);
+         xhttp.send();
+      }
+
       function loadDoc() {
          var xhttp = new XMLHttpRequest();
          xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-
             }
          };
          xhttp.open("GET", "./notify.php", true);
@@ -219,6 +261,11 @@ $getPaymentDetailsResult = mysqli_query($conn, $getPaymentDetails);
 
          document.querySelector(".notifCount").style.display = "none"
       }
+
+      function recieve(payment_id) {
+         window.location = "../validation/item_recieve.php?payment_id="+payment_id;
+      }
+
    </script>
 
 </body>

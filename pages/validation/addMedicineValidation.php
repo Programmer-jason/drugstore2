@@ -24,6 +24,7 @@ if (isset($_POST["submit"])) {
     $result = mysqli_query($conn, $sql);
 
     if (!mysqli_num_rows($result) > 0) {
+
         if (!empty($fileName)) {
             if (in_array($imageFileType, $typeFile)) {
                 if (file_exists($targetFile)) {
@@ -51,8 +52,8 @@ if (isset($_POST["submit"])) {
         $stmt->execute();
         $stmt->close();
         $conn->close();
-        // header("location: ../admin_pages/addMedicine.php?message=Added Successfully");
     } else {
         header("location: ../admin_pages/addMedicine.php?message=Name Exist Find Another");
     }
+
 }

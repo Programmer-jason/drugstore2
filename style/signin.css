@@ -37,6 +37,7 @@ body {
   width: 100%;
   text-align: center;
   margin-inline: auto;
+  margin-bottom: 30px;
 }
 
 .form-group {

@@ -1,34 +1,14 @@
 <?php session_start();
 include '../pages/connect.php';
 
-// if(isset($_SESSION["user"])){
-$productId = $_GET['productId'];
-$checkoutId = $_SESSION['checkoutId'];
-$checkoutPrice = $_SESSION['checkoutPrice'];
-
-//GET PRODUCT
-$getproduct = "SELECT * FROM product WHERE productId = $productId";
-$getProductResult = mysqli_query($conn, $getproduct);
-$fetchProduct = mysqli_fetch_assoc($getProductResult);
-$fetchQty = $fetchProduct['productQty'];
-
-// //GET USER
-// $user = $_SESSION['user'];
-// $getUser = "SELECT * FROM signup WHERE email = '$user'";
-// $getUserResult = mysqli_query($conn, $getUser);
-// $fetchUser = mysqli_fetch_assoc($getUserResult);
-// $fetchUserId = $fetchUser['userId'];
-// $fetchfirstname = $fetchUser['firstName'];
-// $fetchLastname = $fetchUser['lastName'];
-// $fetchEmail = $fetchUser['email'];
-// $fetchContact = $fetchUser['contact'];
-// $username = "$fetchfirstname $fetchLastname";
+$checkout_id = $_SESSION['checkoutId'];
+$total_amount = $_SESSION['totalAmount'];
 
 // RETRIVE CHECKOUT
 $curl = curl_init();
 
 curl_setopt_array($curl, [
-  CURLOPT_URL => "https://api.paymongo.com/v1/checkout_sessions/$checkoutId",
+  CURLOPT_URL => "https://api.paymongo.com/v1/checkout_sessions/$checkout_id",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
   CURLOPT_MAXREDIRS => 10,
@@ -49,32 +29,41 @@ curl_close($curl);
 if ($err) {
   echo "cURL Error #:" . $err;
 } else {
-  echo $response;
+  // echo $response;
+
+  $getresponse = json_decode($response);
+  
+  foreach($_SESSION['shoppingCart'] as $keys => $values) {
+      $item_id = $values['itemId'];
+    
+      $sql_select = "SELECT * FROM product WHERE productId = $item_id";
+      $sql_select_result = mysqli_query($conn, $sql_select);
+      $get_row = mysqli_fetch_assoc($sql_select_result);
+      $get_quantity = $get_row['productQty'];
+    
+      $get_checkout_quantity = $getresponse->data->attributes->line_items[$keys]->quantity;
+    
+      $sql_update = "UPDATE `product` SET `productQty`=($get_quantity - $get_checkout_quantity) WHERE productId = $item_id";
+      
+      if ($get_quantity != 0) {
+        mysqli_query($conn, $sql_update);
+      } else {
+        return '';
+      }
+  }
+    $get_reference = uniqid(true);
+    $get_checkout_name = $getresponse->data->attributes->billing->name;
+    $get_checkout_price = $getresponse->data->attributes->payment_intent->attributes->amount;
+    $get_checkout_status = $getresponse->data->attributes->payments[0]->attributes->status;
+    $get_paymentMethod = $getresponse->data->attributes->payment_method_used;
+
+    $sql_updating_payment = "UPDATE `paymentdetails` SET `refId`='$get_reference',`paymentStatus`='$get_checkout_status',`paymentType`='$get_paymentMethod',`paymentAction`='not_recieve' WHERE checkoutId = '$checkout_id'";
+    mysqli_query($conn, $sql_updating_payment);
+
+    // session_destroy();
+    $_SESSION['reference_id'] = $get_reference;
+    $_SESSION['customer_name'] = $get_checkout_name;
+    
+    header("location: ../pages/payment_successful.php?message=success");
+
 }
-
-$getresponse = json_decode($response);
-$getId = $getresponse->data->attributes->reference_number;
-$getCheckoutName = $getresponse->data->attributes->billing->name;
-$getCheckoutAddress = $getresponse->data->attributes->billing->address->line1;
-$getCheckoutBrgy = $getresponse->data->attributes->billing->address->line2;
-$getCheckoutAmount = $getresponse->data->attributes->line_items[0]->amount;
-$getCheckoutProductName = $getresponse->data->attributes->line_items[0]->name;
-$getCheckoutQuantity = $getresponse->data->attributes->line_items[0]->quantity;
-$getCheckoutStatus = $getresponse->data->attributes->payments[0]->attributes->status;
-$getCheckoutDate = $getresponse->data->attributes->created_at;
-$chechoutDate = date("d-m-Y");
-$getCheckoutPaymentMethod = $getresponse->data->attributes->payment_method_used;
-
-$sqlIn = "INSERT INTO `paymentdetails`(`paymentId`, `refId`,`checkoutId`,`name`,`productName`,`amount`,`paymentStatus`,`createdAt`,`paymentType`,`address`,`brgy`) VALUES (null,'$getId','$checkoutId','$getCheckoutName','$getCheckoutProductName','$checkoutPrice','$getCheckoutStatus','$chechoutDate','$getCheckoutPaymentMethod','$getCheckoutAddress','$getCheckoutBrgy')";
-mysqli_query($conn, $sqlIn);
-
-$sqlUpdate = "UPDATE `product` SET `productQty`=($fetchQty - $getCheckoutQuantity) WHERE productId = $productId";
-if ($fetchQty != 0) {
-  mysqli_query($conn, $sqlUpdate);
-} else {
-  return '';
-}
-
-header("location: ../pages/medicine.php?message=success");
-// ==========================================================
-// }

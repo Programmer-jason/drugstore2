@@ -113,27 +113,43 @@ input[type="text"],
   overflow: hidden;
 }
 .notif > .notifContent > .notifTittle {
-  background-color: #00ad48;
   padding: 5px;
   color: #fff;
 }
 
 .head-title {
   padding: 5px;
-  /* border-bottom: 1px solid #ddd;
-  margin-bottom: 20px; */
+
 }
-.payment-status {
-  background-color: #00c7533f;
-  color: #00c753;
-  border: 1px solid #00c753;
-  text-align: center;
-  width: 50px;
+.payment-success {
+  color: #00ad48;
 }
-.payment-status-failed{
-  background-color: #c7000038;
-  color: #c70000;
-  border: 1px solid #c70000;
-  text-align: center;
-  width: 50px;
+.payment-failed {
+  color: #b80000;
+}
+.payment-pending {
+  /* color: #09b0ce; */
+  background-color: #c9c602;
+  color: #f8f8f8;
+  box-shadow: 1px 1px 4px #9b9b9b !important;
+  width: 60px;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+div.recieve {
+  color: #f8f8f8;
+  background-color: #00ad48;
+  box-shadow: 1px 1px 4px #999999 !important;
+  width: 60px;
+  padding: 2px 7px;
+  border-radius: 3px;
+}
+div.not-recieve {
+  background-color: #860000;
+  color: #f8f8f8;
+  box-shadow: 1px 1px 4px #9b9b9b !important;
+  width: 60px;
+  padding: 2px 7px;
+  border-radius: 3px;
+  
 }

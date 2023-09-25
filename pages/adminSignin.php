@@ -22,11 +22,6 @@ if(isset($_GET['message'])){
 <body>
   <div class="container">
 
-    <div class="head-links">
-      <a href="./signin.php" class="btn-signin">Signin</a>
-      <a href="./signup.php" class="btn-signup">Signup</a>
-    </div>
-
     <form action="./validation/adminSigninValidation.php" method="post">
       <h1 class="titleHead">Admin</h1>
 
@@ -43,7 +38,6 @@ if(isset($_GET['message'])){
       <input type="submit" name="submit" value="Login" class="submit">
 
       <div class="links">
-        <a href="../index.php" style="margin-left: 10px;">Back to Home</a>
         <a href="../index.php" style="margin-left: 10px;">Forgot Password</a>
       </div>
     </form>

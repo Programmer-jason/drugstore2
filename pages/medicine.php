@@ -84,12 +84,11 @@ include './connect.php';
       <?php } ?>
 
       <div class="checkout">
-
         <h1 style='font-size: 2vh; background-color: #007430; padding: 10px; color: #fff; margin-bottom: 20px;'><i class="fa-solid fa-cart-shopping" style="color: #fff;"></i> Cart</h1>
         <div class="add-to-cart">
 
         <?php 
-          if(!empty($_SESSION['shoppingCart'])){
+          if(isset($_SESSION['shoppingCart'])){
             $total = 0;
             foreach($_SESSION['shoppingCart'] as $keys => $values){
         ?>
@@ -100,12 +99,14 @@ include './connect.php';
                         <img src='../uploads/<?php echo $values['itemImage'];?>' alt='product-image'>
                     </div>
 
-                    <div>₱ <?php echo $values['itemPrice'];?></div>
+                    <div class="price">₱ <?php echo $values['itemPrice'];?></div>
                     
                     <div class="input-quanty">
-                        <div class="minus" onclick='minus(<?php echo $keys?>)'>-</div>
-                        <div id="quantity-value<?php echo $keys?> quantity">0</div> 
-                        <div class="add" onclick='add(<?php echo $keys?>)'>+</div>
+                        <div class="minus" onclick='minus(<?php echo $keys?>, <?php echo $values["itemStock"];?>)'>-</div>
+                        <div class="quantity-value<?php echo $keys?> quantity">
+							<?php echo $values["itemQuantity"];?>
+						</div> 
+                        <div class="add" onclick='add(<?php echo $keys?>, <?php echo $values["itemStock"];?>)'>+</div>
                     </div>
 
                     <div><i class="fa-solid fa-trash" style="color: #007430;" onclick="deleteItem(<?php echo $keys?>)"></i></div>
@@ -113,19 +114,18 @@ include './connect.php';
                 </div>
 
                 <br>
-
                 <?php $total = $total + ($values['itemPrice'] * $values['itemQuantity']);} ?>
                 <?php } else{ echo "<div style='text-align: center;'>No item</div>"; }?>
 
                 <hr>
                 
-                <h2>total : ₱<?php echo (!empty($_SESSION['shoppingCart'])) ? $total : '0'?></h2>
+                <h2 class="total">total : ₱<?php echo (!empty($_SESSION['shoppingCart'])) ? $total : '0'?></h2>
 
         </div>
         
         <div class="checkout-buttons">
 
-            <a href="./validation/deleteCartItem.php" class="btn-success">Checkout</a>
+            <a href="./customerInformation.php" class="btn-success">Checkout</a>
             <div class="btn-danger" id="btn-close">Close</div>
 
         </div>
@@ -148,22 +148,53 @@ include './connect.php';
   <script src="../js/jsAnimation.js"></script>
 
   <script>
+      
+      let total = 1
 
-      function add(cartId) {
-          var quanty = document.getElementById(`quantity-value${cartId} quantity`).innerHTML++;
-          var quantity2 = quanty + 1
+      function minus(cartId, minStock) {
+        let min = Number(minStock)
+
+        if(total > 1){
+          var quanty = document.querySelector(`.quantity-value${cartId}`).innerHTML--;
+          var quantity2 = quanty - 1
           
           console.log(quanty)
+            
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+              if (this.readyState == 4 && this.status == 200) {
+				document.querySelector('.total').innerHTML = this.responseText
+              }
+          }
           
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                // quanty.innerHTML = 0
-            }
-        };
-        
-        xhttp.open("GET", "./validation/changeQuantity.php?cartId="+cartId+"&quan="+quantity2, true);
-        xhttp.send();
+          xhttp.open("GET", "./validation/changeQuantity.php?cartId="+cartId+"&quan="+quantity2, true);
+          xhttp.send();
+          total--
+        }
+
+      }
+      
+      
+      function add(cartId, maxStock) {
+        let max = Number(maxStock)
+
+        if(total <= max){
+            let quanty = document.querySelector(`.quantity-value${cartId}`).innerHTML++;
+            let quantity2 = quanty + 1
+            
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+              if (this.readyState == 4 && this.status == 200) {
+				document.querySelector('.total').innerHTML = this.responseText
+              }
+            };
+            
+            xhttp.open("GET", "./validation/changeQuantity.php?cartId="+cartId+"&quan="+quantity2, true);
+            xhttp.send();
+            total++
+        } else {
+			return;
+		}
 
       }
 
