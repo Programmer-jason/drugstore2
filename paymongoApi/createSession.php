@@ -50,7 +50,7 @@ curl_setopt_array($curl, [
         'send_email_receipt' => false,
         'show_description' => true,
         'show_line_items' => true,
-        'cancel_url' => 'http://localhost/drugstore-management-system/',
+        'cancel_url' => 'http://localhost/drugstore-management-system/paymongoApi/checkoutResource.php',
         'description' => 'medicure drug product',
         'line_items' => [...$lineItem],
         'payment_method_types' => [
@@ -83,7 +83,8 @@ if ($err) {
 } else {
   // echo $response;
   
-  $checkout_id = $_SESSION['checkoutId'] = $getresponse->data->id;
+  $checkout_id = $getresponse->data->id;
+  $_SESSION['checkoutId'] = $checkout_id;
   $total_amount = $_SESSION['totalAmount'];
   $get_checkout_name = $getresponse->data->attributes->billing->name;
   $get_checkout_status = $getresponse->data->attributes->payment_intent->attributes->payments[0]->attributes->status;

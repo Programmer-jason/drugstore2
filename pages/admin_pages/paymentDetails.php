@@ -208,11 +208,11 @@ $getPaymentDetailsResult = mysqli_query($conn, $getPaymentDetails);
 								$payment_id = $rows["paymentId"];
 								switch($rows["paymentAction"]){
 									case 'recieve':
-										echo "<div class='recieve' onclick='recieve($payment_id)'>Recieve</div>";
+										echo "<div class='recieve'>Recieve</div>";
 										break;
 										
 									case 'not_recieve':
-										echo "<div class='not-recieve' onclick='recieve($payment_id)'>Recieve</div>";
+										echo "<div class='not-recieve' ondblclick='recieve($payment_id)'>Recieve</div>";
 										break;
 											
 									default:

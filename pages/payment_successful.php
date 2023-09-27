@@ -15,7 +15,8 @@
 
     <div class="container">
         <section class="payment-success">
-            <div class="payment-sucess-title">Payment Successfull</div>
+            <?php echo ($_SESSION['payment_status'] == 'paid') ? '
+            <div class="payment-sucess">Payment Successful</div>' : '<div class="payment-failed">Payment Failed</div>'?>
             <div class="reference"><?php echo $_SESSION['reference_id']; ?></div>
             <div class="name"><?php echo $_SESSION['customer_name']; ?></div>
             <a href="./medicine.php">Go Back</a>

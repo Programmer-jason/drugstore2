@@ -32,37 +32,30 @@ if ($err) {
   // echo $response;
 
   $getresponse = json_decode($response);
-  
-  foreach($_SESSION['shoppingCart'] as $keys => $values) {
-      $item_id = $values['itemId'];
-    
-      $sql_select = "SELECT * FROM product WHERE productId = $item_id";
-      $sql_select_result = mysqli_query($conn, $sql_select);
-      $get_row = mysqli_fetch_assoc($sql_select_result);
-      $get_quantity = $get_row['productQty'];
-    
-      $get_checkout_quantity = $getresponse->data->attributes->line_items[$keys]->quantity;
-    
-      $sql_update = "UPDATE `product` SET `productQty`=($get_quantity - $get_checkout_quantity) WHERE productId = $item_id";
-      
-      if ($get_quantity != 0) {
-        mysqli_query($conn, $sql_update);
-      } else {
-        return '';
-      }
-  }
-    $get_reference = uniqid(true);
-    $get_checkout_name = $getresponse->data->attributes->billing->name;
-    $get_checkout_price = $getresponse->data->attributes->payment_intent->attributes->amount;
-    $get_checkout_status = $getresponse->data->attributes->payments[0]->attributes->status;
-    $get_paymentMethod = $getresponse->data->attributes->payment_method_used;
 
-    $sql_updating_payment = "UPDATE `paymentdetails` SET `refId`='$get_reference',`paymentStatus`='$get_checkout_status',`paymentType`='$get_paymentMethod',`paymentAction`='not_recieve' WHERE checkoutId = '$checkout_id'";
-    mysqli_query($conn, $sql_updating_payment);
+  $get_reference = uniqid(true);
+  $get_checkout_name = $getresponse->data->attributes->billing->name;
+  $get_checkout_price = $getresponse->data->attributes->payment_intent->attributes->amount;
+  $get_checkout_status = $getresponse->data->attributes->payments[0]->attributes->status;
+  $get_paymentMethod = $getresponse->data->attributes->payment_method_used;
+
+  $sql_updating_payment = "UPDATE `paymentdetails` SET `refId`='$get_reference',`paymentStatus`='$get_checkout_status',`paymentType`='$get_paymentMethod',`paymentAction`='not_recieve' WHERE checkoutId = '$checkout_id'";
+  mysqli_query($conn, $sql_updating_payment);
+
+  foreach($_SESSION['shoppingCart'] as $keys => $value){
+    $item_id = $value['itemId'];
+    $item_name = $value['itemName'];
+    $item_qty = $value['itemQuantity'];
+
+    $sql_insert = "INSERT INTO `checkout_item`(`checkout_id`,`ref_id`,`item_id`,`item_name`,`item_qty`) VALUES (null, '$get_reference', '$item_id', '$item_name', '$item_qty')";
+    mysqli_query($conn, $sql_insert);
+
+  }
 
     // session_destroy();
     $_SESSION['reference_id'] = $get_reference;
     $_SESSION['customer_name'] = $get_checkout_name;
+    $_SESSION['payment_status'] = $get_checkout_status;
     
     header("location: ../pages/payment_successful.php?message=success");
 
