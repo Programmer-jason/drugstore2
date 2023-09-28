@@ -29,7 +29,7 @@ html {
 }
 
 .manage-account-content {
-  padding: 40px 40px;
+  padding: 20px 40px;
   width: 100%;
   height: 100vh;
 }
@@ -52,6 +52,7 @@ html {
   margin-bottom: 20px;
   background: #5e5d5d49;
 }
+
 .manage-account-content .modal form {
   display: none;
   color: var(--text-color);
@@ -64,6 +65,7 @@ html {
   background: #f8f8f8;
   box-shadow: 1px 1px 4px #c3c3c3 !important;
 }
+
 input[type="text"],
 [type="number"],
 [type="date"],
@@ -77,16 +79,19 @@ input[type="text"],
   border-radius: 5px;
   box-shadow: 0px 0px 2px #313131;
 }
+
 .btn-success {
   margin-top: 10px;
   margin-left: 75px;
   border-radius: 5px;
 }
+
 .notif {
   position: relative;
   cursor: pointer;
 }
-.notif > .notifCount {
+
+.notif>.notifCount {
   position: absolute;
   width: 17px;
   height: 17px;
@@ -98,7 +103,8 @@ input[type="text"],
   color: #fff;
   font-size: smaller !important;
 }
-.notif > .notifContent {
+
+.notif>.notifContent {
   position: absolute;
   z-index: 999;
   top: 20;
@@ -112,7 +118,8 @@ input[type="text"],
   display: none;
   overflow: hidden;
 }
-.notif > .notifContent > .notifTittle {
+
+.notif>.notifContent>.notifTittle {
   padding: 5px;
   color: #fff;
 }
@@ -121,12 +128,19 @@ input[type="text"],
   padding: 5px;
 
 }
+
 .payment-success {
   color: #00ad48;
+  margin-inline: auto;
+
 }
+
 .payment-failed {
   color: #b80000;
+  margin-inline: auto;
+
 }
+
 .payment-pending {
   /* color: #09b0ce; */
   background-color: #c9c602;
@@ -135,7 +149,10 @@ input[type="text"],
   width: 60px;
   padding: 2px 6px;
   border-radius: 3px;
+  margin-inline: auto;
+
 }
+
 div.recieve {
   color: #f8f8f8;
   background-color: #00ad48;
@@ -143,7 +160,9 @@ div.recieve {
   width: 60px;
   padding: 2px 7px;
   border-radius: 3px;
+  margin-inline: auto;
 }
+
 div.not-recieve {
   background-color: #860000;
   color: #f8f8f8;
@@ -151,5 +170,6 @@ div.not-recieve {
   width: 60px;
   padding: 2px 7px;
   border-radius: 3px;
-  
+  margin-inline: auto;
+
 }

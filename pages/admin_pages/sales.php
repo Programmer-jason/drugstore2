@@ -58,7 +58,7 @@ $resultSales = mysqli_query($conn, $sqlSales);
             <?php echo $_SESSION['firstname'] . ' ' . $_SESSION['lastname']; ?>
          </div>
       </div>
-      
+
       <a href="../profile.php" class="box dashboard">
          <div><img src="../../assets/dashboard.svg" alt="dashboard" width="25px"></div>
          <div> Dashboard</div>
@@ -69,13 +69,13 @@ $resultSales = mysqli_query($conn, $sqlSales);
          <div>Inventory</div>
       </a>
 
-      <?php if($row6['role'] == 'admin') {?>
+      <?php if ($row6['role'] == 'admin') { ?>
          <a href="../admin_pages/sales.php" class="box sales">
             <div><img src="../../assets/sales.svg" alt="dashboard" width="25px"></div>
             <div>Sales</div>
          </a>
-  
-      <!-- <a href="../admin_pages/prescription.php" class="box prescription">
+
+         <!-- <a href="../admin_pages/prescription.php" class="box prescription">
          <div><img src="../../assets/prescription.png" alt="dashboard" width="25px"></div>
          <div>Prescription</div>
       </a> -->
@@ -85,7 +85,7 @@ $resultSales = mysqli_query($conn, $sqlSales);
             <div>Users</div>
          </a>
       <?php } ?>
-      
+
       <a href="./paymentDetails.php" class="box reserved">
          <div><i class="fa-solid fa-money-check-dollar" style="color: #ffffff;"></i></div>
          <div>Payment</div>
@@ -117,44 +117,47 @@ $resultSales = mysqli_query($conn, $sqlSales);
          <ul>
             <li><a href="../profile.php"><?php echo $_SESSION['firstname']; ?><img src='../../profile/<?php echo $userProfile ?>' alt='User Profile' class='user-profile' /></a></li>
             <li>
-                    <div class="notif">
-                        <img src="../../assets/notif.svg" alt="home" width="20px" id="notifShow" onclick="loadDoc()">
-                        <?php echo (mysqli_num_rows($resultNotifys) > 0) ? '<div class="notifCount">' . mysqli_num_rows($resultNotifys) . '</div>' : ''; ?>
+               <div class="notif">
+                  <img src="../../assets/notif.svg" alt="home" width="20px" id="notifShow" onclick="loadDoc()">
+                  <?php echo (mysqli_num_rows($resultNotifys) > 0) ? '<div class="notifCount">' . mysqli_num_rows($resultNotifys) . '</div>' : ''; ?>
 
-                        <div class="notifContent">
-                            <div class="notifTittle">Notification</div>
+                  <div class="notifContent">
+                     <div class="notifTittle">Notification</div>
 
-                            <?php
-                            $sql8 = "SELECT * FROM product WHERE notificationType = 'nr' ORDER BY productId DESC";
-                            $result8 = mysqli_query($conn, $sql8);
-                            while ($rw = mysqli_fetch_assoc($result8)) { ?>
-                                <?php echo ($rw['notificationType'] == "nr") ? "<div class='notif-inbox-nr'>" : "<div class='notif-inbox'>"; ?>
+                     <?php
+                     $sql8 = "SELECT * FROM product WHERE notificationType = 'nr' ORDER BY productId DESC";
+                     $result8 = mysqli_query($conn, $sql8);
+                     while ($rw = mysqli_fetch_assoc($result8)) { ?>
+                        <?php echo ($rw['notificationType'] == "nr") ? "<div class='notif-inbox-nr'>" : "<div class='notif-inbox'>"; ?>
 
-                                <div class="notif-message">The Item <?php echo $rw['productName']; ?> is Expired</div>
-                                <div class="notif-message"><?php echo date('s') . ' ' . 'seconds ago' ?></div>
-                        </div>
-                           <?php } ?>
+                        <div class="notif-message">The Item <?php echo $rw['productName']; ?> is Expired</div>
+                        <div class="notif-message"><?php echo date('s') . ' ' . 'seconds ago' ?></div>
+                  </div>
+               <?php } ?>
 
-                    </div>
-    </div>
-    </li>
+               </div>
+   </div>
+   </li>
    </ul>
    </nav>
-   
+
    <div class="manage-account-content2">
-      <div class="add-sales">
-         <button class = "btn-success"><a href="./add_sales.php">Add Sales</a></button>
-      </div>
+
 
       <div class="table-container">
-
+         <section class="payment-details-head">
+            <div class="search-container">
+               <input type="search" onchange="paymentSearch()" name="search" id="search-payment" placeholder="year">
+               <span class="submit" onclick="paymentSearch()">search</span>
+            </div>
+         </section>
          <table>
             <tr>
                <th>From Year</th>
                <th>To Year</th>
                <th>Total Sales</th>
                <th>Action</th>
-               
+
             </tr>
             <?php if (mysqli_num_rows($resultSales) > 0) : ?>
                <?php while ($rows = mysqli_fetch_assoc($resultSales)) : ?>
@@ -166,9 +169,9 @@ $resultSales = mysqli_query($conn, $sqlSales);
                         <?php echo $rows["hanggang"]; ?>
                      </td>
                      <td>
-                        <?php echo '₱'.' '.$rows["totalSales"]; ?>
+                        <?php echo '₱' . ' ' . $rows["totalSales"]; ?>
                      </td>
-                     
+
                      <td>
                         <a href="./update.php?id=<?php echo $rows['salesId']; ?>" class="btn btn-primary btn-sm">Edit</a>
                         <a href="./delete_sales.php?deleteId=<?php echo $rows['salesId']; ?>" class="btn btn-danger btn-sm">Delete</a>
@@ -177,6 +180,9 @@ $resultSales = mysqli_query($conn, $sqlSales);
                <?php endwhile; ?>
             <?php endif; ?>
          </table>
+      </div>
+      <div class="add-sales">
+         <button class="btn-success"><a href="./add_sales.php">Add Sales</a></button>
       </div>
    </div>
    </div>

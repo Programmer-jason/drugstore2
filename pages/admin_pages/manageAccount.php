@@ -2,7 +2,7 @@
 session_start();
 include '../connect.php';
 
-$sql = "SELECT * FROM `signUp` WHERE `role` = 'customer';";
+$sql = "SELECT * FROM `signUp` WHERE `role` = 'employee';";
 $result = mysqli_query($conn, $sql);
 // $row = mysqli_fetch_assoc($result);
 
@@ -62,7 +62,7 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
             <?php echo $_SESSION['firstname'] . ' ' . $_SESSION['lastname']; ?>
          </div>
       </div>
-      
+
       <a href="../profile.php" class="box dashboard">
          <div><img src="../../assets/dashboard.svg" alt="dashboard" width="25px"></div>
          <div> Dashboard</div>
@@ -73,16 +73,11 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
          <div>Inventory</div>
       </a>
 
-      <?php if($row6['role'] == 'admin') {?>
+      <?php if ($row6['role'] == 'admin') { ?>
          <a href="../admin_pages/sales.php" class="box sales">
             <div><img src="../../assets/sales.svg" alt="dashboard" width="25px"></div>
             <div>Sales</div>
          </a>
-
-      <!-- <a href="../admin_pages/prescription.php" class="box prescription">
-         <div><img src="../../assets/prescription.png" alt="dashboard" width="25px"></div>
-         <div>Prescription</div>
-      </a> -->
 
          <a href="../admin_pages/manageAccount.php" class="box manage-account">
             <div><img src="../../assets/manageUsers.svg" alt="dashboard" width="25px"></div>
@@ -94,7 +89,7 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
          <div><i class="fa-solid fa-money-check-dollar" style="color: #ffffff;"></i></div>
          <div>Payment</div>
       </a>
-      
+
       <a href="./addMedicine.php" class="box add-medicine">
          <div><img src="../../assets/addProduct.svg" alt="dashboard" width="25px"></div>
          <div>Add Product</div>
@@ -119,41 +114,39 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
          <ul>
             <li><a href="../profile.php"><?php echo $_SESSION['firstname']; ?><img src='../../profile/<?php echo $userProfile ?>' alt='User Profile' class='user-profile' /></a></li>
             <li>
-                    <div class="notif">
-                        <img src="../../assets/notif.svg" alt="home" width="20px" id="notifShow" onclick="loadDoc()">
-                        <?php echo (mysqli_num_rows($resultNotifys) > 0) ? '<div class="notifCount">' . mysqli_num_rows($resultNotifys) . '</div>' : ''; ?>
+               <div class="notif">
+                  <img src="../../assets/notif.svg" alt="home" width="20px" id="notifShow" onclick="loadDoc()">
+                  <?php echo (mysqli_num_rows($resultNotifys) > 0) ? '<div class="notifCount">' . mysqli_num_rows($resultNotifys) . '</div>' : ''; ?>
 
-                        <div class="notifContent">
-                            <div class="notifTittle">Notification</div>
+                  <div class="notifContent">
+                     <div class="notifTittle">Notification</div>
 
-                            <?php
-                            $sql8 = "SELECT * FROM product WHERE notificationType = 'nr' ORDER BY productId DESC";
-                            $result8 = mysqli_query($conn, $sql8);
-                            while ($rw = mysqli_fetch_assoc($result8)) { ?>
-                                <?php echo ($rw['notificationType'] == "nr") ? "<div class='notif-inbox-nr'>" : "<div class='notif-inbox'>"; ?>
+                     <?php
+                     $sql8 = "SELECT * FROM product WHERE notificationType = 'nr' ORDER BY productId DESC";
+                     $result8 = mysqli_query($conn, $sql8);
+                     while ($rw = mysqli_fetch_assoc($result8)) { ?>
+                        <?php echo ($rw['notificationType'] == "nr") ? "<div class='notif-inbox-nr'>" : "<div class='notif-inbox'>"; ?>
 
-                                <div class="notif-message">The Item <?php echo $rw['productName']; ?> is Expired</div>
-                                <div class="notif-message"><?php echo date('s') . ' ' . 'seconds ago' ?></div>
-                        </div>
-                    <?php } ?>
+                        <div class="notif-message">The Item <?php echo $rw['productName']; ?> is Expired</div>
+                        <div class="notif-message"><?php echo date('s') . ' ' . 'seconds ago' ?></div>
+                  </div>
+               <?php } ?>
 
-                    </div>
-    </div>
-    </li>
+               </div>
+   </div>
+   </li>
    </ul>
    </nav>
 
 
    <div class="manage-account-content">
-      <div class="header-content">
-        <a href="./manageAccount.php" class="customer">Customer</a>
-        <a href="./employee.php" class="customer">Employee</a>
-      </div>
-
-      <div class="customer-employee">
-         <a href="" class="user"></a>
-      </div>
       <div class="table-container">
+         <section class="payment-details-head">
+            <div class="search-container">
+               <input type="search" onchange="paymentSearch()" name="search" id="search-payment" placeholder="search">
+               <span class="submit" onclick="paymentSearch()">search</span>
+            </div>
+         </section>
 
          <table>
             <tr>
@@ -187,11 +180,11 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
                      <!-- <td>
                         <?php echo $rows["role"]; ?>
                      </td> -->
-                     
+
                      <td>
                         <?php echo '0' . $rows["contact"]; ?>
                      </td>
-                     
+
                      <td>
                         <!-- <a href="./update.php?id=<?php echo $rows['userId']; ?>" class="btn btn-primary btn-sm">Update</a> -->
                         <a href="./delete_user.php?deleteId=<?php echo $rows['userId']; ?>" class="btn btn-danger btn-sm">Delete</a>
@@ -201,6 +194,8 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
             <?php endif; ?>
          </table>
       </div>
+
+      <a href="./add_employee.php" class="add-employee btn-success">Add Employee</a>
    </div>
 
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -218,7 +213,6 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
 
          document.querySelector(".notifCount").style.display = "none"
       }
-
    </script>
 
 </body>

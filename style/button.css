@@ -5,7 +5,7 @@
   text-decoration: none;
   color: #fff;
   margin-right: 3px;
-  padding: 5px !important;
+  padding: 4px 0px !important;
   display: inline-block;
   border-radius: 3px;
   cursor: pointer;
@@ -21,7 +21,7 @@
   border: none;
   text-decoration: none;
   color: #fff;
-  padding: 5px !important;
+  padding: 4px 0px !important;
   display: inline-block;
   border-radius: 3px;
   cursor: pointer;
@@ -30,13 +30,14 @@
   /* box-shadow: 1px 1px 4px #c3c3c3; */
 
 }
+
 .btn-success {
   width: 60px !important;
   outline: none;
   border: none;
   text-decoration: none;
   color: #fff;
-  padding: 5px !important;
+  padding: 4px 0px !important;
   display: inline-block;
   border-radius: 3px;
   cursor: pointer;

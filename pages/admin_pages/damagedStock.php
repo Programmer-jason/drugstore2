@@ -52,11 +52,11 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
 		</div>
 
 		<div class="profile-pic">
-         <img src="<?php echo '../../profile/' . $row6['userProfile']; ?>" alt='<?php echo "profile"; ?>' class="user-image">
-         <div>
-            <?php echo $_SESSION['firstname'] . ' ' . $_SESSION['lastname']; ?>
-         </div>
-      	</div>
+			<img src="<?php echo '../../profile/' . $row6['userProfile']; ?>" alt='<?php echo "profile"; ?>' class="user-image">
+			<div>
+				<?php echo $_SESSION['firstname'] . ' ' . $_SESSION['lastname']; ?>
+			</div>
+		</div>
 
 		<a href="../profile.php" class="box dashboard">
 			<div style="color: white;"><img src="../../assets/dashboard.svg" alt="dashboard" width="25px"></div>
@@ -68,27 +68,27 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
 			<div>Inventory</div>
 		</a>
 
-		<?php if($row6['role'] == 'admin') {?>
-         <a href="../admin_pages/sales.php" class="box sales">
-            <div><img src="../../assets/sales.svg" alt="dashboard" width="25px"></div>
-            <div>Sales</div>
-         </a>
+		<?php if ($row6['role'] == 'admin') { ?>
+			<a href="../admin_pages/sales.php" class="box sales">
+				<div><img src="../../assets/sales.svg" alt="dashboard" width="25px"></div>
+				<div>Sales</div>
+			</a>
 
-      <!-- <a href="../admin_pages/prescription.php" class="box prescription">
+			<!-- <a href="../admin_pages/prescription.php" class="box prescription">
          <div><img src="../../assets/prescription.png" alt="dashboard" width="25px"></div>
          <div>Prescription</div>
       </a> -->
 
-         <a href="../admin_pages/manageAccount.php" class="box manage-account">
-            <div><img src="../../assets/manageUsers.svg" alt="dashboard" width="25px"></div>
-            <div>Users</div>
-         </a>
-      <?php } ?>
+			<a href="../admin_pages/manageAccount.php" class="box manage-account">
+				<div><img src="../../assets/manageUsers.svg" alt="dashboard" width="25px"></div>
+				<div>Users</div>
+			</a>
+		<?php } ?>
 
 		<a href="./paymentDetails.php" class="box reserved">
-         <div><i class="fa-solid fa-money-check-dollar" style="color: #ffffff;"></i></div>
-         <div>Payment</div>
-      	</a>
+			<div><i class="fa-solid fa-money-check-dollar" style="color: #ffffff;"></i></div>
+			<div>Payment</div>
+		</a>
 
 		<a href="./addMedicine.php" class="box add-medicine">
 			<div><img src="../../assets/addProduct.svg" alt="dashboard" width="25px"></div>
@@ -117,39 +117,48 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
 				<i class="fa fa-times" aria-hidden="true"></i>
 				<li><a href="../profile.php"><?php echo $_SESSION['firstname']; ?><img src='../../profile/<?php echo $userProfile ?>' alt='User Profile' class='user-profile' /></a></li>
 				<li>
-                    <div class="notif">
-                        <img src="../../assets/notif.svg" alt="home" width="20px" id="notifShow" onclick="loadDoc()">
-                        <?php echo (mysqli_num_rows($resultNotifys) > 0) ? '<div class="notifCount">' . mysqli_num_rows($resultNotifys) . '</div>' : ''; ?>
+					<div class="notif">
+						<img src="../../assets/notif.svg" alt="home" width="20px" id="notifShow" onclick="loadDoc()">
+						<?php echo (mysqli_num_rows($resultNotifys) > 0) ? '<div class="notifCount">' . mysqli_num_rows($resultNotifys) . '</div>' : ''; ?>
 
-                        <div class="notifContent">
-                            <div class="notifTittle">Notification</div>
+						<div class="notifContent">
+							<div class="notifTittle">Notification</div>
 
-                            <?php
-                            $sql8 = "SELECT * FROM product WHERE notificationType = 'nr' ORDER BY productId DESC";
-                            $result8 = mysqli_query($conn, $sql8);
-                            while ($rw = mysqli_fetch_assoc($result8)) { ?>
-                                <?php echo ($rw['notificationType'] == "nr") ? "<div class='notif-inbox-nr'>" : "<div class='notif-inbox'>"; ?>
+							<?php
+							$sql8 = "SELECT * FROM product WHERE notificationType = 'nr' ORDER BY productId DESC";
+							$result8 = mysqli_query($conn, $sql8);
+							while ($rw = mysqli_fetch_assoc($result8)) { ?>
+								<?php echo ($rw['notificationType'] == "nr") ? "<div class='notif-inbox-nr'>" : "<div class='notif-inbox'>"; ?>
 
-                                <div class="notif-message">The Item <?php echo $rw['productName']; ?> is Expired</div>
-                                <div class="notif-message"><?php echo date('s') . ' ' . 'seconds ago' ?></div>
-                        </div>
-                    <?php } ?>
+								<div class="notif-message">The Item <?php echo $rw['productName']; ?> is Expired</div>
+								<div class="notif-message"><?php echo date('s') . ' ' . 'seconds ago' ?></div>
+						</div>
+					<?php } ?>
 
-                    </div>
-    </div>
-    </li>
+					</div>
+	</div>
+	</li>
 	</ul>
 	</nav>
 
 	<div class="inventory-content">
 
-		<div class="stock-links">
-			<a href="./newStock.php">New Stock</a>
-			<a href="./oldStock.php">Old Stock</a>
-			<a href="./damagedStock.php">Damaged Stock</a>
-			<a href="./expiredStock.php">Expired Stock</a>
-		</div>
+
 		<div class="table-container">
+			<section class="payment-details-head">
+				<div class="search-container">
+					<input type="search" onchange="paymentSearch()" name="search" id="search-payment" placeholder="item name">
+					<span class="submit" onclick="paymentSearch()">search</span>
+				</div>
+
+				<div class="stock-links">
+					<a href="./newStock.php">New Stock</a>
+					<a href="./oldStock.php">Old Stock</a>
+					<a href="./damagedStock.php">Damaged Stock</a>
+					<a href="./expiredStock.php">Expired Stock</a>
+				</div>
+			</section>
+
 
 			<table>
 				<tr>

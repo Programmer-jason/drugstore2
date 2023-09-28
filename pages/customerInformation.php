@@ -1,10 +1,7 @@
-<?php session_start();
-    include './connect.php';
-?>
-
 <?php include  __DIR__.'\header.php';?>
 
 <div class="container">
+
     <nav>
         <div class="brand">
             <img src="../images/sample logo.png" alt="no image" />
@@ -30,9 +27,7 @@
     </section>
 
 
-    <section class="footer">
-        <div class="copyright">Copyright © 2023 Medicure Drug.</div>
-    </section>
+
 
 </div>
 
