@@ -182,7 +182,10 @@ $result = mysqli_query($conn, $sql);
                <th>Price</th>
                <th>Stock</th>
                <th>Expired Date</th>
-               <th>Action</th>
+               <?php if ($row6['role'] == 'admin') { ?>
+                  <th>Action</th>
+               <?php } ?>
+
             </tr>
             <?php if (mysqli_num_rows($result) > 0) : ?>
                <?php while ($rows = mysqli_fetch_assoc($result)) : ?>
@@ -202,12 +205,13 @@ $result = mysqli_query($conn, $sql);
                      <td>
                         <?php echo $rows['productExpired']; ?>
                      </td>
+                     <?php if ($row6['role'] == 'admin') { ?>
+                        <td>
+                           <a href="../validation/updateInventory.php?updateId=<?php echo $rows['productId']; ?>" class="btn btn-primary">Edit</a>
 
-                     <td>
-                        <a href="../validation/updateInventory.php?updateId=<?php echo $rows['productId']; ?>" class="btn btn-primary">Edit</a>
-
-                        <a href="./delete_medicine.php?deleteId=<?php echo $rows['productId']; ?>" class="btn-danger">Delete</a>
-                     </td>
+                           <a href="./delete_medicine.php?deleteId=<?php echo $rows['productId']; ?>" class="btn-danger">Delete</a>
+                        </td>
+                     <?php } ?>
                   </tr>
                <?php endwhile; ?>
             <?php endif; ?>
