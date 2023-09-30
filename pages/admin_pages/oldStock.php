@@ -1,9 +1,6 @@
 <?php session_start();
 include '../connect.php';
 
-$sql = "SELECT * FROM product WHERE stockType = 'o' LIMIT 10";
-$result = mysqli_query($conn, $sql);
-
 $userProf = $_SESSION['user'];
 
 $sql6 = "SELECT * FROM signup WHERE email = '$userProf'";
@@ -24,6 +21,25 @@ if (isset($_SESSION["user"])) {
 
 $sqlNotifys = "SELECT * FROM product WHERE notificationType = 'nr'";
 $resultNotifys = mysqli_query($conn, $sqlNotifys);
+
+//PAGINATION
+if (isset($_GET['page_no'])) {
+   $page_no = $_GET['page_no'];
+} else {
+   $page_no = 1;
+}
+
+$record_number_perpage = 9;
+$offset = ($page_no - 1) * $record_number_perpage;
+
+$number_of_newstock = "SELECT COUNT(*) FROM product WHERE stockType = 'o'";
+$newstock_result = mysqli_query($conn, $number_of_newstock);
+$total_rows = mysqli_fetch_array($newstock_result)[0];
+$total_page = ceil($total_rows / $record_number_perpage);
+
+
+$sql = "SELECT * FROM product WHERE stockType = 'o' LIMIT $offset, $record_number_perpage";
+$result = mysqli_query($conn, $sql);
 ?>
 
 <!DOCTYPE html>
@@ -197,8 +213,19 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
             <?php endif; ?>
          </table>
       </div>
+      <section>
+         <div class="pagination">
+            <a href="<?php echo ($page_no <= 1) ? '#' : './oldStock.php?page_no=' . ($page_no - 1) ?>" class="next-prev">Prev</a>
+            <?php
+            for ($i = 1; $i <= $total_page; $i++) {
+               echo ($i == $page_no) ? "<a href='./oldStock.php?page_no=$i' class='next-prev'>$i</a>" :
+                  "<a href='./oldStock.php?page_no=$i' class='total-page'>$i</a>";
+            }
+            ?>
+            <a href="<?php echo ($page_no >= $total_page) ?  '#' : './oldStock.php?page_no=' . ($page_no + 1) ?>" class="next-prev">Next</a>
+         </div>
+      </section>
    </div>
-
    </div>
 
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

@@ -14,6 +14,7 @@
   margin: 0;
   padding: 0;
 }
+
 body,
 html {
   width: 100%;
@@ -51,6 +52,7 @@ html {
   margin-bottom: 20px;
   background: #5e5d5d49;
 }
+
 .manage-account-content .modal form {
   display: none;
   color: var(--text-color);
@@ -63,6 +65,7 @@ html {
   background: #f8f8f8;
   box-shadow: 1px 1px 4px #c3c3c3 !important;
 }
+
 input[type="text"],
 [type="number"],
 [type="date"],
@@ -76,16 +79,19 @@ input[type="text"],
   border-radius: 5px;
   box-shadow: 0px 0px 2px #313131;
 }
+
 .btn-success {
   margin-top: 10px;
   margin-left: 75px;
   border-radius: 5px;
 }
+
 .notif {
   position: relative;
   cursor: pointer;
 }
-.notif > .notifCount {
+
+.notif>.notifCount {
   position: absolute;
   width: 17px;
   height: 17px;
@@ -97,7 +103,8 @@ input[type="text"],
   color: #fff;
   font-size: smaller !important;
 }
-.notif > .notifContent {
+
+.notif>.notifContent {
   position: absolute;
   z-index: 999;
   top: 20;
@@ -111,7 +118,8 @@ input[type="text"],
   display: none;
   overflow: hidden;
 }
-.notif > .notifContent > .notifTittle {
+
+.notif>.notifContent>.notifTittle {
   background-color: #00ad48;
   padding: 5px;
   color: #fff;
@@ -130,6 +138,7 @@ input[type="text"],
   margin-bottom: 15px;
   gap: 10px;
 }
+
 a.btn-success {
   margin: 0 !important;
   width: 120px !important;
@@ -137,19 +146,20 @@ a.btn-success {
   margin-top: 20px !important;
 }
 
-.header-content > a{
+.header-content>a {
   text-decoration: none;
   color: #fff !important;
   text-align: center;
   padding: 7px;
 }
-.header-content > a:nth-child(1){
+
+.header-content>a:nth-child(1) {
   background-color: #389900;
   border-radius: 3px;
   width: 100%;
 }
 
-.header-content > a:nth-child(2){
+.header-content>a:nth-child(2) {
   background-color: #b60505e3;
   border-radius: 3px;
   width: 100%;
@@ -163,21 +173,27 @@ a.btn-success {
   margin-bottom: 20px;
   font-size: 2.4vh;
 }
+
 form.add-employee-form .form-row {
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
 }
+
 form.add-employee-form .form-group {
   width: 50%;
 }
+
 form.add-employee-form {
   width: 90%;
   margin-inline: auto !important;
-
+  padding-top: 20px;
 }
 
-form.add-employee-form input[type ='email'], form.add-employee-form input[type ='text'],form.add-employee-form input[type ='password'], form.add-employee-form input[type ='number'] {
+form.add-employee-form input[type='email'],
+form.add-employee-form input[type='text'],
+form.add-employee-form input[type='password'],
+form.add-employee-form input[type='number'] {
   width: 100% !important;
   height: 40px;
   outline: 1px solid rgba(128, 128, 128, 0.418);
@@ -185,12 +201,13 @@ form.add-employee-form input[type ='email'], form.add-employee-form input[type =
   border: none;
   border-radius: 5px;
   background-color: #f0f0f0;
-  
+
 }
 
 div.table-container {
   overflow: hidden !important;
 }
+
 .submit {
   width: 100%;
   height: 40px;

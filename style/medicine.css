@@ -97,39 +97,37 @@ form {
   margin-inline: auto;
   margin-top: 20px;
   width: 68%;
-  background-color: #f0f0f0;
-  box-shadow: 1px 1px 4px #9c9c9c;
-  padding: 6px;
   margin-bottom: 5px;
+  text-align: end;
 }
 
 #search {
-  position: relative;
-  right: -5px;
+  width: 96%;
   outline: none;
-  width: 887px;
-  padding: 7px;
+  padding: 6px;
   margin-inline: auto;
-  border-radius: 3px;
   outline: none;
-  /* border: 1px solid #b1b1b1; */
   border: none;
-  background-color: #fff;
+  /* border-bottom: 1px solid #707070; */
+  height: 35px;
+  border-radius: 3px;
+  /* box-shadow: 1px 1px 4px #7e7e7e; */
+  background-color: #e7e7e7;
+  border: 1px solid rgb(194, 194, 194);
 
 }
 
 #submit {
-  position: relative;
-  left: -2px;
   font-size: 1.8vh;
-  width: 70px;
   outline: none;
   border: none;
-  padding: 8px;
+  padding: 6px;
+  height: 35px;
   background-color: var(--primary-color);
   border-radius: 3px;
   color: #fff;
-  box-shadow: 1px 1px 4px #a7a7a7;
+  box-shadow: 1px 1px 4px #b9b9b9;
+  margin-left: -18px;
 
 }
 
@@ -175,12 +173,19 @@ div.checkout {
   backdrop-filter: blur(2px);
   box-shadow: -1px -1px 6px #b3b3b3 !important;
   overflow-x: scroll;
+  overflow-y: none;
 }
 
-div.checkout::-webkit-scrollbar::-webkit-scrollbar-thumb {
-  width: 4px;
-  ;
+
+div.checkout::-webkit-scrollbar {
+  width: 5px;
+  border: #9c9c9c 1px solid;
+}
+
+div.checkout::-webkit-scrollbar-thumb {
   background-color: #00642a;
+  border-radius: 30px;
+
 }
 
 div.checkout>div.checkout-buttons {
@@ -254,21 +259,27 @@ div.input-quanty {
   display: flex;
   cursor: pointer;
   width: 50px;
+
 }
 
 div.add,
 div.minus {
+  border-radius: 2px;
+
   background-color: #007430;
   color: #fff;
-  width: 40px;
+  width: 100px;
   text-align: center;
   font-weight: bold;
+  border: 1px solid #c9c9c9;
+
 }
+
 
 div.quantity {
   background-color: #f0f0f0;
   border: 1px solid #c9c9c9;
-  border-radius: 3px;
-  width: 40px;
+  border-radius: 2px;
+  width: 90px;
   text-align: center;
 }

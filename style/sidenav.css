@@ -320,9 +320,10 @@ section.payment-details-head .submit {
   padding: 5px;
   background-color: #007430;
   color: white;
-  border-radius: 4px;
+  border-radius: 2px;
   cursor: pointer;
-  border: 1px solid rgb(184, 184, 184);
+  box-shadow: 1px 1px 4px #9b9b9b !important;
+
 }
 
 section.payment-details-head .search-container #search-payment {
@@ -334,4 +335,28 @@ section.payment-details-head .search-container #search-payment {
   border: none;
   border: 1px solid #c0c0c0;
 
+}
+
+/* PAGINATION */
+
+section .pagination {
+  margin-top: 20px;
+}
+
+section .pagination a.next-prev,
+a.total-page {
+  padding: 5px 15px;
+  background-color: #007430;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 3px;
+  box-shadow: 1px 1px 4px #9b9b9b !important;
+  margin-right: 5px;
+
+}
+
+section .pagination a.total-page {
+  padding: 5px 15px;
+  background-color: #f8f8f8;
+  color: #007430;
 }

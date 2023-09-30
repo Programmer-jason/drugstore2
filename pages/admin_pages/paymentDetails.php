@@ -26,7 +26,7 @@ if (isset($_SESSION["user"])) {
 $sqlNotifys = "SELECT * FROM product WHERE notificationType = 'nr'";
 $resultNotifys = mysqli_query($conn, $sqlNotifys);
 
-//GET PAYMENT DETAILS
+//PAGINATION
 
 if (isset($_GET['page_no'])) {
 	$page_no = $_GET['page_no'];
@@ -232,7 +232,7 @@ $getPaymentDetailsResult = mysqli_query($conn, $getPaymentDetails);
 											break;
 
 										default:
-											echo ($rows["paymentStatus"] == 'pending') ? '' : '<div class="payment-pending">Pending</div>';
+											echo ($rows["paymentStatus"] == 'pending') ? '' : '<div class="payment-pending>Pending</div>';
 									}
 									?>
 								</td>
@@ -252,16 +252,19 @@ $getPaymentDetailsResult = mysqli_query($conn, $getPaymentDetails);
 
 			<section>
 				<div class="pagination">
+					<a href="<?php echo ($page_no <= 1) ? '#' : './paymentDetails.php?page_no=' . ($page_no - 1) ?>" class="next-prev">Prev</a>
 					<?php
 					for ($i = 1; $i <= $total_page; $i++) {
-						echo "<a href='./paymentDetails.php?page_no=$i'>$i</a> ";
+						echo ($i == $page_no) ? "<a href='./paymentDetails.php?page_no=$i' class='next-prev'>$i</a>" :
+							"<a href='./paymentDetails.php?page_no=$i' class='total-page'>$i</a>";
 					}
 					?>
+					<a href="<?php echo ($page_no >= $total_page) ?  '#' : './paymentDetails.php?page_no=' . ($page_no + 1) ?>" class="next-prev">Next</a>
 				</div>
 			</section>
 		</div>
 
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		<script src="../../js/jsAnimation.js"></script>
 		<script>
 			function paymentSearch() {

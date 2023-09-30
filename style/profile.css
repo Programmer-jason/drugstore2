@@ -13,6 +13,7 @@
   margin: 0;
   padding: 0;
 }
+
 body,
 html {
   display: flex;
@@ -50,7 +51,7 @@ html {
   height: 130px;
   background-color: #f8f8f8;
   border-radius: 5px;
-  box-shadow: 1px 1px 4px #d6d6d6;
+  box-shadow: 1px 1px 4px #9b9b9b !important;
   color: #007430 !important;
   border-top: #007430 2px solid;
 }
@@ -71,13 +72,14 @@ html {
   width: 100%;
   margin-bottom: 15px;
   box-shadow: 1px 1px 4px #bebebe;
-  
+
 }
 
 .admin-box .dashboard {
   background-color: #01a144;
   border-radius: 5px;
 }
+
 div.down-side {
   display: flex;
   width: 100%;
@@ -87,25 +89,25 @@ div.down-side {
 div.new-stocklist {
   /* padding: 20px; */
   background-color: #f8f8f8;
-  box-shadow: 1px 1px 4px #bebebe;
+  box-shadow: 1px 1px 4px #9b9b9b !important;
   width: 90%;
   height: 500px;
   border-radius: 5px;
   border-top: #007430 2px solid;
   font-size: 1.1vh !important
-
 }
 
-table td
-{
+table td {
   border-bottom: 1px solid #c2c2c2 !important;
   padding: 7px;
   font-size: 1.7vh !important;
 
 }
+
 table th {
   font-size: 1.9vh !important;
 }
+
 .new-item {
   color: #007430;
   background-color: #0074303d;

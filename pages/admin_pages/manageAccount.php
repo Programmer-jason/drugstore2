@@ -2,14 +2,6 @@
 session_start();
 include '../connect.php';
 
-$sql = "SELECT * FROM `signUp` WHERE `role` = 'employee';";
-$result = mysqli_query($conn, $sql);
-// $row = mysqli_fetch_assoc($result);
-
-$sql2 = "SELECT * FROM `signUp`;";
-$result2 = mysqli_query($conn, $sql2);
-$row = mysqli_fetch_assoc($result2);
-
 
 $userProf = $_SESSION['user'];
 
@@ -31,6 +23,26 @@ if (isset($_SESSION["user"])) {
 
 $sqlNotifys = "SELECT * FROM product WHERE notificationType = 'nr'";
 $resultNotifys = mysqli_query($conn, $sqlNotifys);
+
+//PAGINATION
+if (isset($_GET['page_no'])) {
+   $page_no = $_GET['page_no'];
+} else {
+   $page_no = 1;
+}
+
+$record_number_perpage = 9;
+$offset = ($page_no - 1) * $record_number_perpage;
+
+$number_of_newstock = "SELECT COUNT(*) FROM signUp WHERE role = 'employee'";
+$newstock_result = mysqli_query($conn, $number_of_newstock);
+$total_rows = mysqli_fetch_array($newstock_result)[0];
+$total_page = ceil($total_rows / $record_number_perpage);
+
+$employee = "SELECT * FROM signUp WHERE role = 'employee' LIMIT $offset, $record_number_perpage";
+$result = mysqli_query($conn, $employee);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -194,6 +206,18 @@ $resultNotifys = mysqli_query($conn, $sqlNotifys);
             <?php endif; ?>
          </table>
       </div>
+      <section>
+         <div class="pagination">
+            <a href="<?php echo ($page_no <= 1) ? '#' : './manageAccount.php?page_no=' . ($page_no - 1) ?>" class="next-prev">Prev</a>
+            <?php
+            for ($i = 1; $i <= $total_page; $i++) {
+               echo ($i == $page_no) ? "<a href='./manageAccount.php?page_no=$i' class='next-prev'>$i</a>" :
+                  "<a href='./manageAccount.php?page_no=$i' class='total-page'>$i</a>";
+            }
+            ?>
+            <a href="<?php echo ($page_no >= $total_page) ?  '#' : './manageAccount.php?page_no=' . ($page_no + 1) ?>" class="next-prev">Next</a>
+         </div>
+      </section>
 
       <a href="./add_employee.php" class="add-employee btn-success">Add Employee</a>
    </div>

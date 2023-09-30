@@ -14,6 +14,7 @@
   margin: 0;
   padding: 0;
 }
+
 body,
 html {
   width: 100%;
@@ -58,8 +59,8 @@ select {
   border: 1px solid #c2c2c2;
   background-color: #f0f0f0;
 }
-.account-info .image {
-}
+
+.account-info .image {}
 
 .account-info img {
   border: 1px solid #c2c2c2;
@@ -67,10 +68,12 @@ select {
   width: 120px;
   margin-bottom: 5px;
 }
+
 .one,
 .two {
   width: 50%;
 }
+
 .account-info .right {
   display: flex;
   width: 100%;
@@ -82,7 +85,7 @@ select {
   padding-inline: 5px;
 }
 
-.btn-primary {
+.btn-success {
   margin-top: 10px;
   width: 100% !important;
   height: 40px !important;
@@ -92,6 +95,7 @@ select {
   background-color: #01a144;
   border-radius: 5px;
 }
+
 div.name {
   margin-bottom: 10px;
 }

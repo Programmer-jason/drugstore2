@@ -142,13 +142,7 @@ input[type="text"],
 }
 
 .payment-pending {
-  /* color: #09b0ce; */
-  background-color: #c9c602;
-  color: #f8f8f8;
-  box-shadow: 1px 1px 4px #9b9b9b !important;
-  width: 60px;
-  padding: 2px 6px;
-  border-radius: 3px;
+  color: #d1ce0a;
   margin-inline: auto;
 
 }
@@ -157,7 +151,7 @@ div.recieve {
   color: #f8f8f8;
   background-color: #00ad48;
   box-shadow: 1px 1px 4px #999999 !important;
-  width: 60px;
+  width: 60%;
   padding: 2px 7px;
   border-radius: 3px;
   margin-inline: auto;
@@ -167,7 +161,7 @@ div.not-recieve {
   background-color: #860000;
   color: #f8f8f8;
   box-shadow: 1px 1px 4px #9b9b9b !important;
-  width: 60px;
+  width: 60%;
   padding: 2px 7px;
   border-radius: 3px;
   margin-inline: auto;

@@ -5,13 +5,14 @@
   text-decoration: none;
   color: #fff;
   margin-right: 3px;
-  padding: 4px 0px !important;
+  padding: 2px 0px !important;
   display: inline-block;
   border-radius: 3px;
   cursor: pointer;
   background: #0965dd;
   text-align: center;
-  /* box-shadow: 1px 1px 4px #c3c3c3; */
+  box-shadow: 1px 1px 4px #999999 !important;
+
 
 }
 
@@ -21,13 +22,14 @@
   border: none;
   text-decoration: none;
   color: #fff;
-  padding: 4px 0px !important;
+  padding: 2px 0px !important;
   display: inline-block;
   border-radius: 3px;
   cursor: pointer;
   background: #b40000;
   text-align: center;
-  /* box-shadow: 1px 1px 4px #c3c3c3; */
+  box-shadow: 1px 1px 4px #999999 !important;
+
 
 }
 
@@ -37,12 +39,13 @@
   border: none;
   text-decoration: none;
   color: #fff;
-  padding: 4px 0px !important;
+  padding: 2px 0px !important;
   display: inline-block;
   border-radius: 3px;
   cursor: pointer;
   background: #007430 !important;
   text-align: center;
-  /* box-shadow: 1px 1px 4px #c3c3c3; */
+  box-shadow: 1px 1px 4px #999999 !important;
+
 
 }

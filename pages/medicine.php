@@ -5,203 +5,201 @@ include './connect.php';
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Medicine</title>
-  <link rel="shortcut icon" href="./Images/sample logo.png" type="image/x-icon" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="../style/medicine.css">
-  <link rel="stylesheet" href="../style/navbar.css" />
-  <link rel="stylesheet" href="../style/button.css" />
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Medicine</title>
+	<link rel="shortcut icon" href="./Images/sample logo.png" type="image/x-icon" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="../style/medicine.css">
+	<link rel="stylesheet" href="../style/navbar.css" />
+	<link rel="stylesheet" href="../style/button.css" />
 </head>
 
 <body>
-  <div class="medicine-container">
-    <nav>
-      <div class="brand">
-        <img src="../images/sample logo.png" alt="no image" />
-        <a href="../index.php">Medicure Drug</a>
-      </div>
+	<div class="medicine-container">
+		<nav>
+			<div class="brand">
+				<img src="../images/sample logo.png" alt="no image" />
+				<a href="../index.php">Medicure Drug</a>
+			</div>
 
-      <!-- <i class="fa fa-bars" aria-hidden="true"></i> -->
-      <ul>
-        <li><a href="../index.php">Home</a></li>
-        <li><a href="./medicine.php">Product</a></li>
-        <li><a href="./about.php">About</a></li>
-        <li><a href="./contact.php">Contact</a></li>
-        <li class='lastchild'><i class="fa-solid fa-cart-shopping" style="color: #fff;"></i> <span class="checkout-number"><?php echo (isset($_SESSION['shoppingCart'])) ? count($_SESSION['shoppingCart']) : '0';?></span></li>
-      </ul>
-    </nav>
-    
-    <form action="./search.php" method="post">
-      <input type="search" name="search" id="search" placeholder="search">
-      <input type="submit" value="search" id="submit">
-    </form>
+			<!-- <i class="fa fa-bars" aria-hidden="true"></i> -->
+			<ul>
+				<li><a href="../index.php">Home</a></li>
+				<li><a href="./medicine.php">Product</a></li>
+				<li><a href="./about.php">About</a></li>
+				<li><a href="./contact.php">Contact</a></li>
+				<li class='lastchild'><i class="fa-solid fa-cart-shopping" style="color: #fff;"></i> <span class="checkout-number"><?php echo (isset($_SESSION['shoppingCart'])) ? count($_SESSION['shoppingCart']) : '0'; ?></span></li>
+			</ul>
+		</nav>
 
-    <div class="mp-list">
+		<form action="./search.php" method="post">
+			<input type="search" name="search" id="search" placeholder="search">
+			<input type="submit" value="search" id="submit">
+		</form>
 
-      <?php
-      $sql = "SELECT * FROM product WHERE stockType BETWEEN 'n' AND 'o' ORDER BY productId desc";
-      $result = mysqli_query($conn, $sql);
+		<div class="mp-list">
 
-      if (mysqli_num_rows($result) > 0) {
-        while ($rows = mysqli_fetch_assoc($result)) {
-          $prodId2 = $rows['productId'];
+			<?php
+			$sql = "SELECT * FROM product WHERE stockType BETWEEN 'n' AND 'o' ORDER BY productId desc";
+			$result = mysqli_query($conn, $sql);
 
-            //DELETE QUERY
-            $sqlDelete = "DELETE FROM `product` WHERE `productId` = $prodId2";
-            if($rows['productQty'] <= 0){
-                mysqli_query($conn, $sqlDelete);
-            }
-            
-          ?>
-          <div class="mp-card">
+			if (mysqli_num_rows($result) > 0) {
+				while ($rows = mysqli_fetch_assoc($result)) {
+					$prodId2 = $rows['productId'];
 
-            <img src="<?php echo '../uploads/' . $rows['productImg']; ?>" alt='product-image' class="img-list">
+					//DELETE QUERY
+					$sqlDelete = "DELETE FROM `product` WHERE `productId` = $prodId2";
+					if ($rows['productQty'] <= 0) {
+						mysqli_query($conn, $sqlDelete);
+					}
 
-            <div class="details">
+			?>
+					<div class="mp-card">
 
-              <div class="product-name">
-                <?php echo $rows['productName']; ?>
-              </div>
-              <h2>
-                <?php echo '₱' . $rows['productPrice']; ?>
-              </h2>
-            </div>
+						<img src="<?php echo '../uploads/' . $rows['productImg']; ?>" alt='product-image' class="img-list">
 
-            <div class="cart-btn">
-              <?php $productID = $rows['productId'];?>
-              <a href='./validation/buyValidation.php?cartId=<?php echo $productID; ?>' class="buy-btn">Add to cart</a>
-            </div>
+						<div class="details">
 
-          </div>
+							<div class="product-name">
+								<?php echo $rows['productName']; ?>
+							</div>
+							<h2>
+								<?php echo '₱' . $rows['productPrice']; ?>
+							</h2>
+						</div>
 
-        <?php } ?>
-      <?php } ?>
+						<div class="cart-btn">
+							<?php $productID = $rows['productId']; ?>
+							<a href='./validation/buyValidation.php?cartId=<?php echo $productID; ?>' class="buy-btn">Add to cart</a>
+						</div>
 
-      <div class="checkout">
-        <h1 style='font-size: 2vh; background-color: #007430; padding: 10px; color: #fff; margin-bottom: 20px;'><i class="fa-solid fa-cart-shopping" style="color: #fff;"></i> Cart</h1>
-        <div class="add-to-cart">
+					</div>
 
-        <?php 
-          if(isset($_SESSION['shoppingCart'])){
-            $total = 0;
-            foreach($_SESSION['shoppingCart'] as $keys => $values){
-        ?>
-                <div class='transparent-bg'>
+				<?php } ?>
+			<?php } ?>
 
-                    <div class='name-and-image'>
-                        <div style='text-align: center;'><?php echo $values['itemName'];?></div>
-                        <img src='../uploads/<?php echo $values['itemImage'];?>' alt='product-image'>
-                    </div>
+			<div class="checkout">
+				<h1 style='font-size: 2vh; background-color: #007430; padding: 10px; color: #fff; margin-bottom: 20px;'><i class="fa-solid fa-cart-shopping" style="color: #fff;"></i> Cart</h1>
+				<div class="add-to-cart">
 
-                    <div class="price">₱ <?php echo $values['itemPrice'];?></div>
-                    
-                    <div class="input-quanty">
-                        <div class="minus" onclick='minus(<?php echo $keys?>, <?php echo $values["itemStock"];?>)'>-</div>
-                        <div class="quantity-value<?php echo $keys?> quantity">
-							<?php echo $values["itemQuantity"];?>
-						</div> 
-                        <div class="add" onclick='add(<?php echo $keys?>, <?php echo $values["itemStock"];?>)'>+</div>
-                    </div>
+					<?php
+					if (isset($_SESSION['shoppingCart'])) {
+						$total = 0;
+						foreach ($_SESSION['shoppingCart'] as $keys => $values) {
+					?>
+							<div class='transparent-bg'>
 
-                    <div><i class="fa-solid fa-trash" style="color: #007430;" onclick="deleteItem(<?php echo $keys?>)"></i></div>
+								<div class='name-and-image'>
+									<div style='text-align: center;'><?php echo $values['itemName']; ?></div>
+									<img src='../uploads/<?php echo $values['itemImage']; ?>' alt='product-image'>
+								</div>
 
-                </div>
+								<div class="price">₱ <?php echo $values['itemPrice']; ?></div>
 
-                <br>
-                <?php $total = $total + ($values['itemPrice'] * $values['itemQuantity']);} ?>
-                <?php } else{ echo "<div style='text-align: center;'>No item</div>"; }?>
+								<div class="input-quanty">
+									<div class="minus" onclick='minus( <?php echo $keys ?>,<?php echo $values["itemQuantity"] ?> )'>-</div>
 
-                <hr>
-                
-                <h2 class="total">total : ₱<?php echo (!empty($_SESSION['shoppingCart'])) ? $total : '0'?></h2>
+									<div class="quantity-value<?php echo $keys ?> quantity">
+										<?php echo $values["itemQuantity"] ?>
+									</div>
 
-        </div>
-        
-        <div class="checkout-buttons">
 
-            <a href="./customerInformation.php" class="btn-success">Checkout</a>
-            <div class="btn-danger" id="btn-close">Close</div>
+									<div class="add" onclick='add(<?php echo $keys ?>, <?php echo $values["itemStock"] ?>,<?php echo $values["itemQuantity"] ?>)'>+</div>
+								</div>
 
-        </div>
+								<div><i class="fa-solid fa-trash" style="color: #007430;" onclick="deleteItem(<?php echo $keys ?>)"></i></div>
 
-      </div>
+							</div>
 
-      <?php if (mysqli_num_rows($result) == 0) {
-        echo "<h2>No Medicine To Show</h2>";
-      } ?>
+							<br>
+						<?php $total = $total + ($values['itemPrice'] * $values['itemQuantity']);
+						} ?>
+					<?php } else {
+						echo "<div style='text-align: center;'>No item</div>";
+					} ?>
 
-    </div>
+					<hr>
 
-  </div>
+					<h2 class="total">total : ₱<?php echo (!empty($_SESSION['shoppingCart'])) ? $total : '0' ?></h2>
 
-  <!-- JAVASCRIPT -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
-    integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+				</div>
 
-  <script src="../js/jsAnimation.js"></script>
+				<div class="checkout-buttons">
 
-  <script>
-      
-      let total = 1
+					<a href="./customerInformation.php" class="btn-success">Checkout</a>
+					<div class="btn-danger" id="btn-close">Close</div>
 
-      function minus(cartId, minStock) {
-        let min = Number(minStock)
+				</div>
 
-        if(total > 1){
-          var quanty = document.querySelector(`.quantity-value${cartId}`).innerHTML--;
-          var quantity2 = quanty - 1
-          
-          console.log(quanty)
-            
-          var xhttp = new XMLHttpRequest();
-          xhttp.onreadystatechange = function() {
-              if (this.readyState == 4 && this.status == 200) {
-				document.querySelector('.total').innerHTML = this.responseText
-              }
-          }
-          
-          xhttp.open("GET", "./validation/changeQuantity.php?cartId="+cartId+"&quan="+quantity2, true);
-          xhttp.send();
-          total--
-        }
+			</div>
 
-      }
-      
-      
-      function add(cartId, maxStock) {
-        let max = Number(maxStock)
+			<?php if (mysqli_num_rows($result) == 0) {
+				echo "<h2>No Medicine To Show</h2>";
+			} ?>
 
-        if(total <= max){
-            let quanty = document.querySelector(`.quantity-value${cartId}`).innerHTML++;
-            let quantity2 = quanty + 1
-            
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-              if (this.readyState == 4 && this.status == 200) {
-				document.querySelector('.total').innerHTML = this.responseText
-              }
-            };
-            
-            xhttp.open("GET", "./validation/changeQuantity.php?cartId="+cartId+"&quan="+quantity2, true);
-            xhttp.send();
-            total++
-        } else {
-			return;
+		</div>
+
+	</div>
+
+	<!-- JAVASCRIPT -->
+
+	<script>
+		function minus(cartId, quantity) {
+
+			if (quantity > 0) {
+				var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						document.querySelector('.add-to-cart').innerHTML = this.responseText
+
+					}
+				}
+
+				xhttp.open("GET", "./validation/changeQuantity.php?cartId=" + cartId + "&op=minus", true);
+				xhttp.send();
+			}
+
 		}
 
-      }
+		function add(cartId, maxStock, quantity) {
 
-     function deleteItem(deleteId) {
-        window.location = './validation/deleteCartItem.php?deleteId='+deleteId;
-     }
+			if (quantity < maxStock) {
+				var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						document.querySelector('.add-to-cart').innerHTML = this.responseText
 
-  </script>
+					}
+				};
+
+				xhttp.open("GET", "./validation/changeQuantity.php?cartId=" + cartId + "&op=plus", true);
+				xhttp.send();
+			}
+
+		}
+
+
+		function deleteItem(deleteId) {
+			// window.location = './validation/deleteCartItem.php?deleteId=' + deleteId;
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					document.querySelector('.add-to-cart').innerHTML = this.responseText
+
+				}
+			};
+
+			xhttp.open("GET", './validation/deleteCartItem.php?deleteId=' + deleteId, true);
+			xhttp.send();
+
+		}
+	</script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="../js/jsAnimation.js"></script>
 </body>
+
 </html>
