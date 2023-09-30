@@ -5,11 +5,13 @@
   --white-color: #f0f0f0;
   --bg-shadow: #686868;
 }
+
 * {
   font-size: 1.7vh;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   /* font-weight: bold !important; */
 }
+
 .user-profile {
   width: 20px !important;
   vertical-align: middle !important;
@@ -26,11 +28,13 @@ nav {
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
-  background-color: transparent;
+  background-color: #f0f0f0;
   box-shadow: 1px 1px 4px #c9c9c9;
   width: 100%;
   padding-right: 20px;
+
 }
+
 nav .brand {
   display: flex;
   text-align: center;
@@ -53,6 +57,7 @@ nav .brand a {
   font-size: 3vh;
   text-align: center;
 }
+
 nav ul {
   height: 40px;
   display: flex;
@@ -75,11 +80,12 @@ nav ul li a {
   transition: 0.3s ease-in;
 }
 
-nav ul li a:hover{
+nav ul li a:hover {
   color: #007430 !important;
-  
+
 }
-nav ul li:hover{
+
+nav ul li:hover {
   padding-block: 6px;
   border-block: 1px solid #007430;
   color: #007430 !important;
@@ -103,9 +109,11 @@ nav .fa {
   nav .brand img {
     height: 40px;
   }
+
   nav.brand a {
     font-size: 1.2rem;
   }
+
   nav ul {
     flex-direction: column;
     position: absolute;

@@ -10,6 +10,7 @@
   background-size: cover;
   color: white;
   height: 100vh;
+
 }
 
 .contact-main-text {
@@ -21,6 +22,7 @@
   padding: 1rem;
   padding-right: 10rem;
   min-width: 75%;
+
 }
 
 .contact-main-text h1 {
@@ -34,10 +36,12 @@
 
 .contact-main-text a {
   text-decoration: none;
-  color: black;
+  color: #f0f0f0;
   padding: 10px 25px;
-  border: 1px solid black;
   position: relative;
+  background-color: #007430;
+  border-radius: 3px;
+  box-shadow: 1px 1px 4px #9b9b9b;
 }
 
 .contact-main-text a::before {
@@ -66,6 +70,7 @@
   position: relative;
   padding: 6px;
 }
+
 #submit {
   position: relative;
   left: -77px;

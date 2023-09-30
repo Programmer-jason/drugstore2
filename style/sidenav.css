@@ -295,15 +295,6 @@ div.table-container {
   border-radius: 5px;
   /* padding: 20px 0px; */
   height: 500px;
-  overflow-y: scroll;
-}
-
-div.table-container::-webkit-scrollbar {
-  width: 1px;
-}
-
-div.table-container::-webkit-scrollbar-thumb {
-  background-color: #313131;
 }
 
 section.payment-details-head {

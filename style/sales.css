@@ -24,8 +24,8 @@ html {
 }
 
 .admin-box .sales {
-  background-color: #01a144;
-  border-radius: 5px;
+  background-color: #01a144 !important;
+  border-radius: 5px !important;
 }
 
 .manage-account-content2 {

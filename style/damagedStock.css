@@ -9,7 +9,6 @@
 }
 * {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -75,11 +74,13 @@ input[type="text"],
   /* margin-top: 10px; */
   margin-inline: auto;
 }
+
 .btn-primary {
   /* margin-top: 10px; */
   margin-inline: auto;
 }
+
 .admin-box .stock {
-  background-color: #01a144;
-  border-radius: 5px;
+  background-color: #01a144 !important;
+  border-radius: 5px !important;
 }

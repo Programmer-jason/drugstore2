@@ -8,6 +8,8 @@
 .main-page {
   width: 100%;
   min-height: 100vh;
+  background-color: #f0f0f0;
+
 }
 
 .gradient-btn {
@@ -15,12 +17,10 @@
   place-items: center;
   text-decoration: none;
   color: #fff;
-  background-image: linear-gradient(
-    to right,
-    #007430 0%,
-    #4faf77  51%,
-    #2caf65 100%
-  );
+  background-image: linear-gradient(to right,
+      #007430 0%,
+      #4faf77 51%,
+      #2caf65 100%);
   border-radius: 10px;
   background-size: 200% auto;
   transition: 0.3s ease-in-out;
@@ -35,12 +35,13 @@
   height: 40px;
   font-size: 0.8rem;
 }
+
 .about {
   padding: 1rem;
   text-align: center;
 }
 
-.about > h1 {
+.about>h1 {
   font-size: 3rem;
   margin: 1rem 0;
   color: #007430;
@@ -53,7 +54,7 @@
   text-align: left;
 }
 
-.about-sub > img {
+.about-sub>img {
   margin-top: 14px;
   max-height: 250px;
   width: 300px;
@@ -67,6 +68,7 @@
     transform: translateY(-15px);
     opacity: 0.5;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;
@@ -83,6 +85,7 @@
     transform: translateY(15px);
     opacity: 0.5;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;
@@ -110,6 +113,7 @@
     flex-direction: column-reverse;
   }
 }
+
 #search {
   outline: none;
   box-shadow: 0.4px 0.4px 3px var(--black-color);
@@ -119,6 +123,7 @@
   position: relative;
   padding: 6px;
 }
+
 #submit {
   position: relative;
   left: -77px;
@@ -131,6 +136,7 @@
   /* box-shadow: 0.4px 0.4px 3px  var(--black-color); */
   color: #fff;
 }
+
 .for-clippath {
   position: absolute;
   top: 0;

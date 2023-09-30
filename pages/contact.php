@@ -1,17 +1,3 @@
-<?php session_start();
-include './connect.php';
-
-if (isset($_SESSION["user"])) {
-    $user = $_SESSION['user'];
-    $firstName = $_SESSION['firstname'];
-    $lastName = $_SESSION['lastname'];
-    $sql = "SELECT * FROM signUp WHERE email = '$user'";
-    $result = mysqli_query($conn, $sql);
-    $row = mysqli_fetch_assoc($result);
-
-    $userProfile = $row['userProfile'];
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,7 +14,6 @@ if (isset($_SESSION["user"])) {
     <link rel="stylesheet" href="../style/navbar.css" />
 
 </head>
-
 <body>
     <section class="contact-main">
         <nav>
@@ -42,21 +27,6 @@ if (isset($_SESSION["user"])) {
                 <li><a href="./medicine.php">Product</a></li>
                 <li><a href="./about.php">About</a></li>
                 <li><a href="./contact.php">Contact</a></li>
-                <!-- <li> 
-                    <?php if (isset($_SESSION["user"])) {
-                        switch ($_SESSION["role"]) {
-                            case "admin":
-                                echo "<a href ='./profile.php'>$firstName<img src='../profile/$userProfile' alt='User Profile' class='user-profile'/></a>";
-                                break;
-                            case "customer":
-                                echo "<a href ='./customer_pages/favorite.php'>$firstName<img src='../profile/$userProfile' alt='User Profile' class='user-profile'/></a>";
-                                break;
-                        }
-                    } else {
-                        echo "<a href ='./signIn.php'>Sign In </a>";
-                    }
-                    ?>
-                </li> -->
             </ul>
         </nav>
 
@@ -86,5 +56,4 @@ if (isset($_SESSION["user"])) {
 
     <script src="./js/navbar.js"></script>
 </body>
-
 </html>

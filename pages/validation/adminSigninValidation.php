@@ -22,7 +22,7 @@ if (isset($_POST["submit"])) {
         $_SESSION["firstname"] = $row["firstName"];
         $_SESSION["lastname"] = $row["lastName"];
         $_SESSION["role"] = $row["role"];
-        header("location: ../profile.php?message=login successful");
+        header("location: ../admin_pages/profile.php?message=login successful");
         exit(0);
       } else {
         if($password == $row["password"] && $row['role'] == 'employee'){
@@ -31,7 +31,7 @@ if (isset($_POST["submit"])) {
           $_SESSION["firstname"] = $row["firstName"];
           $_SESSION["lastname"] = $row["lastName"];
           $_SESSION["role"] = $row["role"];
-          header("location: ../profile.php?message=login successful");
+          header("location: ../admin_pages/profile.php?message=login successful");
         } else {
           header("location: ../adminSignin.php?message=your not an admin");
         }
