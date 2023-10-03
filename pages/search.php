@@ -1,9 +1,8 @@
 <?php session_start();
 include './connect.php';
-
-$search_term = $_POST['search'];
-$sql = "SELECT * FROM product WHERE productName LIKE '%$search_term%' AND stockType BETWEEN 'n' AND 'o' ORDER BY productId desc";
-$result = mysqli_query($conn, $sql);
+  $search_term = $_POST['search'];
+  $sql = "SELECT * FROM product WHERE productName LIKE '%$search_term%' AND stockType = 'n' ORDER BY productId desc";
+  $result = mysqli_query($conn, $sql);
 ?>
 
 <!DOCTYPE html>
@@ -45,35 +44,43 @@ $result = mysqli_query($conn, $sql);
 
     <div class="mp-list">
       <?php
-      $sqls = "SELECT * FROM product WHERE stockType BETWEEN 'n' AND 'o' ORDER BY productId desc";
-      $results = mysqli_query($conn, $sql);
+      // $sqls = "SELECT * FROM product WHERE stockType BETWEEN 'n' AND 'o' ORDER BY productId desc";
+				$sql = "SELECT DISTINCT productName FROM product WHERE stockType = 'n' ORDER BY productName desc";
+        $results = mysqli_query($conn, $sql);
 
       if (mysqli_num_rows($result) > 0) {
         while ($rows = mysqli_fetch_assoc($result)) {
-          $prodId2 = $rows['productId'];
+          // $prodId2 = $rows['productId'];
+            $prodName2 = $rows['productName'];
+
+            $sqlName = "SELECT * FROM product WHERE productName = '$prodName2'";
+						$resultName = mysqli_query($conn, $sqlName);
+						$rowsName = mysqli_fetch_assoc($resultName);
+						$prodId2 = $rowsName['productId'];
+
 
           //DELETE QUERY
           $sqlDelete = "DELETE FROM `product` WHERE `productId` = $prodId2";
-          if ($rows['productQty'] <= 0) {
+          if ($rowsName['productQty'] <= 0) {
             mysqli_query($conn, $sqlDelete);
           }
 
       ?>
           <div class="mp-card">
-            <img src="<?php echo '../uploads/' . $rows['productImg']; ?>" alt='image' class="img-list">
+            <img src="<?php echo '../uploads/' . $rowsName['productImg']; ?>" alt='image' class="img-list">
 
             <div class="details">
               <div class="product-name">
-                <?php echo $rows['productName'] ?>
+                <?php echo $rowsName['productName'] ?>
               </div>
 
               <div>
-                <?php echo '₱' . $rows['productPrice'] ?>
+                <?php echo '₱' . $rowsName['productPrice'] ?>
               </div>
             </div>
 
             <div class="cart-btn">
-              <?php $productID = $rows['productId']; ?>
+              <?php $productID = $rowsName['productId']; ?>
               <a href='./validation/buyValidation.php?cartId=<?php echo $productID; ?>' class="buy-btn">Add to cart</a>
             </div>
           </div>

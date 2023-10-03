@@ -17,11 +17,11 @@ include './connect.php';
   <!-- ABOUT -->
   <!-- CONTACT -->
   <!-- MEDICINE -->
-  <link rel="stylesheet" href="../style/medicine.css">
   <link rel="stylesheet" href="../style/button.css" />
   <link rel="stylesheet" href="../style/common.css" />
   <link rel="stylesheet" href="../style/about.css" />
   <link rel="stylesheet" href="../style/navbar.css" />
+  <link rel="stylesheet" href="../style/global.css" />
 </head>
 
 <body>

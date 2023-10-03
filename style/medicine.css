@@ -12,7 +12,8 @@
 
 body,
 html {
-  overflow: hidden !important;
+  overflow: hidden;
+  height: auto;
   background-color: #f0f0f0;
 
 }
@@ -36,8 +37,8 @@ a {
 .medicine-container {
   width: 100% !important;
   height: 100vh !important;
-  overflow: scroll !important;
-  scroll-behavior: smooth;
+  overflow-x: hidden !important;
+  overflow-y: scroll !important;
 }
 
 .medicine-container::-webkit-scrollbar {
@@ -45,7 +46,7 @@ a {
 }
 
 .medicine-container::-webkit-scrollbar-thumb {
-  background-color: #313131;
+  background-color: #007430;
 }
 
 .mp-card {
@@ -102,7 +103,7 @@ form {
 }
 
 #search {
-  width: 96%;
+  width: min(344px, 85%);
   outline: none;
   padding: 6px;
   margin-inline: auto;
@@ -118,10 +119,10 @@ form {
 }
 
 #submit {
-  font-size: 1.8vh;
+  font-size: min(2.5vw, 1rem);
   outline: none;
   border: none;
-  padding: 6px;
+  padding: min(100px, 6px);
   height: 35px;
   background-color: var(--primary-color);
   border-radius: 3px;
@@ -282,4 +283,11 @@ div.quantity {
   border-radius: 2px;
   width: 90px;
   text-align: center;
+}
+
+div.copyright {
+  text-align: center;
+  color: #f0f0f0;
+  background-color: #007430;
+  padding: 15px;
 }

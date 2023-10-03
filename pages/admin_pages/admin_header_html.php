@@ -31,7 +31,7 @@
 
          <a href="../admin_pages/manageAccount.php" class="box manage-account">
             <div><img src="../../assets/manageUsers.svg" alt="dashboard" width="25px"></div>
-            <div>Users</div>
+            <div>Employee</div>
          </a>
       <?php } ?>
 
@@ -47,7 +47,7 @@
 
       <a href="./editProfile.php" class="box edit-profile">
          <div><img src="../../assets/editProfile.svg" alt="dashboard" width="25px"></div>
-         <div>Edit Profile</div>
+         <div>Profile</div>
       </a>
 
       <a href="../logout.php" class="box logout">

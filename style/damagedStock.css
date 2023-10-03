@@ -24,7 +24,7 @@ a {
   text-decoration: none;
 }
 
-.stock-links > a:nth-child(3) {
+.stock-links > a:nth-child(2) {
   color: var(--primary-color);
 }
 

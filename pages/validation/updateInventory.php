@@ -48,6 +48,7 @@
 <?php include '../admin_pages/admin_header_html2.php'; ?>
          
    <div class="inventory-content">
+      <a href="../admin_pages/newStock.php">Back</a>
       <div class="modal">
          <form action="" method="post">
             <div>Product Name</div>

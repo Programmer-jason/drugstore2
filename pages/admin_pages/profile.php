@@ -31,7 +31,7 @@
     $result5 = mysqli_query($conn, $sql5);
     $totalMale = mysqli_num_rows($result5);
 
-    $sql9 = "SELECT * FROM product WHERE stockType = 'n' ORDER BY productId DESC LIMIT 13";
+    $sql9 = "SELECT * FROM product WHERE stockType = 'n' ORDER BY productId DESC LIMIT 11";
     $result9 = mysqli_query($conn, $sql9);
 ?>
 
@@ -111,7 +111,7 @@
                     <tr>
                         <th>Item Name</th>
                         <th>Price</th>
-                        <th>Stock</th>
+                        <th>Quantity</th>
                         <th>Expired Date</th>
                     </tr>
                     <?php if (mysqli_num_rows($result9) > 0) : ?>

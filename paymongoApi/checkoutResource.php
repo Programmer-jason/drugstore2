@@ -38,6 +38,8 @@ if ($err) {
   $get_checkout_price = $getresponse->data->attributes->payment_intent->attributes->amount;
   $get_checkout_status = $getresponse->data->attributes->payments[0]->attributes->status;
   $get_paymentMethod = $getresponse->data->attributes->payment_method_used;
+  $_SESSION['payment_method'] = $get_paymentMethod;
+
 
   $sql_updating_payment = "UPDATE `paymentdetails` SET `refId`='$get_reference',`paymentStatus`='$get_checkout_status',`paymentType`='$get_paymentMethod',`paymentAction`='not_recieve' WHERE checkoutId = '$checkout_id'";
   mysqli_query($conn, $sql_updating_payment);

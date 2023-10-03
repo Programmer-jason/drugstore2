@@ -1,0 +1,114 @@
+.container {
+  box-sizing: border-box;
+  background-color: #f0f0f0;
+  height: 100vh;
+}
+.container nav {
+  padding-left: 50px !important;
+}
+.container nav img {
+  max-width: 100%;
+}
+.container .customer-info {
+  height: 73vh;
+  margin-top: 102px;
+  width: min(500px, 80%);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.container .customer-info .title-head {
+  color: #007430;
+  font-size: 3vh;
+  font-family: "Franklin Gothic", "Arial Narrow", Arial, sans-serif;
+  border-bottom: #007430 1px solid;
+  text-align: center;
+}
+.container .customer-info form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-inline: 20px;
+}
+.container .customer-info form input {
+  width: 100%;
+  height: 40px;
+  border-radius: 3px;
+  border: none;
+  border: 1px #9b9b9b solid;
+  padding: 5px;
+}
+.container .customer-info form .btn-submit {
+  border: none;
+  background-color: #007430;
+  color: #f0f0f0;
+  box-shadow: 1px 1px 4px #9b9b9b;
+}
+.container .customer-info form .for {
+  padding: 5px;
+}
+.container .header {
+  padding: 5px 20px;
+}
+.container .header .title {
+  padding: 10px;
+  font-size: 1.5rem;
+  color: #007430;
+  border-bottom: 1px #007430 solid;
+}
+.container .content {
+  background-color: #f0f0f0;
+  padding: 20px;
+  height: inherit;
+}
+.container .content .item-buy-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.container .content .item-buy-container .item-buy {
+  width: min(40%, 200px);
+}
+.container .content .item-buy-container .item-buy .product-img {
+  max-width: 100%;
+  border-radius: 3px;
+  border: 1px #9b9b9b solid;
+}
+.container .payment-success, .container .payment-failed {
+  background-color: rgba(0, 116, 48, 0.2588235294);
+  border: 1px solid #007430;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  margin-top: 50px;
+  width: 60%;
+  box-shadow: 1px 1px 4px #9b9b9b;
+  height: 300px;
+  border-radius: 3px;
+}
+.container .payment-success .payment-successful, .container .payment-failed .payment-successful, .container .payment-failed .payment-fail {
+  font-size: 2.5vw;
+  color: #007430;
+  padding: 20px;
+  text-align: center;
+}
+.container .payment-failed {
+  border: 1px solid #a80202;
+  background-color: rgba(168, 2, 2, 0.3019607843);
+}
+.container .payment-failed .payment-fail {
+  color: #a80202;
+}
+
+section.footer {
+  text-align: center;
+}
+section.footer div.copyright {
+  text-align: center;
+  color: #f0f0f0;
+  background-color: #007430;
+  padding: 15px;
+}/*# sourceMappingURL=global.css.map */

@@ -1,33 +1,32 @@
 <?php include  __DIR__.'\header.php';?>
 
 <div class="container">
-
-    <nav>
-        <div class="brand">
-            <img src="../images/sample logo.png" alt="no image" />
-            <a href="../index.php">Medicure Drug</a>
-        </div>
-    </nav>
+    <section>
+        <nav>
+            <div class="brand">
+                <img src="../images/sample logo.png" alt="no image" />
+                <a href="../index.php">Medicure Drug</a>
+            </div>
+        </nav>
+    </section>
 
     <section class="customer-info">
         <div class="title-head">Customer Information</div>
 
         <form action="../paymongoApi/createSession.php" method="post">
-            <div>Name</div>
-            <input type="text" name="fullname" placeholder="Fullname" required>
+            <div class="row">
+                <div class="for">Name</div>
+                <input type="text" name="fullname" placeholder="Fullname" class="input" required>
+            </div>
 
-            <div>Email</div>
-            <input type="email" name="email" placeholder="Email" required>
-
+            <div class="row">
+                <div class="for">Email</div>
+                <input type="email" name="email" placeholder="Email" class="input" required>
+            </div>
             <!-- <div>Contact Number</div>
             <input type="text" name="contact" maxlength="11" placeholder="Optional"> -->
-
-            <input type="submit" value="Proceed" name="submit">
+            <input type="submit" value="Proceed" name="submit" class="btn-submit">
         </form>
     </section>
-
-
-
-</div>
 
 <?php include __DIR__.'\footer.php';?>

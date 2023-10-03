@@ -23,7 +23,7 @@ if(isset($_GET['message'])){
   <div class="container">
 
     <form action="./validation/adminSigninValidation.php" method="post">
-      <h1 class="titleHead">Admin</h1>
+      <h1 class="titleHead">ADMIN</h1>
 
       <div class="form-group">
         <label for="userLogin">Email</label>

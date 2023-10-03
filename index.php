@@ -1,21 +1,5 @@
 <?php session_start();
-include './pages/connect.php';
 
-// if(isset($_GET['message'])){
-//   $getMessage = $_GET['message'];
-//   echo "<script>alert('$getMessage')</script>";
-// }
-
-if (isset($_SESSION["user"])) {
-  $user = $_SESSION['user'];
-  $firstName = $_SESSION['firstname'];
-  $lastName = $_SESSION['lastname'];
-  $sql = "SELECT * FROM signUp WHERE email = '$user'";
-  $result = mysqli_query($conn, $sql);
-  $row = mysqli_fetch_assoc($result);
-
-  $userProfile = $row['userProfile'];
-}
 ?>
 
 <!DOCTYPE html>
@@ -35,6 +19,7 @@ if (isset($_SESSION["user"])) {
 <body>
   <div class="container">
     <div class="clip"></div>
+    
     <nav>
       <div class="brand">
         <img src="./images/sample logo.png" alt="no image" />
@@ -45,25 +30,11 @@ if (isset($_SESSION["user"])) {
         <li><a href="./pages/medicine.php">Product</a></li>
         <li><a href="./pages/about.php">About</a></li>
         <li><a href="./pages/contact.php">Contact</a></li>
-        <!-- <li> 
-          <?php if (isset($_SESSION["user"])) {
-            switch ($_SESSION["role"]) {
-              case "admin":
-                echo "<a href ='./pages/profile.php'>$firstName<img src='./profile/$userProfile' alt='User Profile' class='user-profile'/></a>";
-                break;
-              case "customer":
-                echo "<a href ='./pages/customer_pages/favorite.php'>$firstName<img src='./profile/$userProfile' alt='User Profile' class='user-profile'/></a>";
-                break;
-            }
-          } else {
-            echo "<a href ='./pages/signIn.php'>SignIn </a>";
-          }
-          ?>
-        </li> -->
       </ul>
     </nav>
 
     <div class="intro">
+
       <div class="introduction">
         <h1 class="title">The drugstore you can trust.</h1>
         <h4 class="intro-paragraph">
@@ -75,11 +46,10 @@ if (isset($_SESSION["user"])) {
       <div class="img-intro">
         <img src="./images/drugstore.png" alt="img">
       </div>
-
     </div>
 
-    <div class="copyright">Copyright © 2023 Medicure Drug.</div>
   </div>
+  <div class="copyright">Copyright © 2023 Medicure Drug.</div>
 </body>
 
 </html>

@@ -41,7 +41,7 @@
             <div class="inputGroups">
                 <div class="one">
                     <div>Product Name</div>
-                    <input type="text" name="productName" id="productName" placeholder="Productname" required>
+                    <input type="text" name="productName" id="productName" placeholder="name" required>
 
                     <div>Price</div>
                     <input type="number" name="productPrice" id="productPrice" value="0.00" required>
@@ -57,16 +57,10 @@
                         <option value="p">Product</option>
                     </select>
 
-                    <div>Stock</div>
+                    <div>Quantity</div>
                     <input type="number" name="productQty" id="productQty" value="0" required>
 
-                    <div>Stock Type</div>
-                    <select name="stockType" id="stockType">
-                        <option value="n">New Stock</option>
-                        <option value="o">Old Stock</option>
-                        <option value="d">Damaged Stock</option>
-                        <option value="e">Expired Stock</option>
-                    </select>
+                    <input name="stockType" id="stockType" value="n" hidden>
                 </div>
 
                 <input type="submit" value="Add" name="submit" id="add" class="btn-success">

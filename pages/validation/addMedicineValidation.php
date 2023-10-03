@@ -20,31 +20,56 @@ if (isset($_POST["submit"])) {
     $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
     $typeFile = array("jpg", "png", "jpeg", "gif");
 
-    $sql = "SELECT `productName` FROM `product` WHERE `productName` = '$productName' ";
+    $sql = "SELECT * FROM product WHERE productName = '$productName' AND productExpired = '$productExpiration'";
     $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    $productExpired = $row['productExpired'];
+    $productQuantity = $row['productQty'];
 
-    if (!mysqli_num_rows($result) > 0) {
+    if (!mysqli_num_rows($result) > 0)
+    {
+        if (!empty($fileName))
+        {
+            if (in_array($imageFileType, $typeFile))
+            {
 
-        if (!empty($fileName)) {
-            if (in_array($imageFileType, $typeFile)) {
-                if (file_exists($targetFile)) {
-                    header("location: ../admin_pages/addMedicine.php?message=File Exist");
-                } else {
-                    if ($fileSize > 1000000) {
+                // if (file_exists($targetFile))
+                // {
+                //     header("location: ../admin_pages/addMedicine.php?message=File Exist");
+                //     exit;
+                // } 
+                // else 
+                // {
+                    if ($fileSize > 2000000) 
+                    {
                         header("location: ../admin_pages/addMedicine.php?message=File To Big");
-                    } else {
-                        if (move_uploaded_file($fileTmpname, $targetFile)) {
+                        exit;
+                    } 
+                    else 
+                    {
+                        if (move_uploaded_file($fileTmpname, $targetFile)) 
+                        {
                             header("location: ../admin_pages/addMedicine.php?message=The file has been uploaded.");
-                        } else {
+                        } 
+                        else 
+                        {
                             header("location: ../admin_pages/addMedicine.php?message=Error File Upload.");
+                            exit;
                         }
                     }
-                }
-            } else {
+                // }
+
+            } 
+            else 
+            {
                 header("location: ../admin_pages/addMedicine.php?message=Only jpg, jpeg, png.");
+                exit;
             }
-        } else {
+        } 
+        else 
+        {
             header("location: ../admin_pages/addMedicine.php?message=You Didnt Upload.");
+            exit;
         }
 
         $stmt = $conn->prepare("INSERT INTO `product` (productName, productExpired, productQty, productType, productImg, productPrice,stockType, notificationType) VALUES (?,?,?,?,?,?,?,?)");
@@ -52,8 +77,14 @@ if (isset($_POST["submit"])) {
         $stmt->execute();
         $stmt->close();
         $conn->close();
-    } else {
-        header("location: ../admin_pages/addMedicine.php?message=Name Exist Find Another");
+    } 
+    else 
+    {
+        $w = (int)$productQuantity + (int)$productQty;
+        $updateProduct = "UPDATE product SET productQty = $w WHERE productName = '$productName'";
+        $result = mysqli_query($conn, $updateProduct);
+        header("location: ../admin_pages/addMedicine.php");
+        exit;
     }
 
 }

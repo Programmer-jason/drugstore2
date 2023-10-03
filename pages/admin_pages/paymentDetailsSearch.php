@@ -9,7 +9,7 @@
       $page_no = 1;
    }
 
-   $record_number_perpage = 1;
+   $record_number_perpage = 10;
    $offset = ($page_no - 1) * $record_number_perpage;
 
    $number_of_paymentDetails = "SELECT COUNT(*) FROM paymentdetails";
@@ -20,11 +20,11 @@
    //SEARCH PAYMENT
    if ($_GET['searching'] != '') {
       $searchOnchange = $_GET['searching'];
-      $sql_payment_search = "SELECT * FROM `paymentDetails` WHERE `refId` LIKE '%$searchOnchange%' LIMIT 10";
+      $sql_payment_search = "SELECT * FROM `paymentDetails` WHERE `refId` LIKE '%$searchOnchange%' LIMIT $offset, $record_number_perpage";
       $result_payment_search = mysqli_query($conn, $sql_payment_search);
    } else {
       // $searchOnchange = $_GET['searching'];
-      $sql_payment_search = "SELECT * FROM `paymentDetails`";
+      $sql_payment_search = "SELECT * FROM `paymentDetails` LIMIT $offset, $record_number_perpage";
       $result_payment_search = mysqli_query($conn, $sql_payment_search);
    }
 ?>
@@ -89,11 +89,11 @@
 								$payment_id = $rows["paymentId"];
 								switch ($rows["paymentAction"]) {
 									case 'recieve':
-										echo "<div class='recieve'>Recieve</div>";
+										echo "<div class='recieve'>Pick Up</div>";
 										break;
 
 									case 'not_recieve':
-										echo ($rows["paymentStatus"] == 'failed') ? '' : "<div class='not-recieve' ondblclick='recieve($payment_id)'>Recieve</div>";
+										echo ($rows["paymentStatus"] == 'failed') ? '' : "<div class='not-recieve' ondblclick='recieve($payment_id)'>Pick Up</div>";
 										break;
 
 									default:

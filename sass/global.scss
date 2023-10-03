@@ -1,0 +1,170 @@
+$primary-color: #007430;
+$background-color: #f0f0f0;
+$color: #f0f0f0;
+$shadow: 1px 1px 4px #9b9b9b;
+$border: 1px #9b9b9b solid;
+$radius: 3px;
+
+@mixin borders($bordercolor){
+    border: 1px solid $bordercolor;
+}
+
+@mixin colors($color){
+    color: $color;
+}
+
+.container {
+    box-sizing: border-box;
+    background-color: $background-color;
+    height: 100vh;
+
+    nav{
+        padding-left: 50px !important;
+
+        img {
+            max-width: 100%;
+        }
+    }
+
+    .customer-info {
+        height: 73vh;
+        margin-top: 102px;
+        width: min(500px, 80%);
+        margin-inline: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+
+
+        .title-head{
+            color: $primary-color;
+            font-size: 3vh;
+            font-family: 'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;
+            border-bottom: $primary-color 1px solid;
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding-inline: 20px;
+
+            input{
+                width: 100%;
+                height: 40px;
+                border-radius: 3px;
+                border: none;
+                border: $border;
+                padding: 5px;
+            } 
+
+            .btn-submit {
+                border: none;
+                background-color: $primary-color;
+                color: $color;
+                box-shadow: $shadow;
+            }
+
+
+            .for {
+                padding: 5px;
+            
+            }
+        }
+        
+    
+
+    }
+
+    //=========== VIEW ITEM ================================
+
+    .header {
+        padding: 5px 20px;
+        .title {
+
+            padding: 10px;
+            // font-size: 2vw;
+            font-size: 1.5rem;
+            color: $primary-color;
+            border-bottom: 1px $primary-color solid;
+        }
+
+    }
+
+    .content {
+        background-color: $background-color;
+        padding: 20px;
+        height: inherit;
+
+        .item-buy-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+              
+            .item-buy {
+                width: min(40%, 200px);
+
+                .product-img {
+                    max-width: 100%;
+                    border-radius: $radius;
+                    border: $border;
+                }
+            }
+        }
+    }
+
+    // =====================================================
+
+    //========= PAYMENT SUCCESSFUL =================
+    .payment-success{
+        background-color: #00743042;
+        @include borders($primary-color);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        margin-top: 50px;
+        width: 60%;
+        box-shadow: $shadow;
+        height: 300px;
+        border-radius: $radius;
+
+
+
+        .payment-successful {
+            font-size: 2.5vw;
+            @include colors(#007430);
+            padding: 20px;
+            text-align: center;
+        }
+    }
+    .payment-failed {
+        @extend .payment-success;
+        @include borders(#a80202);
+        background-color: #a802024d;
+
+        .payment-fail {
+            @extend .payment-successful;
+            @include colors(#a80202);
+
+        }
+    }
+
+
+    //==============================================
+    
+}
+
+section.footer {
+
+   text-align: center;
+
+   div.copyright {
+        text-align: center;
+        color: $color;
+        background-color: $primary-color;
+        padding: 15px;
+    }
+}

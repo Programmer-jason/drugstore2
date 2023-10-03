@@ -5,11 +5,18 @@
     
     $id = $_GET["deleteId"];
 
+    $selectProduct = "SELECT * FROM product WHERE productId = '$id'";
+    $productResult = mysqli_query($conn, $selectProduct);
+    $productRow = mysqli_fetch_assoc($productResult);
+    $img = $productRow['productImg'];
+    unlink('../../uploads/'.$img);
+    
     $sql = "DELETE FROM product WHERE productId = '$id' ";
     $res = mysqli_query($conn, $sql);
 
+
     if($res){
-        header("location:./inventory.php");
+        header("location:./newStock.php?e=$img");
     }
     mysqli_close($conn);
 ?>

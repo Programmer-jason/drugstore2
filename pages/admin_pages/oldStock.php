@@ -81,7 +81,7 @@
                      </td>
                      <?php if ($row6['role'] == 'admin') { ?>
                         <td>
-                           <a href="../validation/updateInventory.php?updateId=<?php echo $rows['productId']; ?>" class="btn btn-primary">Edit</a>
+                           <!-- <a href="../validation/updateInventory.php?updateId=<?php echo $rows['productId']; ?>" class="btn btn-primary">Edit</a> -->
 
                            <a href="./delete_medicine.php?deleteId=<?php echo $rows['productId']; ?>" class="btn-danger">Delete</a>
                         </td>

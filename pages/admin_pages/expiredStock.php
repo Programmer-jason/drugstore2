@@ -46,8 +46,7 @@
             </div>
 
             <div class="stock-links">
-               <a href="./newStock.php">New Stock</a>
-               <a href="./oldStock.php">Old Stock</a>
+               <a href="./newStock.php">Stock</a>
                <a href="./damagedStock.php">Damaged Stock</a>
                <a href="./expiredStock.php">Expired Stock</a>
             </div>
@@ -57,7 +56,7 @@
             <tr>
                <th>Item Name</th>
                <th>Price</th>
-               <th>Stock</th>
+               <th>Quantity</th>
                <th>Expired Date</th>
                <?php if ($row6['role'] == 'admin') { ?>
                   <th>Action</th>

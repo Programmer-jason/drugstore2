@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
 :root {
   --primary-color: #018136;
   --primarys-color: #4ac29025;
@@ -7,9 +8,8 @@
 }
 
 * {
-  font-size: 1.7vh;
+  font-size: 0.9rem;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  /* font-weight: bold !important; */
 }
 
 .user-profile {

@@ -32,7 +32,7 @@
 <?php include __DIR__.'\admin_header_html2.php'; ?>
 
    <div class="manage-account-content">
-
+      <a href="../admin_pages/manageAccount.php">Back</a>
       <div class="table-container">
          <form action="../validation/addEmployee.php" method="post" class="add-employee-form">
             <h1 class="titleHead">ADD EMPLOYEE</h1>

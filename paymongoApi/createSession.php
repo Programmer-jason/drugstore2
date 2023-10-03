@@ -89,6 +89,7 @@ if ($err) {
   $get_checkout_name = $getresponse->data->attributes->billing->name;
   $get_checkout_status = $getresponse->data->attributes->payment_intent->attributes->payments[0]->attributes->status;
   $get_paymentMethod = $getresponse->data->attributes->payment_method_used;
+  $_SESSION['payment_method'] = $get_paymentMethod;
 
   $sql_insert = "INSERT INTO `paymentdetails`(`paymentId`,`checkoutId`,`name`,`price`,`paymentStatus`) 
                  VALUES (null, '$checkout_id', '$get_checkout_name', '$total_amount', 'pending')";

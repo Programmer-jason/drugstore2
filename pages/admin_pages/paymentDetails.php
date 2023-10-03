@@ -101,11 +101,11 @@
 								$payment_id = $rows["paymentId"];
 								switch ($rows["paymentAction"]) {
 									case 'recieve':
-										echo "<div class='recieve'>Recieve</div>";
+										echo "<div class='recieve'>Pick Up</div>";
 										break;
 
 									case 'not_recieve':
-										echo ($rows["paymentStatus"] == 'failed') ? '' : "<div class='not-recieve' ondblclick='recieve($payment_id)'>Recieve</div>";
+										echo ($rows["paymentStatus"] == 'failed') ? '' : "<div class='not-recieve' ondblclick='recieve($payment_id)'>Pick Up</div>";
 										break;
 
 									default:
