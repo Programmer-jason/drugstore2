@@ -4,7 +4,9 @@
   --white-color: #fff;
   --bg-shadow: 1px 1px 4px #6d6d6d;
 }
-
+nav {
+  background-color: transparent !important;
+}
 .contact-main {
   background: url("../images/cover.jpg");
   background-size: cover;

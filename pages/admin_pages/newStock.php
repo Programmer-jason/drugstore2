@@ -1,17 +1,37 @@
 <?php include __DIR__.'\admin_header_php.php' ?>
 <?php
+   $getExpired = "SELECT * FROM product";
+   $expiredResult = mysqli_query($conn, $getExpired);
+   if (mysqli_num_rows($expiredResult) > 0){
+      while ($rows = mysqli_fetch_assoc($expiredResult)){
+         if (date('Y-m-d') == $rows['productExpired']) { 
+            $productId = $rows['productId'];
+            $sqls = "UPDATE product SET stockType = 'e', notificationType = 'nr' WHERE productId = $productId";
+            mysqli_query($conn, $sqls);
+         }
+      }
+   }
+   
    //PAGINATION
    $record_number_perpage = 9;
    $offset = ($page_no - 1) * $record_number_perpage;
 
-   $number_of_newstock = "SELECT COUNT(*) FROM product WHERE stockType = 'n'";
+   $number_of_newstock = "SELECT COUNT(*) 
+                          FROM product
+                          WHERE stockType = 'o'";
+
    $newstock_result = mysqli_query($conn, $number_of_newstock);
    $total_rows = mysqli_fetch_array($newstock_result)[0];
    $total_page = ceil($total_rows / $record_number_perpage);
 
-   $sql = "SELECT * FROM product WHERE stockType = 'n' LIMIT $offset, $record_number_perpage";
+   $sql = "SELECT * 
+           FROM product 
+           WHERE stockType = 'o' 
+           LIMIT $offset, $record_number_perpage";
+
    $result = mysqli_query($conn, $sql);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -54,16 +74,13 @@
                <th>Item Name</th>
                <th>Price</th>
                <th>Quantity</th>
-               <th>Expired Date</th>
+               <!-- <th>Expired Date</th> -->
                <?php if ($row6['role'] == 'admin') { ?>
                   <th>Action</th>
                <?php } ?>
-
             </tr>
             <?php if (mysqli_num_rows($result) > 0) : ?>
                <?php while ($rows = mysqli_fetch_assoc($result)) : ?>
-
-                  <?php if (date('Y-m-d') != $rows['productExpired']) { ?>
                      <tr>
                         <td>
                            <?php echo $rows['productName']; ?>
@@ -77,24 +94,18 @@
                            <?php echo $rows['productQty']; ?>
                         </td>
 
-                        <td>
+                        <!-- <td>
                            <?php echo $rows['productExpired']; ?>
-                        </td>
+                        </td> -->
+
                         <?php if ($row6['role'] == 'admin') { ?>
                            <td>
-                              <a href="../validation/updateInventory.php?updateId=<?php echo $rows['productId']; ?>" class="btn btn-primary">Edit</a>
+                              <!-- <a href="../validation/updateInventory.php?updateId=<?php echo $rows['productId']; ?>" class="btn btn-primary">Edit</a> -->
 
                               <a href="./delete_medicine.php?deleteId=<?php echo $rows['productId']; ?>" class="btn-danger">Delete</a>
                            </td>
                         <?php } ?>
-
                      </tr>
-                  <?php } else {
-                     $productId = $rows['productId'];
-                     $sql = "UPDATE product SET stockType = 'e', notificationType = 'nr' WHERE productId = $productId";
-                     mysqli_query($conn, $sql);
-                  }
-                  ?>
                <?php endwhile; ?>
             <?php endif; ?>
          </table>

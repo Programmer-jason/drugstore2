@@ -1,7 +1,9 @@
 <?php
 include '../connect.php';
 
-if (isset($_POST["submit"])) {
+if (isset($_POST["submit"])) 
+{
+    
     $productName = htmlspecialchars($_POST['productName']);
     $productExpiration = htmlspecialchars($_POST['productExpiration']);
     $productQty = htmlspecialchars($_POST['productQty']);
@@ -20,71 +22,94 @@ if (isset($_POST["submit"])) {
     $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
     $typeFile = array("jpg", "png", "jpeg", "gif");
 
-    $sql = "SELECT * FROM product WHERE productName = '$productName' AND productExpired = '$productExpiration'";
+    $sql = "SELECT * FROM product WHERE productName = '$productName'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
     $productExpired = $row['productExpired'];
     $productQuantity = $row['productQty'];
+    $productImgs = $row['productImg'];
 
-    if (!mysqli_num_rows($result) > 0)
-    {
-        if (!empty($fileName))
-        {
-            if (in_array($imageFileType, $typeFile))
-            {
+    if (!mysqli_num_rows($result) > 0) {
 
-                // if (file_exists($targetFile))
-                // {
-                //     header("location: ../admin_pages/addMedicine.php?message=File Exist");
-                //     exit;
-                // } 
-                // else 
-                // {
-                    if ($fileSize > 2000000) 
-                    {
+        if (!empty($fileName)) {
+
+            if (in_array($imageFileType, $typeFile)) {
+
+                if (file_exists($targetFile)) {
+                    header("location: ../admin_pages/addMedicine.php?message=File Exist");
+                    exit;
+                } 
+                else {
+                    if ($fileSize > 2000000) {
                         header("location: ../admin_pages/addMedicine.php?message=File To Big");
                         exit;
                     } 
-                    else 
-                    {
-                        if (move_uploaded_file($fileTmpname, $targetFile)) 
-                        {
+                    else {
+                        if (move_uploaded_file($fileTmpname, $targetFile)) {
                             header("location: ../admin_pages/addMedicine.php?message=The file has been uploaded.");
                         } 
-                        else 
-                        {
+                        else {
                             header("location: ../admin_pages/addMedicine.php?message=Error File Upload.");
                             exit;
                         }
                     }
-                // }
+                }
 
-            } 
-            else 
-            {
+            }
+            else {
                 header("location: ../admin_pages/addMedicine.php?message=Only jpg, jpeg, png.");
                 exit;
             }
         } 
-        else 
-        {
+        else {
             header("location: ../admin_pages/addMedicine.php?message=You Didnt Upload.");
             exit;
         }
 
-        $stmt = $conn->prepare("INSERT INTO `product` (productName, productExpired, productQty, productType, productImg, productPrice,stockType, notificationType) VALUES (?,?,?,?,?,?,?,?)");
-        $stmt->bind_param("ssississ", $productName, $productExpiration, $productQty, $productType, $fileName, $productPrice, $stockType, $notificationType);
-        $stmt->execute();
-        $stmt->close();
-        $conn->close();
+    
+        $insertProd = "INSERT INTO product (productName, productExpired, productQty, productType, productImg, productPrice,stockType, notificationType) 
+                       VALUES('$productName', null, $productQty, '$productType', '$fileName', $productPrice, 'o', '$notificationType'),
+                             ('$productName', '$productExpiration', $productQty, '$productType', '$fileName', $productPrice, '$stockType', '$notificationType')";
+                        mysqli_query($conn, $insertProd);
+                        mysqli_close($conn);
+
     } 
-    else 
-    {
-        $w = (int)$productQuantity + (int)$productQty;
-        $updateProduct = "UPDATE product SET productQty = $w WHERE productName = '$productName'";
-        $result = mysqli_query($conn, $updateProduct);
-        header("location: ../admin_pages/addMedicine.php");
-        exit;
+    else {
+
+        $getNameAndExpire = "SELECT * FROM product WHERE productName = '$productName' AND productExpired = '$productExpiration'";
+        $results = mysqli_query($conn, $getNameAndExpire);
+        $QuantityRow = mysqli_fetch_assoc($results);
+        $allQuantitys = $QuantityRow['productQty'];
+        $overallQuantys = (int)$allQuantitys + (int)$productQty;
+
+        $getAllQuantity = "SELECT * FROM product WHERE productName = '$productName' AND stockType = 'o'";
+        $results2 = mysqli_query($conn, $getAllQuantity);
+        $AllQuantityRow = mysqli_fetch_assoc($results2);
+        $allQuantity = $AllQuantityRow['productQty'];
+        $overallQuanty = (int)$allQuantity + (int)$productQty;
+
+        if(mysqli_num_rows($result) > 0) {
+            $updateProduct = "UPDATE product SET productName='$productName', productExpired='$productExpiration', productQty=$overallQuantys, productType='$productType', productImg='$productImgs', productPrice=$productPrice, stockType='$stockType', notificationType='$notificationType' WHERE productName = '$productName' AND productExpired = '$productExpiration'";
+            mysqli_query($conn, $updateProduct);
+
+            $updateProduct2 = "UPDATE product SET productName='$productName', productQty=$overallQuanty, productType='$productType', productImg='$productImgs', productPrice=$productPrice, stockType='o', notificationType='$notificationType' WHERE productName = '$productName' AND stockType = 'o'";
+            mysqli_query($conn, $updateProduct2);
+
+            header("location: ../admin_pages/addMedicine.php");
+        }
+        else {
+
+           $sqlInsert = "INSERT INTO product (productName, productExpired, productQty, productType, productImg, productPrice, stockType, notificationType) 
+                         VALUES ('$productName', '$productExpiration', $productQty, '$productType', '$fileName', $productPrice, '$stockType', '$notificationType')";
+                         mysqli_query($conn, $sqlInsert);
+
+            $updateProduct2 = "UPDATE product SET productName='$productName', productQty=$overallQuanty, productType='$productType', productImg='$productImgs', productPrice=$productPrice, stockType='o', notificationType='$notificationType' WHERE productName = '$productName' AND stockType = 'o'";
+            mysqli_query($conn, $updateProduct2);
+
+            mysqli_close($conn);
+            header("location: ../admin_pages/addMedicine.php");
+        }
+            
     }
 
 }

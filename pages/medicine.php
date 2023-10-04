@@ -40,39 +40,33 @@ include './connect.php';
 
 		<div class="mp-list">
 			<?php
-				// $sql = "SELECT DISTINCT productName FROM product WHERE stockType = 'n' ORDER BY productId desc";
-				$sql = "SELECT DISTINCT productName FROM product WHERE stockType = 'n' ORDER BY productName desc";
+				$sql = "SELECT * FROM product WHERE stockType = 'o' ORDER BY productName DESC";
 				$result = mysqli_query($conn, $sql);
-
 
 				if (mysqli_num_rows($result) > 0) {
 					while ($rows = mysqli_fetch_assoc($result)) {
-						// $prodId2 = $rows['productId'];
-						$prodName2 = $rows['productName'];
-
-						$sqlName = "SELECT * FROM product WHERE productName = '$prodName2'";
-						$resultName = mysqli_query($conn, $sqlName);
-						$rowsName = mysqli_fetch_assoc($resultName);
-						$prodId2 = $rowsName['productId'];
-
+						$prodId2 = $rows['productId'];
+						
 						//DELETE QUERY
 						$sqlDelete = "DELETE FROM `product` WHERE `productId` = $prodId2";
-						if ($rowsName['productQty'] <= 0) {
+						if ($rows['productQty'] <= 0) {
+    						unlink('../uploads/'.$rows['productImg']);
 							mysqli_query($conn, $sqlDelete);
+
 						}
 			?>
 				<div class="mp-card">
-					<img src="<?php echo '../uploads/' . $rowsName['productImg']; ?>" alt='product-image' class="img-list">
+					<img src="<?php echo '../uploads/' . $rows['productImg']; ?>" alt='product-image' class="img-list">
 					<div class="details">
 						<div class="product-name">
-							<?php echo $rowsName['productName']; ?>
+							<?php echo $rows['productName']; ?>
 						</div>
 						<h2>
-							<?php echo '₱' . $rowsName['productPrice']; ?>
+							<?php echo '₱' . $rows['productPrice']; ?>
 						</h2>
 					</div>
 					<div class="cart-btn">
-						<?php $productID = $rowsName['productId']; ?>
+						<?php $productID = $rows['productId']; ?>
 						<a href='./validation/buyValidation.php?cartId=<?php echo $productID; ?>' class="buy-btn">Add to cart</a>
 					</div>
 				</div>

@@ -1,7 +1,7 @@
 <?php session_start();
 include './connect.php';
   $search_term = $_POST['search'];
-  $sql = "SELECT * FROM product WHERE productName LIKE '%$search_term%' AND stockType = 'n' ORDER BY productId desc";
+  $sql = "SELECT * FROM product WHERE productName LIKE '%$search_term%' AND stockType = 'o' ORDER BY productName desc";
   $result = mysqli_query($conn, $sql);
 ?>
 
@@ -43,49 +43,37 @@ include './connect.php';
     </form>
 
     <div class="mp-list">
-      <?php
-      // $sqls = "SELECT * FROM product WHERE stockType BETWEEN 'n' AND 'o' ORDER BY productId desc";
-				$sql = "SELECT DISTINCT productName FROM product WHERE stockType = 'n' ORDER BY productName desc";
-        $results = mysqli_query($conn, $sql);
+    <?php
+				$sql = "SELECT * FROM product WHERE stockType = 'o' ORDER BY productName DESC";
+				$result = mysqli_query($conn, $sql);
 
-      if (mysqli_num_rows($result) > 0) {
-        while ($rows = mysqli_fetch_assoc($result)) {
-          // $prodId2 = $rows['productId'];
-            $prodName2 = $rows['productName'];
-
-            $sqlName = "SELECT * FROM product WHERE productName = '$prodName2'";
-						$resultName = mysqli_query($conn, $sqlName);
-						$rowsName = mysqli_fetch_assoc($resultName);
-						$prodId2 = $rowsName['productId'];
-
-
-          //DELETE QUERY
-          $sqlDelete = "DELETE FROM `product` WHERE `productId` = $prodId2";
-          if ($rowsName['productQty'] <= 0) {
-            mysqli_query($conn, $sqlDelete);
-          }
-
-      ?>
+				if (mysqli_num_rows($result) > 0) {
+					while ($rows = mysqli_fetch_assoc($result)) {
+						$prodId2 = $rows['productId'];
+						
+						//DELETE QUERY
+						$sqlDelete = "DELETE FROM `product` WHERE `productId` = $prodId2";
+						if ($rows['productQty'] <= 0) {
+    						unlink('../uploads/'.$rows['productImg']);
+							mysqli_query($conn, $sqlDelete);
+						}
+			?>
           <div class="mp-card">
-            <img src="<?php echo '../uploads/' . $rowsName['productImg']; ?>" alt='image' class="img-list">
-
-            <div class="details">
-              <div class="product-name">
-                <?php echo $rowsName['productName'] ?>
-              </div>
-
-              <div>
-                <?php echo '₱' . $rowsName['productPrice'] ?>
-              </div>
-            </div>
-
-            <div class="cart-btn">
-              <?php $productID = $rowsName['productId']; ?>
-              <a href='./validation/buyValidation.php?cartId=<?php echo $productID; ?>' class="buy-btn">Add to cart</a>
-            </div>
-          </div>
-        <?php } ?>
-      <?php } ?>
+					<img src="<?php echo '../uploads/' . $rows['productImg']; ?>" alt='product-image' class="img-list">
+					<div class="details">
+						<div class="product-name">
+							<?php echo $rows['productName']; ?>
+						</div>
+						<h2>
+							<?php echo '₱' . $rows['productPrice']; ?>
+						</h2>
+					</div>
+					<div class="cart-btn">
+						<?php $productID = $rows['productId']; ?>
+						<a href='./validation/buyValidation.php?cartId=<?php echo $productID; ?>' class="buy-btn">Add to cart</a>
+					</div>
+				</div>
+			<?php } }?>
 
 
       <div class="checkout">
@@ -144,6 +132,8 @@ include './connect.php';
 
 
     </div>
+		<div class="copyright">Copyright © 2023 Medicure Drug.</div>
+
   </div>
 
 

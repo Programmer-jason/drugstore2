@@ -86,7 +86,7 @@
   margin-top: 50px;
   width: 60%;
   box-shadow: 1px 1px 4px #9b9b9b;
-  height: 300px;
+  height: 350px;
   border-radius: 3px;
 }
 .container .payment-success .payment-successful, .container .payment-failed .payment-successful, .container .payment-failed .payment-fail {

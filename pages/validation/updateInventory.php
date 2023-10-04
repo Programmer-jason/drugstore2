@@ -16,7 +16,7 @@
       $updateSql = mysqli_query($conn, $sqlUpdate);
 
       if ($updateSql) {
-         header("location:../admin_pages/inventory.php?message=updated successful");
+         header("location:../admin_pages/newStock.php?message=updated successful");
       } else {
          echo mysqli_error($conn);
       }
@@ -54,16 +54,16 @@
             <div>Product Name</div>
             <input type="text" name="productName" id="productName" value="<?php echo $row["productName"]; ?>" required>
 
-            <div>Expired Date</div>
+            <!-- <div>Expired Date</div>
             <input type="date" name="expiredDate" id="expiredDate" value="<?php echo $row["productExpired"]; ?>" required>
 
             <div>Stock</div>
-            <input type="number" name="stock" id="stock" value="<?php echo $row["productQty"]; ?>" required>
+            <input type="number" name="stock" id="stock" value="<?php echo $row["productQty"]; ?>" required> -->
 
             <div>Price</div>
             <input type="number" name="productPrice" id="productPrice" value="<?php echo $row["productPrice"]; ?>" required><br />
 
-            <input type="submit" value="Update" name="submit" id="add" class="btn-success">
+            <input type="submit" value="Change" name="submit" id="add" class="btn-success">
          </form>
       </div>
    </div>
