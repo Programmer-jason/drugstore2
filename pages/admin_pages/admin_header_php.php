@@ -38,5 +38,5 @@ if (isset($_GET['message'])) {
     echo "<script>alert('$getMessage')</script>";
  }
  
- $sql = "SELECT * FROM `signUp` WHERE `role` = 'customer'";
- $result = mysqli_query($conn, $sql);
+//  $sql = "SELECT * FROM `signUp` WHERE `role` = 'customer'";
+//  $result = mysqli_query($conn, $sql);

@@ -112,6 +112,7 @@
                         <th>Item Name</th>
                         <th>Price</th>
                         <th>Quantity</th>
+                        <th>Shelve</th>
                         <!-- <th>Expired Date</th> -->
                     </tr>
                     <?php if (mysqli_num_rows($result9) > 0) : ?>
@@ -127,6 +128,10 @@
 
                                 <td>
                                     <?php echo $rows['productQty']; ?>
+                                </td>
+
+                                <td>
+                                    <?php echo $rows['shelve']; ?>
                                 </td>
 
                                 <!-- <td>

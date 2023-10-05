@@ -26,3 +26,29 @@
    </li>
    </ul>
    </nav>
+
+<?php 
+   $updatedDate = date('Y-m-d');
+   $getExpired = "SELECT * FROM product WHERE productExpired = '$updatedDate'";
+   $expiredResult = mysqli_query($conn, $getExpired);
+
+   if (mysqli_num_rows($expiredResult) > 0){
+      while ($rows = mysqli_fetch_assoc($expiredResult)){
+         $productId = $rows['productId'];
+         $productName = $rows['productName'];
+         $productQty = $rows['productQty'];
+
+         $sqls = "UPDATE product SET stockType = 'e', productExpired = 'exp', notificationType = 'nr' WHERE productId = $productId";
+         mysqli_query($conn, $sqls);
+
+         $selectProduct = "SELECT * FROM product WHERE productName = '$productName' AND stockType = 'o'";
+         $selectProductResult = mysqli_query($conn, $selectProduct);
+         $selectProductRow = mysqli_fetch_assoc($selectProductResult);
+         $productQtyRow = $selectProductRow['productQty'];
+      
+         $updateProductRows = "UPDATE product SET productQty = ($productQtyRow - $productQty) WHERE productName = '$productName' AND stockType = 'o'";
+         mysqli_query($conn, $updateProductRows);
+      }
+
+   } 
+?>

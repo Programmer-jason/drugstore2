@@ -60,6 +60,9 @@
                     <div>Quantity</div>
                     <input type="number" name="productQty" id="productQty" value="0" required>
 
+                    <div>Location</div>
+                    <input type="text" name="location" id="location" required>
+
                     <input name="stockType" id="stockType" value="n" hidden>
                 </div>
 

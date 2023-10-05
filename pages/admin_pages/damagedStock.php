@@ -52,10 +52,10 @@
 					<th>Item Name</th>
 					<th>Price</th>
 					<th>Quantity</th>
-					<th>Expired Date</th>
-					<?php if ($row6['role'] == 'admin') { ?>
+					<!-- <th>Expired Date</th> -->
+					<!-- <?php if ($row6['role'] == 'admin') { ?>
 						<th>Action</th>
-					<?php } ?>
+					<?php } ?> -->
 
 				</tr>
 				<?php if (mysqli_num_rows($result) > 0) : ?>
@@ -73,16 +73,16 @@
 								<?php echo $rows['productQty']; ?>
 							</td>
 
-							<td>
+							<!-- <td>
 								<?php echo $rows['productExpired']; ?>
-							</td>
+							</td> -->
 
-							<?php if ($row6['role'] == 'admin') { ?>
+							<!-- <?php if ($row6['role'] == 'admin') { ?>
 								<td>
 
 									<a href="./delete_medicine.php?deleteId=<?php echo $rows['productId']; ?>" class="btn-danger">Delete</a>
 								</td>
-							<?php } ?>
+							<?php } ?> -->
 
 						</tr>
 					<?php endwhile; ?>

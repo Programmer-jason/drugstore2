@@ -9,6 +9,7 @@ if (isset($_POST["submit"]))
     $productQty = htmlspecialchars($_POST['productQty']);
     $productPrice = htmlspecialchars($_POST['productPrice']);
     $productType = htmlspecialchars($_POST['productType']);
+    $location = htmlspecialchars($_POST['location']);
     $stockType = htmlspecialchars($_POST['stockType']);
     $notificationType = ($stockType == 'e') ? 'nr' : '';
 
@@ -67,9 +68,9 @@ if (isset($_POST["submit"]))
         }
 
     
-        $insertProd = "INSERT INTO product (productName, productExpired, productQty, productType, productImg, productPrice,stockType, notificationType) 
-                       VALUES('$productName', null, $productQty, '$productType', '$fileName', $productPrice, 'o', '$notificationType'),
-                             ('$productName', '$productExpiration', $productQty, '$productType', '$fileName', $productPrice, '$stockType', '$notificationType')";
+        $insertProd = "INSERT INTO product (productName, productExpired, productQty, productType, productImg, productPrice,stockType, notificationType, shelve) 
+                       VALUES('$productName', null, $productQty, '$productType', '$fileName', $productPrice, 'o', '$notificationType', '$location'),
+                             ('$productName', '$productExpiration', $productQty, '$productType', '$fileName', $productPrice, '$stockType', '$notificationType', '$location')";
                         mysqli_query($conn, $insertProd);
                         mysqli_close($conn);
 
@@ -88,7 +89,7 @@ if (isset($_POST["submit"]))
         $allQuantity = $AllQuantityRow['productQty'];
         $overallQuanty = (int)$allQuantity + (int)$productQty;
 
-        if(mysqli_num_rows($result) > 0) {
+        if(mysqli_num_rows($results) > 0) {
             $updateProduct = "UPDATE product SET productName='$productName', productExpired='$productExpiration', productQty=$overallQuantys, productType='$productType', productImg='$productImgs', productPrice=$productPrice, stockType='$stockType', notificationType='$notificationType' WHERE productName = '$productName' AND productExpired = '$productExpiration'";
             mysqli_query($conn, $updateProduct);
 
@@ -99,8 +100,8 @@ if (isset($_POST["submit"]))
         }
         else {
 
-           $sqlInsert = "INSERT INTO product (productName, productExpired, productQty, productType, productImg, productPrice, stockType, notificationType) 
-                         VALUES ('$productName', '$productExpiration', $productQty, '$productType', '$fileName', $productPrice, '$stockType', '$notificationType')";
+           $sqlInsert = "INSERT INTO product (productName, productExpired, productQty, productType, productImg, productPrice, stockType, notificationType, shelve) 
+                         VALUES ('$productName', '$productExpiration', $productQty, '$productType', '$fileName', $productPrice, '$stockType', '$notificationType', '$location')";
                          mysqli_query($conn, $sqlInsert);
 
             $updateProduct2 = "UPDATE product SET productName='$productName', productQty=$overallQuanty, productType='$productType', productImg='$productImgs', productPrice=$productPrice, stockType='o', notificationType='$notificationType' WHERE productName = '$productName' AND stockType = 'o'";
