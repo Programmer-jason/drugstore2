@@ -20,13 +20,13 @@
         async function addStockAndDamage(stockId) {
             let myObject = await fetch('./addStockAndDamage.php?stockId=' + stockId);
             let myText = await myObject.text();
-            document.querySelector('.form').innerHTML = myText
+            document.querySelector('.insert-form').innerHTML = myText
         }
 
         async function addDamage(stockId, stockType) {
             let myObject = await fetch('./addStockAndDamage.php?stockId=' + stockId + '&ST=' + stockType);
             let myText = await myObject.text();
-            document.querySelector('.form').innerHTML = myText
+            document.querySelector('.insert-form').innerHTML = myText
         }
         
     </script>

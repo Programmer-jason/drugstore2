@@ -1,15 +1,15 @@
 <?php
 include '../connect.php';
 
-if (isset($_POST["submit"])) 
-{
+if (isset($_POST["submit"])) {
+
     $productName = htmlspecialchars($_POST['productName']);
-    $productExpiration = htmlspecialchars($_POST['productExpiration']);
     $productQty = htmlspecialchars($_POST['productQty']);
+    $stockType = htmlspecialchars($_POST['stockType']);
+    $productExpiration = htmlspecialchars($_POST['productExpiration']);
     $productPrice = htmlspecialchars($_POST['productPrice']);
     $productType = htmlspecialchars($_POST['productType']);
     $location = htmlspecialchars($_POST['location']);
-    $stockType = htmlspecialchars($_POST['stockType']);
     $notificationType = ($stockType == 'e') ? 'nr' : '';
 
     $fileName = $_FILES["upload"]["name"];
@@ -17,11 +17,10 @@ if (isset($_POST["submit"]))
     $fileSize = $_FILES["upload"]["size"];
     $fileType = $_FILES["upload"]["type"];
     $targetDir = "../../uploads/";
-
     $targetFile = $targetDir . basename($fileName);
     $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
     $typeFile = array("jpg", "png", "jpeg", "gif");
-
+    
     $sql = "SELECT * FROM product WHERE productName = '$productName'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
@@ -74,50 +73,38 @@ if (isset($_POST["submit"]))
 
     } 
     else {
-
         $getNameAndExpire = "SELECT * FROM product WHERE productName = '$productName' AND productExpired = '$productExpiration'";
         $results = mysqli_query($conn, $getNameAndExpire);
         $QuantityRow = mysqli_fetch_assoc($results);
         $allQuantitys = $QuantityRow['productQty'];
         $overallQuantys = (int)$allQuantitys + (int)$productQty;
-
+        
         $getAllQuantity = "SELECT * FROM product WHERE productName = '$productName' AND stockType = 'o'";
         $results2 = mysqli_query($conn, $getAllQuantity);
         $AllQuantityRow = mysqli_fetch_assoc($results2);
         $allQuantity = $AllQuantityRow['productQty'];
         $overallQuanty = (int)$allQuantity + (int)$productQty;
+        $overallQuanty2 = (int)$allQuantity - (int)$productQty;
+        
 
         if(mysqli_num_rows($results) > 0) {
-            $updateProduct = "UPDATE product SET productName='$productName', productExpired='$productExpiration', productQty=$overallQuantys, productType='$productType', productImg='$productImgs', productPrice=$productPrice, stockType='$stockType', notificationType='$notificationType' WHERE productName = '$productName' AND productExpired = '$productExpiration'";
+            $updateProduct = "UPDATE product SET productQty=$overallQuantys WHERE productName = '$productName' AND productExpired = '$productExpiration'";
             mysqli_query($conn, $updateProduct);
 
-            $updateProduct2 = "UPDATE product SET productName='$productName', productQty=$overallQuanty, productType='$productType', productImg='$productImgs', productPrice=$productPrice, stockType='o', notificationType='$notificationType' WHERE productName = '$productName' AND stockType = 'o'";
+            $updateProduct2 = "UPDATE product SET productQty=$overallQuanty WHERE productName = '$productName' AND stockType = 'o'";
             mysqli_query($conn, $updateProduct2);
-
-            header("location: ../admin_pages/addMedicine.php");
+            header("location: ../admin_pages/newStock.php");
         }
         else {
             $sqlInsert = "INSERT INTO product (productName, productExpired, productQty, productType, productImg, productPrice, stockType, notificationType, shelve) 
-                         VALUES ('$productName', '$productExpiration', $productQty, '$productType', '$productImgs', $productPrice, '$stockType', '$notificationType', '$location')";
-                         mysqli_query($conn, $sqlInsert);
-                         
-            if($stockType != 'd'){
-                
-                $updateProduct2 = "UPDATE product SET productName='$productName', productQty=$overallQuanty, productType='$productType', productImg='$productImgs', productPrice=$productPrice, stockType='o', notificationType='$notificationType' WHERE productName = '$productName' AND stockType = 'o'";
-                mysqli_query($conn, $updateProduct2);
-                
-                mysqli_close($conn);
-                header("location: ../admin_pages/newStock.php");
-            }
-            else {
-                $updateProduct2 = "UPDATE product SET productName='$productName', productQty=$allQuantity - $productQty, productType='$productType', productImg='$productImgs', productPrice=$productPrice, stockType='o', notificationType='$notificationType' WHERE productName = '$productName' AND stockType = 'o'";
-                mysqli_query($conn, $updateProduct2);
-                
-                mysqli_close($conn);
-                header("location: ../admin_pages/newStock.php");
-            }
-        }
+                        VALUES ('$productName', '$productExpiration', $productQty, '$productType', '$productImgs', $productPrice, '$stockType', '$notificationType', '$location')";
+                        mysqli_query($conn, $sqlInsert);
             
+            $updateProduct2 = "UPDATE product SET productQty=$overallQuanty WHERE productName = '$productName' AND stockType = 'o'";
+            mysqli_query($conn, $updateProduct2);
+            mysqli_close($conn);
+            header("location: ../admin_pages/newStock.php");
+        }
     }
-
+    
 }

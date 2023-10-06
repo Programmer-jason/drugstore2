@@ -37,10 +37,11 @@
    <div class="inventory-content">
 
       <div class="add-product-content">
-         <form action="../validation/addMedicineValidation.php" method="post" enctype="multipart/form-data" class="form">
-         </form>
+         <div class="insert-form">
+         </div>
          <div class="btn-success cancel">Cancel</div>
       </div>
+
 
       <div class="table-container">
          <section class="payment-details-head">
@@ -92,8 +93,8 @@
 
                         <?php if ($row6['role'] == 'admin') { ?>
                            <td>
-                              <div onclick="addStockAndDamage(<?php echo $rows['productId'] ?>)" class="btn-add-stock">Add Stock</div>
-                              <div onclick="addDamage(<?php echo $rows['productId'] ?>, 'd')" class="btn-damage">Add Damage</div>
+                              <span onclick="addStockAndDamage(<?php echo $rows['productId'] ?>)" class="btn-add-stock">Add Stock</span>
+                              <span onclick="addDamage(<?php echo $rows['productId'] ?>, 'd')" class="btn-damage">Add Damage</span>
                               <a href="./delete_medicine.php?deleteId=<?php echo $rows['productId']; ?>" class="btn-danger">Delete</a>
                               <!-- <a href="../validation/updateInventory.php?updateId=<?php echo $rows['productId']; ?>" class="btn btn-primary">Edit</a> -->
                            </td>
