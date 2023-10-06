@@ -31,7 +31,6 @@
 <?php include __DIR__.'\admin_header_html2.php'; ?>
 
     <div class="add-product-content">
-
         <form action="../validation/addMedicineValidation.php" method="post" enctype="multipart/form-data" class="form">
             <div class="upload-product">
                 <img src="../../product_image/vitamins.jpg" class="image" />
@@ -43,25 +42,25 @@
                     <div>Product Name</div>
                     <input type="text" name="productName" id="productName" placeholder="name" required>
 
-                    <div>Price</div>
-                    <input type="number" name="productPrice" id="productPrice" value="0.00" required>
-
-                    <div>Expiration</div>
-                    <input type="date" name="productExpiration" id="productExpiration" required>
-                </div>
-
-                <div class="two">
                     <div>Item Type</div>
                     <select name="productType" id="productType">
                         <option value="m">Medicine</option>
                         <option value="p">Product</option>
                     </select>
 
-                    <div>Quantity</div>
-                    <input type="number" name="productQty" id="productQty" value="0" required>
+                    <div>Expiration</div>
+                    <input type="date" name="productExpiration" id="productExpiration" required>
+                </div>
+
+                <div class="two">
+                    <div>Price</div>
+                    <input type="number" name="productPrice" id="productPrice" value="0.00" required>
 
                     <div>Location</div>
                     <input type="text" name="location" id="location" required>
+
+                    <div>Quantity</div>
+                    <input type="number" name="productQty" id="productQty" value="1" required>
 
                     <input name="stockType" id="stockType" value="n" hidden>
                 </div>

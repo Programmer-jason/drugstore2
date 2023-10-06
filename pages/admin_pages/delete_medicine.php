@@ -9,9 +9,10 @@
     $productResult = mysqli_query($conn, $selectProduct);
     $productRow = mysqli_fetch_assoc($productResult);
     $img = $productRow['productImg'];
+    $productName = $productRow['productName'];
     unlink('../../uploads/'.$img);
     
-    $sql = "DELETE FROM product WHERE productId = '$id' ";
+    $sql = "DELETE FROM product WHERE productName = '$productName'";
     $res = mysqli_query($conn, $sql);
 
 

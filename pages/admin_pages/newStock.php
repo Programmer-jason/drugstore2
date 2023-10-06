@@ -35,6 +35,13 @@
 <?php include __DIR__.'\admin_header_html2.php';?>
 
    <div class="inventory-content">
+
+      <div class="add-product-content">
+         <form action="../validation/addMedicineValidation.php" method="post" enctype="multipart/form-data" class="form">
+         </form>
+         <div class="btn-success cancel">Cancel</div>
+      </div>
+
       <div class="table-container">
          <section class="payment-details-head">
             <div class="search-container">
@@ -48,7 +55,7 @@
                <a href="./expiredStock.php">Expired Stock</a>
             </div>
          </section>
-
+         
          <table>
             <tr>
                <th>Item Name</th>
@@ -57,7 +64,7 @@
                <th>Shelve</th>
                <!-- <th>Expired Date</th> -->
                <?php if ($row6['role'] == 'admin') { ?>
-                  <th>Action</th>
+                  <th colspan="3">Action</th>
                <?php } ?>
             </tr>
             <?php if (mysqli_num_rows($result) > 0) : ?>
@@ -85,9 +92,10 @@
 
                         <?php if ($row6['role'] == 'admin') { ?>
                            <td>
-                              <!-- <a href="../validation/updateInventory.php?updateId=<?php echo $rows['productId']; ?>" class="btn btn-primary">Edit</a> -->
-
+                              <div onclick="addStockAndDamage(<?php echo $rows['productId'] ?>)" class="btn-add-stock">Add Stock</div>
+                              <div onclick="addDamage(<?php echo $rows['productId'] ?>, 'd')" class="btn-damage">Add Damage</div>
                               <a href="./delete_medicine.php?deleteId=<?php echo $rows['productId']; ?>" class="btn-danger">Delete</a>
+                              <!-- <a href="../validation/updateInventory.php?updateId=<?php echo $rows['productId']; ?>" class="btn btn-primary">Edit</a> -->
                            </td>
                         <?php } ?>
                      </tr>
@@ -108,7 +116,6 @@
             <a href="<?php echo ($page_no >= $total_page) ?  '#' : './newStock.php?page_no=' . ($page_no + 1) ?>" class="next-prev">Next</a>
          </div>
       </section>
-
    </div>
-
+   
 <?php include __DIR__.'\admin_footer.php'; 
