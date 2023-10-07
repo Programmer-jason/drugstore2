@@ -109,6 +109,7 @@
                 <div class="new-item">New Added Item</div>
                 <table>
                     <tr>
+                        <th>Item Image</th>
                         <th>Item Name</th>
                         <th>Price</th>
                         <th>Quantity</th>
@@ -118,6 +119,9 @@
                     <?php if (mysqli_num_rows($result9) > 0) : ?>
                         <?php while ($rows = mysqli_fetch_assoc($result9)) : ?>
                             <tr>
+                                <td>
+                                    <img src="../../uploads/<?php echo $rows['productImg'];?>" alt="" width="50px">
+                                </td>
                                 <td>
                                     <?php echo $rows['productName']; ?>
                                 </td>

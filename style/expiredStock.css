@@ -83,3 +83,6 @@ input[type="text"],
   background-color: #01a144;
   border-radius: 5px;
 }
+div.table-container {
+  height: 75vh !important;
+}

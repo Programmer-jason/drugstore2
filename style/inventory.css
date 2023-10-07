@@ -142,10 +142,44 @@ select {
   border-radius: 4px;
   border: none;
 }
+.btn-add-stock {
+  width: 90px !important;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  color: #fff;
+  margin-right: 3px;
+  padding: 2px 0px !important;
+  display: inline-block;
+  border-radius: 3px;
+  cursor: pointer;
+  background: #0965dd;
+  text-align: center;
+  box-shadow: 1px 1px 4px #999999 !important;
+}
+.btn-damage {
+  width: 95px !important;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  color: #fff;
+  margin-right: 3px;
+  padding: 2px 0px !important;
+  display: inline-block;
+  border-radius: 3px;
+  cursor: pointer;
+  background: #8e8700;
+  text-align: center;
+  box-shadow: 1px 1px 4px #999999 !important;
+
+}
 .cancel {
   padding-top: 10px !important;
   background-color: #820000 !important;
 }
 .image {
   width: 30%;
+}
+div.table-container {
+  height: 75vh !important;
 }

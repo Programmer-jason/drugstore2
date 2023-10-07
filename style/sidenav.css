@@ -141,6 +141,7 @@ img {
   vertical-align: middle;
 }
 
+/* NOTIFICATION */
 .notif {
   position: relative;
   cursor: pointer;
@@ -151,12 +152,12 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 16px;
-  height: 16px;
+  padding: 2px;
+  width: 20px;
   top: -5px;
   right: -4px;
   background-color: #cc0101;
-  border-radius: 50px;
+  border-radius: 20px;
   color: #fff;
   font-size: smaller !important;
 }
@@ -166,19 +167,19 @@ img {
   z-index: 99;
   top: 20;
   right: 0;
-  width: 300px;
-  height: 350px;
+  width: 420px;
+  height: 500px;
   background-color: #f8f8f8;
   /* border: 1px solid #d4d4d4; */
-  box-shadow: 1px 1px 4px #c3c3c3;
+  box-shadow: 1px 1px 4px #9b9b9b;
   border-radius: 5px;
   display: none;
   overflow-y: scroll;
-  padding: 2px 15px;
+  padding: 15px;
 }
 
 .notif>.notifContent::-webkit-scrollbar {
-  width: 7px;
+  width: 3px;
 }
 
 .notif>.notifContent::-webkit-scrollbar-thumb {
@@ -195,11 +196,9 @@ img {
 
 .notif .notifContent .notif-inbox {
   margin-top: 10px;
-
   width: 100%;
-  padding: 5px;
-  /* border: #00ad48 1px solid; */
-  background-color: #d9ece0;
+  padding: 10px;
+  border: #b9b9b9 1px solid;
   border-radius: 3px;
   margin-inline: auto;
 }
@@ -207,27 +206,37 @@ img {
 .notif .notifContent .notif-inbox-nr {
   margin-top: 10px;
   width: 100%;
-  padding: 5px;
-  /* border: #00ad48 1px solid; */
-  background-color: #ee4646;
+  padding: 10px;
+  border: #7c0000 1px solid;
   border-radius: 3px;
   margin-inline: auto;
+
+}
+.name-productpic{
+  display: flex;
+  gap: 20px;
+}
+.name-productpic .notif-productpic{
+  width: 100px;
+  height: 100px;
+  border: 1px solid #9b9b9b;
 }
 
-.notif-message {
+.name-productpic .notif-message {
   text-align: left;
   position: relative;
   z-index: 9999;
-  color: #f8f8f8 !important;
+  color: #313131 !important;
 }
 
 .notif-date {
-  font-size: x-small !important;
+  font-size: 0.8vw !important;
   text-align: left;
   position: relative;
   z-index: 9999;
-  color: #f8f8f8;
+  color: #313131;
 }
+/* ================================================= */
 
 .head-title {
   color: #313131 !important;

@@ -54,6 +54,7 @@
 
          <table>
             <tr>
+               <th>Item Image</th>
                <th>Item Name</th>
                <th>Price</th>
                <th>Quantity</th>
@@ -67,11 +68,14 @@
                <?php while ($rows = mysqli_fetch_assoc($result)) : ?>
                <?php 
                   $getExpiredName = $rows['productName'];
-                  $selectExpired = "SELECT SUM(productQty) AS Quantity, productId, productName, productPrice, productExpired FROM product WHERE productName = '$getExpiredName' AND stockType = 'e'";
+                  $selectExpired = "SELECT SUM(productQty) AS Quantity, productId, productName, productPrice, productExpired,productImg FROM product WHERE productName = '$getExpiredName' AND stockType = 'e'";
                   $selectExpiredResult = mysqli_query($conn, $selectExpired);
                   $selectExpiredRow = mysqli_fetch_assoc($selectExpiredResult);
                ?>
                   <tr>
+                     <td>
+                        <img src="../../uploads/<?php echo $selectExpiredRow['productImg'];?>" alt="" width="50px">
+                     </td>
                      <td>
                         <?php echo $selectExpiredRow['productName']; ?>
                      </td>

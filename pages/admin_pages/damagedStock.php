@@ -9,7 +9,7 @@
 	$total_rows = mysqli_fetch_array($newstock_result)[0];
 	$total_page = ceil($total_rows / $record_number_perpage);
 
-	$sql = "SELECT * FROM product WHERE stockType = 'd' LIMIT $offset, $record_number_perpage";
+	$sql = "SELECT DISTINCT productName FROM product WHERE stockType = 'd' LIMIT $offset, $record_number_perpage";
 	$result = mysqli_query($conn, $sql);
 ?>
 
@@ -49,6 +49,7 @@
 
 			<table>
 				<tr>
+					<th>Item Image</th>
 					<th>Item Name</th>
 					<th>Price</th>
 					<th>Quantity</th>
@@ -60,27 +61,36 @@
 				</tr>
 				<?php if (mysqli_num_rows($result) > 0) : ?>
 					<?php while ($rows = mysqli_fetch_assoc($result)) : ?>
+						<?php 
+							$getExpiredName = $rows['productName'];
+							$selectExpired = "SELECT SUM(productQty) AS Quantity, productId, productName, productPrice, productExpired,productImg FROM product WHERE productName = '$getExpiredName' AND stockType = 'd'";
+							$selectExpiredResult = mysqli_query($conn, $selectExpired);
+							$selectExpiredRow = mysqli_fetch_assoc($selectExpiredResult);
+               			?>
 						<tr>
 							<td>
-								<?php echo $rows['productName']; ?>
+								<img src="../../uploads/<?php echo $selectExpiredRow['productImg'];?>" alt="" width="50px">
+							</td>
+							<td>
+								<?php echo $selectExpiredRow['productName']; ?>
 							</td>
 
 							<td>
-								<?php echo '₱' . $rows['productPrice']; ?>
+								<?php echo '₱' . $selectExpiredRow['productPrice']; ?>
 							</td>
 
 							<td>
-								<?php echo $rows['productQty']; ?>
+								<?php echo $selectExpiredRow['Quantity']; ?>
 							</td>
 
 							<!-- <td>
-								<?php echo $rows['productExpired']; ?>
+								<?php echo $selectExpiredRow['productExpired']; ?>
 							</td> -->
 
 							<!-- <?php if ($row6['role'] == 'admin') { ?>
 								<td>
 
-									<a href="./delete_medicine.php?deleteId=<?php echo $rows['productId']; ?>" class="btn-danger">Delete</a>
+									<a href="./delete_medicine.php?deleteId=<?php echo $selectExpiredRow['productId']; ?>" class="btn-danger">Delete</a>
 								</td>
 							<?php } ?> -->
 

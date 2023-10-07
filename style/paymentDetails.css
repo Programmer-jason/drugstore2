@@ -86,44 +86,6 @@ input[type="text"],
   border-radius: 5px;
 }
 
-.notif {
-  position: relative;
-  cursor: pointer;
-}
-
-.notif>.notifCount {
-  position: absolute;
-  width: 17px;
-  height: 17px;
-  text-align: center;
-  top: -5px;
-  right: -4px;
-  background-color: #cc0101;
-  border-radius: 50px;
-  color: #fff;
-  font-size: smaller !important;
-}
-
-.notif>.notifContent {
-  position: absolute;
-  z-index: 999;
-  top: 20;
-  right: 0;
-  width: 250px;
-  height: 350px;
-  background-color: #ffffff;
-  /* border: 1px solid #d4d4d4; */
-  box-shadow: 0 0 3px #555555;
-  border-radius: 5px;
-  display: none;
-  overflow: hidden;
-}
-
-.notif>.notifContent>.notifTittle {
-  padding: 5px;
-  color: #fff;
-}
-
 .head-title {
   padding: 5px;
 
