@@ -10,7 +10,7 @@
 				<div class="notifContent">
 					<div class="notifTittle">Notification</div>
 					<?php
-					$sql8 = "SELECT * FROM product WHERE stockType = 'e'";
+					$sql8 = "SELECT * FROM product WHERE stockType = 'e' ORDER BY productId DESC";
 					$result8 = mysqli_query($conn, $sql8);
 					while ($rw = mysqli_fetch_assoc($result8)) { 
 					?>
@@ -20,7 +20,7 @@
 							<img src="../../uploads/<?php echo $rw['productImg'];?>" class="notif-productpic"/>
 						</div>
 
-						<div class="notif-date"><?php echo date('s') . ' ' . 'seconds ago' ?></div>
+						<!-- <div class="notif-date"><?php echo date('s') . ' ' . 'seconds ago' ?></div> -->
 					</div>
 					<?php } ?>
 				</div>

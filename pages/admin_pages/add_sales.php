@@ -22,20 +22,7 @@
 
 
    <div class="inventory-content">
-      <div class="modal">
-         <form action="../validation/sales_add.php" method="post">
-            <div>From Year</div>
-            <input type="text" name="from" id="from" maxlength="4" placeholder="Ex: 1990" required>
-
-            <div>To Year</div>
-            <input type="text" name="to" id="to" maxlength="4" placeholder="Ex: 1991" required>
-
-            <div>Total Sales</div>
-            <input type="text" name="addSales" id="addSales" required>
-
-            <input type="submit" value="Add" name="submit" id="Add" class="btn-success">
-         </form>
-      </div>
+      
    </div>
 
 <?php include __DIR__.'\admin_footer.php'; 

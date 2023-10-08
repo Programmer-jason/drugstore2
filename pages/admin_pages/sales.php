@@ -26,6 +26,22 @@
 <?php include __DIR__.'\admin_header_html2.php'; ?>
 
    <div class="manage-account-content2">
+
+      <div class="modal-addsales">
+         <form action="../validation/sales_add.php" method="post">
+            <div>From</div>
+            <input type="date" name="from" id="from" required>
+            <br>
+            <div>To</div>
+            <input type="date" name="to" id="to" required>
+            <br>
+            <div>Total Sales Range</div>
+            <input type="number" name="addSales" id="addSales" required>
+            <br>
+            <input type="submit" value="Add" name="submit" id="Add" class="btn-success btn-addsales">
+         </form>
+      </div>
+
       <div class="table-container">
          <section class="payment-details-head">
             <div class="search-container">
@@ -36,8 +52,8 @@
 
          <table>
             <tr>
-               <th>From Year</th>
-               <th>To Year</th>
+               <th>Starting Date</th>
+               <th>End Date</th>
                <th>Total Sales</th>
                <th>Action</th>
 
@@ -65,9 +81,9 @@
          </table>
       </div>
 
-      <div class="add-sales">
+      <!-- <div class="add-sales"> -->
          <button class="btn-success"><a href="./add_sales.php">Add Sales</a></button>
-      </div>
+      <!-- </div> -->
    </div>
 
 <?php include __DIR__.'\admin_footer.php'; 

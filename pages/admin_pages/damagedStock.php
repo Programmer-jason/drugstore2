@@ -1,7 +1,7 @@
 <?php include __DIR__.'\admin_header_php.php'; ?>
 <?php
 	//PAGINATION
-	$record_number_perpage = 9;
+	$record_number_perpage = 7;
 	$offset = ($page_no - 1) * $record_number_perpage;
 
 	$number_of_newstock = "SELECT COUNT(*) FROM product WHERE stockType = 'd'";

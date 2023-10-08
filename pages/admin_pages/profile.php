@@ -1,17 +1,17 @@
 <?php include __DIR__.'\admin_header_php.php' ?>
 <?php 
     //get all product type medicine
-    $sql = "SELECT * FROM product WHERE productType = 'm' ";
+    $sql = "SELECT DISTINCT productName FROM product WHERE productType = 'm' ";
     $result = mysqli_query($conn, $sql);
     $medicineType = mysqli_num_rows($result);
 
     //get all product type product
-    $sql2 = "SELECT * FROM product WHERE productType = 'p' ";
+    $sql2 = "SELECT DISTINCT productName FROM product WHERE productType = 'p' ";
     $result2 = mysqli_query($conn, $sql2);
     $productType = mysqli_num_rows($result2);
 
     // get expired
-    $sql3 = "SELECT * FROM `product` WHERE stockType = 'e'";
+    $sql3 = "SELECT DISTINCT productName FROM product WHERE stockType = 'e'";
     $result3 = mysqli_query($conn, $sql3);
     $totalExpired = mysqli_num_rows($result3);
 
@@ -33,6 +33,9 @@
 
     $sql9 = "SELECT * FROM product WHERE stockType = 'o' ORDER BY productId DESC LIMIT 11";
     $result9 = mysqli_query($conn, $sql9);
+
+    $deleteQ =  "DELETE FROM product WHERE productQty <= 0";
+    mysqli_query($conn, $deleteQ);
 ?>
 
 <!DOCTYPE html>
@@ -113,7 +116,7 @@
                         <th>Item Name</th>
                         <th>Price</th>
                         <th>Quantity</th>
-                        <th>Shelve</th>
+                        <th>Location</th>
                         <!-- <th>Expired Date</th> -->
                     </tr>
                     <?php if (mysqli_num_rows($result9) > 0) : ?>

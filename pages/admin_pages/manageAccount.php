@@ -1,7 +1,7 @@
 <?php include __DIR__.'\admin_header_php.php' ?>
 <?php
    //PAGINATION
-   $record_number_perpage = 9;
+   $record_number_perpage = 8;
    $offset = ($page_no - 1) * $record_number_perpage;
 
    $number_of_newstock = "SELECT COUNT(*) FROM signUp WHERE role = 'employee'";
@@ -44,6 +44,7 @@
 
          <table>
             <tr>
+               <th>Profile</th>
                <th>Fullname</th>
                <th>Email</th>
                <th>Gender</th>
@@ -55,6 +56,10 @@
             <?php if (mysqli_num_rows($result) > 0) : ?>
                <?php while ($rows = mysqli_fetch_assoc($result)) : ?>
                   <tr>
+                     <td>
+                        <img src="../../profile/<?php echo $rows['userProfile'];?>" alt="" width="50px">
+                     </td>
+
                      <td>
                         <?php echo $rows["firstName"] . " " . $rows["lastName"]; ?>
                      </td>

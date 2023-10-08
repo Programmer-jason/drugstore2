@@ -1,7 +1,7 @@
 <?php include __DIR__.'\admin_header_php.php'; ?>
 <?php
    //PAGINATION
-   $record_number_perpage = 9;
+   $record_number_perpage = 7;
    $offset = ($page_no - 1) * $record_number_perpage;
 
    $number_of_newstock = "SELECT COUNT(*) FROM product WHERE stockType = 'o'";
@@ -11,6 +11,9 @@
 
    $sql = "SELECT * FROM product WHERE stockType = 'o' ORDER BY productId DESC LIMIT $offset, $record_number_perpage";
    $result = mysqli_query($conn, $sql);
+
+   $deleteQ =  "DELETE FROM product WHERE productQty <= 0";
+   mysqli_query($conn, $deleteQ);
 ?>
 
 <!DOCTYPE html>
@@ -63,7 +66,7 @@
                <th>Item Name</th>
                <th>Price</th>
                <th>Quantity</th>
-               <th>Shelve</th>
+               <th>Location</th>
                <!-- <th>Expired Date</th> -->
                <?php if ($row6['role'] == 'admin') { ?>
                   <th colspan="3">Action</th>

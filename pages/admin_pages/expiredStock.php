@@ -1,7 +1,7 @@
 <?php include __DIR__.'\admin_header_php.php'; ?>
 <?php
    //PAGINATION
-   $record_number_perpage = 9;
+   $record_number_perpage = 7;
    $offset = ($page_no - 1) * $record_number_perpage;
 
    $number_of_newstock = "SELECT COUNT(*) FROM product WHERE stockType = 'e'";
@@ -92,11 +92,11 @@
                         <?php echo $selectExpiredRow['productExpired']; ?>
                      </td> -->
 
-                     <!-- <?php if ($row6['role'] == 'admin') { ?>
+                     <?php if ($row6['role'] == 'admin') { ?>
                         <td>
                            <a href="./delete_medicine.php?deleteId=<?php echo $selectExpiredRow['productId']; ?>" class="btn-danger">Delete</a>
                         </td>
-                     <?php } ?> -->
+                     <?php } ?>
                   </tr>
                <?php endwhile; ?>
             <?php endif; ?>

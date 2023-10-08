@@ -40,20 +40,11 @@ include './connect.php';
 
 		<div class="mp-list">
 			<?php
-				$sql = "SELECT * FROM product WHERE stockType = 'o' ORDER BY productName DESC";
+				$sql = "SELECT * FROM product WHERE stockType = 'o' AND productQty > 0 ORDER BY productName DESC";
 				$result = mysqli_query($conn, $sql);
 
 				if (mysqli_num_rows($result) > 0) {
 					while ($rows = mysqli_fetch_assoc($result)) {
-						$prodId2 = $rows['productId'];
-						
-						//DELETE QUERY
-						$sqlDelete = "DELETE FROM `product` WHERE `productId` = $prodId2";
-						if ($rows['productQty'] <= 0) {
-    						unlink('../uploads/'.$rows['productImg']);
-							mysqli_query($conn, $sqlDelete);
-
-						}
 			?>
 				<div class="mp-card">
 					<img src="<?php echo '../uploads/' . $rows['productImg']; ?>" alt='product-image' class="img-list">
