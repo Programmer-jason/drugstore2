@@ -31,5 +31,13 @@ $(document).ready(function () {
     $(".add-product-content").fadeOut("3000");
   });
 
+  $(".btn-addsales2").click(function () {
+    $(".modal-addsales").fadeIn("3000");
+  });
+
+  $(".btn-addsales-close").click(function () {
+    $(".modal-addsales").fadeOut("3000");
+  });
+
 
 });

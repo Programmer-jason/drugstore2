@@ -53,6 +53,7 @@
 					<th>Item Name</th>
 					<th>Price</th>
 					<th>Quantity</th>
+					<th>Location</th>
 					<!-- <th>Expired Date</th> -->
 					<!-- <?php if ($row6['role'] == 'admin') { ?>
 						<th>Action</th>
@@ -63,7 +64,7 @@
 					<?php while ($rows = mysqli_fetch_assoc($result)) : ?>
 						<?php 
 							$getExpiredName = $rows['productName'];
-							$selectExpired = "SELECT SUM(productQty) AS Quantity, productId, productName, productPrice, productExpired,productImg FROM product WHERE productName = '$getExpiredName' AND stockType = 'd'";
+							$selectExpired = "SELECT SUM(productQty) AS Quantity, productId, productName, productPrice, productExpired,productImg,shelve FROM product WHERE productName = '$getExpiredName' AND stockType = 'd'";
 							$selectExpiredResult = mysqli_query($conn, $selectExpired);
 							$selectExpiredRow = mysqli_fetch_assoc($selectExpiredResult);
                			?>
@@ -82,6 +83,10 @@
 							<td>
 								<?php echo $selectExpiredRow['Quantity']; ?>
 							</td>
+
+							<td>
+                           		<?php echo $selectExpiredRow['shelve']; ?>
+                        	</td>
 
 							<!-- <td>
 								<?php echo $selectExpiredRow['productExpired']; ?>

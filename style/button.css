@@ -1,5 +1,5 @@
 .btn-primary {
-  width: 60px !important;
+  width: 60px ;
   outline: none;
   border: none;
   text-decoration: none;
@@ -17,7 +17,7 @@
 }
 
 .btn-danger {
-  width: 60px !important;
+  width: 60px ;
   outline: none;
   border: none;
   text-decoration: none;
@@ -34,7 +34,7 @@
 }
 
 .btn-success {
-  width: 60px !important;
+  width: 60px;
   outline: none;
   border: none;
   text-decoration: none;

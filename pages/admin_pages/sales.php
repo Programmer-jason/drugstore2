@@ -29,23 +29,24 @@
 
       <div class="modal-addsales">
          <form action="../validation/sales_add.php" method="post">
-            <div>From</div>
-            <input type="date" name="from" id="from" required>
-            <br>
-            <div>To</div>
-            <input type="date" name="to" id="to" required>
-            <br>
-            <div>Total Sales Range</div>
-            <input type="number" name="addSales" id="addSales" required>
-            <br>
+            <div>Starting Date</div>
+            <input type="date" name="from" id="from" placeholder="start" required>
+            <br><br>
+            <div>End Date</div>
+            <input type="date" name="to" id="to" placeholder="end" required>
+            <br><br>
+            <div>Target Sales</div>
+            <input type="number" name="targetSales" id="targetSales" required>
+            <br><br>
             <input type="submit" value="Add" name="submit" id="Add" class="btn-success btn-addsales">
+            <div class="btn-success btn-addsales-close">Close</div>
          </form>
       </div>
 
       <div class="table-container">
          <section class="payment-details-head">
             <div class="search-container">
-               <input type="search" onchange="paymentSearch()" name="search" id="search-payment" placeholder="year">
+               <input type="search" onchange="paymentSearch()" name="search" id="search-payment" placeholder="starting date">
                <span class="submit" onclick="paymentSearch()">search</span>
             </div>
          </section>
@@ -55,6 +56,7 @@
                <th>Starting Date</th>
                <th>End Date</th>
                <th>Total Sales</th>
+               <th>Target Sales</th>
                <th>Action</th>
 
             </tr>
@@ -64,15 +66,21 @@
                      <td>
                         <?php echo $rows["mula"]; ?>
                      </td>
+
                      <td>
                         <?php echo $rows["hanggang"]; ?>
                      </td>
+
                      <td>
                         <?php echo '₱' . ' ' . $rows["totalSales"]; ?>
                      </td>
 
                      <td>
-                        <a href="./update.php?id=<?php echo $rows['salesId']; ?>" class="btn btn-primary btn-sm">Edit</a>
+                        <?php echo '₱' . ' ' . $rows["targetSales"]; ?>
+                     </td>
+
+                     <td>
+                        <!-- <a href="./update.php?id=<?php echo $rows['salesId']; ?>" class="btn btn-primary btn-sm">Edit</a> -->
                         <a href="./delete_sales.php?deleteId=<?php echo $rows['salesId']; ?>" class="btn btn-danger btn-sm">Delete</a>
                      </td>
                   </tr>
@@ -81,9 +89,7 @@
          </table>
       </div>
 
-      <!-- <div class="add-sales"> -->
-         <button class="btn-success"><a href="./add_sales.php">Add Sales</a></button>
-      <!-- </div> -->
+      <div class="btn-success btn-addsales2">Add Sales</div>
    </div>
 
 <?php include __DIR__.'\admin_footer.php'; 

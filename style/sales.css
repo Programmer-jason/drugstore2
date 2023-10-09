@@ -80,10 +80,20 @@ input[type="text"],
 }
 
 .btn-addsales {
+  width: 100% !important;
   margin-top: 10px;
-  margin-left: 75px;
   border-radius: 3px;
   padding: 7px !important;
+  height: 35px;
+}
+
+.btn-addsales-close {
+  width: 100% !important;
+  margin-top: 10px;
+  border-radius: 3px;
+  padding: 7px !important;
+  height: 35px;
+  background-color: #820000 !important;
 }
 
 
@@ -92,32 +102,30 @@ input[type="text"],
 
 }
 
-.add-sales {
-  width: 100%;
-  padding: 7px;
-  margin-bottom: 5px;
-}
-
-button.btn-success a {
+div.btn-success.btn-addsales2  {
   width: 120px !important;
+  margin-top: 10px;
   margin-left: 0;
   color: #fff;
   text-decoration: none;
+  padding: 7px !important;
+
 }
 
 
 .manage-account-content2 .modal-addsales {
   border-top: #007430 2px solid;
   color: var(--text-color);
-  width: 25%;
-  height: 400px;
+  width: 20%;
+  height: 370px;
   margin-bottom: 20px;
-  box-shadow: 1px 1px 4px #c3c3c3 !important;
+  box-shadow: 1px 1px 4px #c3c3c3, -1px -1px 4px #c3c3c3 !important;
   border-radius: 5px;
   padding: 20px;
   font-size: 1vw !important;
-  position: absolute;
   background-color: #f8f8f8;
-  top: 1;
+  position: absolute;
+  transform: translate(120%, 10%);
+  display: none;
 }
 

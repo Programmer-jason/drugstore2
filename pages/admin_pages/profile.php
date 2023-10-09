@@ -31,11 +31,9 @@
     $result5 = mysqli_query($conn, $sql5);
     $totalMale = mysqli_num_rows($result5);
 
-    $sql9 = "SELECT * FROM product WHERE stockType = 'o' ORDER BY productId DESC LIMIT 11";
+    $sql9 = "SELECT * FROM product WHERE stockType = 'o' AND productQty > 0 ORDER BY productId DESC LIMIT 9";
     $result9 = mysqli_query($conn, $sql9);
 
-    $deleteQ =  "DELETE FROM product WHERE productQty <= 0";
-    mysqli_query($conn, $deleteQ);
 ?>
 
 <!DOCTYPE html>
@@ -123,7 +121,7 @@
                         <?php while ($rows = mysqli_fetch_assoc($result9)) : ?>
                             <tr>
                                 <td>
-                                    <img src="../../uploads/<?php echo $rows['productImg'];?>" alt="" width="50px">
+                                    <img src="../../uploads/<?php echo $rows['productImg'];?>" alt="" width="30px">
                                 </td>
                                 <td>
                                     <?php echo $rows['productName']; ?>
@@ -150,10 +148,10 @@
                 </table>
             </div>
 
-            <div class="total-user-graph">
+            <!-- <div class="total-user-graph">
                 <div id="myChart" class="box total-users"></div>
                 <div id="userGenderChart" class="box user-gender"></div>
-            </div>
+            </div> -->
         </div>
     </div>
 

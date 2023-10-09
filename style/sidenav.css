@@ -288,7 +288,7 @@ table tr:hover {
   justify-content: space-around;
   padding: 3px;
   text-decoration: none;
-  margin-top: 15px;
+  margin-top: 10px;
   color: #cfcfcf;
   gap: 10px;
 }
@@ -300,7 +300,7 @@ table tr:hover {
 
 div.table-container {
   background-color: #f8f8f8;
-  /* border-top: #007430 2px solid; */
+  border-top: #007430 2px solid;
   box-shadow: 1px 1px 4px #9b9b9b !important;
   border-radius: 5px;
   /* padding: 20px 0px; */
@@ -308,13 +308,13 @@ div.table-container {
 }
 
 section.payment-details-head {
-  background-color: #e2e2e2;
   width: 100%;
   margin-bottom: 15px;
   padding: 8px;
   margin-inline: auto;
-  border-bottom: 1px solid #cdcdcd;
   text-align: center;
+  border-bottom: 1px solid #c0c0c0;
+
 }
 
 section.payment-details-head .submit {
@@ -328,7 +328,7 @@ section.payment-details-head .submit {
 }
 
 section.payment-details-head .search-container #search-payment {
-  background-color: #fff;
+  background-color: #e2e2e2;
   width: 94%;
   height: 30px;
   padding: 5px;

@@ -109,7 +109,7 @@ include './connect.php';
 			} ?>
 		</div>
 		
-		<div class="copyright">Copyright © 2023 Medicure Drug.</div>
+		<!-- <div class="copyright">Copyright © 2023 Medicure Drug.</div> -->
 	</div>
 	
 	<!-- JAVASCRIPT -->

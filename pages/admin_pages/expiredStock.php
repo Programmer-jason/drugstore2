@@ -58,6 +58,7 @@
                <th>Item Name</th>
                <th>Price</th>
                <th>Quantity</th>
+               <th>Location</th>
                <!-- <th>Expired Date</th> -->
                <!-- <?php if ($row6['role'] == 'admin') { ?>
                   <th>Action</th>
@@ -68,7 +69,7 @@
                <?php while ($rows = mysqli_fetch_assoc($result)) : ?>
                <?php 
                   $getExpiredName = $rows['productName'];
-                  $selectExpired = "SELECT SUM(productQty) AS Quantity, productId, productName, productPrice, productExpired,productImg FROM product WHERE productName = '$getExpiredName' AND stockType = 'e'";
+                  $selectExpired = "SELECT SUM(productQty) AS Quantity, productId, productName, productPrice, productExpired,productImg,shelve FROM product WHERE productName = '$getExpiredName' AND stockType = 'e'";
                   $selectExpiredResult = mysqli_query($conn, $selectExpired);
                   $selectExpiredRow = mysqli_fetch_assoc($selectExpiredResult);
                ?>
@@ -88,15 +89,20 @@
                         <?php echo $selectExpiredRow['Quantity']; ?>
                      </td>
 
+                     <td>
+                        <?php echo $selectExpiredRow['shelve']; ?>
+                     </td>
+
                      <!-- <td>
                         <?php echo $selectExpiredRow['productExpired']; ?>
                      </td> -->
 
-                     <?php if ($row6['role'] == 'admin') { ?>
+                     <!-- <?php if ($row6['role'] == 'admin') { ?>
                         <td>
                            <a href="./delete_medicine.php?deleteId=<?php echo $selectExpiredRow['productId']; ?>" class="btn-danger">Delete</a>
                         </td>
-                     <?php } ?>
+                     <?php } ?> -->
+                     
                   </tr>
                <?php endwhile; ?>
             <?php endif; ?>

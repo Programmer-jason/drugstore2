@@ -12,8 +12,7 @@
    $sql = "SELECT * FROM product WHERE stockType = 'o' ORDER BY productId DESC LIMIT $offset, $record_number_perpage";
    $result = mysqli_query($conn, $sql);
 
-   $deleteQ =  "DELETE FROM product WHERE productQty <= 0";
-   mysqli_query($conn, $deleteQ);
+
 ?>
 
 <!DOCTYPE html>
@@ -45,14 +44,14 @@
          <div class="btn-success cancel">Cancel</div>
       </div>
 
-
+      
       <div class="table-container">
          <section class="payment-details-head">
             <div class="search-container">
                <input type="search" onchange="paymentSearch()" name="search" id="search-payment" placeholder="item name">
                <span class="submit" onclick="paymentSearch()">search</span>
             </div>
-
+            
             <div class="stock-links">
                <a href="./newStock.php">Stock</a>
                <a href="./damagedStock.php">Damaged Stock</a>
@@ -74,6 +73,14 @@
             </tr>
             <?php if (mysqli_num_rows($result) > 0) : ?>
                <?php while ($rows = mysqli_fetch_assoc($result)) : ?>
+                  <?php 
+                     // if($rows['productQty'] <= 0){
+                     //    $productN = $rows['productName'];
+                     //    $deleteQ =  "DELETE FROM product WHERE productName = '$productN'";
+                     //    mysqli_query($conn, $deleteQ);
+                     //    unlink('../../uploads/'.$rows['productImg']);
+                     // }
+                  ?>
                      <tr>
                         <td>
                            <img src="../../uploads/<?php echo $rows['productImg'];?>" alt="" width="50px">

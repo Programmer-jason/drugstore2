@@ -1,7 +1,7 @@
 <?php session_start();
 include './connect.php';
   $search_term = $_POST['search'];
-  $sql = "SELECT * FROM product WHERE productName LIKE '%$search_term%' AND stockType = 'o' ORDER BY productName desc";
+  $sql = "SELECT * FROM product WHERE productName LIKE '%$search_term%' AND stockType = 'o' AND productQty > 0 ORDER BY productName desc";
   $result = mysqli_query($conn, $sql);
 ?>
 
@@ -43,37 +43,31 @@ include './connect.php';
     </form>
 
     <div class="mp-list">
-    <?php
-				$sql = "SELECT * FROM product WHERE stockType = 'o' ORDER BY productName DESC";
-				$result = mysqli_query($conn, $sql);
+      <?php
+			// $sql = "SELECT * FROM product WHERE stockType = 'o' AND productQty > 0 ORDER BY productName DESC";
+			// $result = mysqli_query($conn, $sql);
 
-				if (mysqli_num_rows($result) > 0) {
-					while ($rows = mysqli_fetch_assoc($result)) {
-						$prodId2 = $rows['productId'];
-						
-						//DELETE QUERY
-						$sqlDelete = "DELETE FROM `product` WHERE `productId` = $prodId2";
-						if ($rows['productQty'] <= 0) {
-    						unlink('../uploads/'.$rows['productImg']);
-							mysqli_query($conn, $sqlDelete);
-						}
-			?>
-          <div class="mp-card">
-					<img src="<?php echo '../uploads/' . $rows['productImg']; ?>" alt='product-image' class="img-list">
-					<div class="details">
-						<div class="product-name">
-							<?php echo $rows['productName']; ?>
-						</div>
-						<h2>
-							<?php echo '₱' . $rows['productPrice']; ?>
-						</h2>
+			if (mysqli_num_rows($result) > 0) {
+				while ($rows = mysqli_fetch_assoc($result)) {
+		?>
+
+			<div class="mp-card">
+				<img src="<?php echo '../uploads/' . $rows['productImg']; ?>" alt='product-image' class="img-list">
+				<div class="details">
+					<div class="product-name">
+						<?php echo $rows['productName']; ?>
 					</div>
-					<div class="cart-btn">
-						<?php $productID = $rows['productId']; ?>
-						<a href='./validation/buyValidation.php?cartId=<?php echo $productID; ?>' class="buy-btn">Add to cart</a>
-					</div>
+					<h2>
+						<?php echo '₱' . $rows['productPrice']; ?>
+					</h2>
 				</div>
-			<?php } }?>
+				<div class="cart-btn">
+					<?php $productID = $rows['productId']; ?>
+					<a href='./validation/buyValidation.php?cartId=<?php echo $productID; ?>' class="buy-btn">Add to cart</a>
+				</div>
+			</div>
+			
+		<?php } }?>
 
 
       <div class="checkout">
@@ -132,7 +126,7 @@ include './connect.php';
 
 
     </div>
-		<div class="copyright">Copyright © 2023 Medicure Drug.</div>
+		<!-- <div class="copyright">Copyright © 2023 Medicure Drug.</div> -->
 
   </div>
 
