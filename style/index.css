@@ -26,7 +26,6 @@
 
 div.clip {
   position: absolute;
-  z-index: 1;
   background-color: #15a3502c;
   clip-path: circle(50% at 6% 50%);
   width: 100%;
@@ -61,8 +60,8 @@ div.clip {
   text-align: center;
   text-decoration: none;
   padding: 10px;
-  border-radius: 20px;
-  box-shadow: 1px 1px 4px #707070;
+  border-radius: 5px;
+  box-shadow: 1px 1px 4px #9b9b9b;
   color: var(--white-color);
   position: relative;
   transition: 0.3s ease-in-out;

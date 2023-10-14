@@ -31,7 +31,7 @@
     $result5 = mysqli_query($conn, $sql5);
     $totalMale = mysqli_num_rows($result5);
 
-    $sql9 = "SELECT * FROM product WHERE stockType = 'o' AND productQty > 0 ORDER BY productId DESC LIMIT 9";
+    $sql9 = "SELECT * FROM product WHERE stockType = 'o' AND productQty > 0 ORDER BY productId DESC LIMIT 10";
     $result9 = mysqli_query($conn, $sql9);
 
 ?>

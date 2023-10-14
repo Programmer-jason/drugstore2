@@ -16,7 +16,7 @@
 					?>
 					<div class='<?php echo ($rw['notificationType'] == "nr") ? 'notif-inbox-nr' : 'notif-inbox'?>' >
 						<div class="name-productpic">
-							<div class="notif-message">The Item <?php echo $rw['productName']; ?> is Expired Quantity Deducted <?php echo $rw['productQty']?></div>
+							<div class="notif-message">The Item <?php echo $rw['productName']; ?> is Expired at <?php echo $rw['shelve']; ?> Quantity Deducted <?php echo $rw['productQty']?></div>
 							<img src="../../uploads/<?php echo $rw['productImg'];?>" class="notif-productpic"/>
 						</div>
 

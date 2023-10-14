@@ -207,10 +207,9 @@ img {
   margin-top: 10px;
   width: 100%;
   padding: 10px;
-  border: #7c0000 1px solid;
+  background-color: #0074305f ;
   border-radius: 3px;
   margin-inline: auto;
-  color: #7c0000 !important;
 
 }
 .name-productpic{
@@ -260,17 +259,14 @@ table {
 }
 
 table th {
-
   color: #1d1d1d;
 }
 
 table td,
 table th {
   border: 1px solid #adadad;
-  padding: 3px 0px;
-  width: 13%;
-  height: 35px;
-  text-align: center;
+  padding: 3px 8px !important;
+  text-align: left !important;
 }
 
 

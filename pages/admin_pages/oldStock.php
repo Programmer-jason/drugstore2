@@ -52,6 +52,7 @@
 
          <table>
             <tr>
+               <th>Item Image</th>
                <th>Item Name</th>
                <th>Price</th>
                <th>Stock</th>
@@ -64,6 +65,10 @@
             <?php if (mysqli_num_rows($result) > 0) : ?>
                <?php while ($rows = mysqli_fetch_assoc($result)) : ?>
                   <tr>
+                     <td>
+                        <img src="../../uploads/<?php echo $rows['productImg'];?>" alt="" width="30px">
+                     </td>
+
                      <td>
                         <?php echo $rows['productName']; ?>
                      </td>

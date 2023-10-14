@@ -93,19 +93,16 @@ input[type="text"],
 
 .payment-success {
   color: #00ad48;
-  margin-inline: auto;
 
 }
 
 .payment-failed {
   color: #b80000;
-  margin-inline: auto;
 
 }
 
 .payment-pending {
   color: #d1ce0a;
-  margin-inline: auto;
 
 }
 
@@ -116,7 +113,6 @@ div.recieve {
   width: 60%;
   padding: 2px 7px;
   border-radius: 3px;
-  margin-inline: auto;
 }
 
 div.not-recieve {
@@ -126,6 +122,5 @@ div.not-recieve {
   width: 60%;
   padding: 2px 7px;
   border-radius: 3px;
-  margin-inline: auto;
 
 }

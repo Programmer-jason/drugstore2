@@ -48,8 +48,8 @@
       </div>
     </div>
 
+    <div class="copyright">Copyright © 2023 Medicure Drug.</div>
   </div>
-  <div class="copyright">Copyright © 2023 Medicure Drug.</div>
 </body>
 
 </html>

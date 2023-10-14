@@ -8,7 +8,7 @@ $get_payment_action = "SELECT * FROM `paymentDetails` WHERE `paymentId` = $payme
 $payment_action_result = mysqli_query($conn, $get_payment_action);
 $payment_action_row = mysqli_fetch_assoc($payment_action_result);
 $ref_id = $payment_action_row['refId'];
-$dateNow = date('M-j-Y');
+$dateNow = date('Y-m-d');
 
 if($payment_action_row['paymentAction'] == 'recieve'){
     $sql_updating_payment = "UPDATE `paymentdetails` SET `paymentAction`='not_recieve' WHERE paymentId = $payment_id";

@@ -1,7 +1,7 @@
 <?php include __DIR__.'\admin_header_php.php'; ?>
 <?php
    //PAGINATION
-   $record_number_perpage = 7;
+   $record_number_perpage = 10;
    $offset = ($page_no - 1) * $record_number_perpage;
 
    $number_of_newstock = "SELECT COUNT(*) FROM product WHERE stockType = 'e'";
@@ -75,7 +75,7 @@
                ?>
                   <tr>
                      <td>
-                        <img src="../../uploads/<?php echo $selectExpiredRow['productImg'];?>" alt="" width="50px">
+                        <img src="../../uploads/<?php echo $selectExpiredRow['productImg'];?>" alt="" width="30px">
                      </td>
                      <td>
                         <?php echo $selectExpiredRow['productName']; ?>

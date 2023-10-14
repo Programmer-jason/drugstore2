@@ -3,6 +3,32 @@
    //SALES
    $sqlSales = "SELECT * FROM sales";
    $resultSales = mysqli_query($conn, $sqlSales);
+
+   //PAYMENT
+   $selectPayment = "SELECT SUM(price) AS total FROM paymentdetails";
+   $selectPaymentResult = mysqli_query($conn, $selectPayment);
+   $selectPaymentRow = mysqli_fetch_assoc($selectPaymentResult);
+   $totalSales = $selectPaymentRow['total'];
+
+   // UPDATED DATE
+   $updatedDate = date('Y-m-d');
+   // echo $updatedDate > '2022-10-12' ? 'oo' : 'hindi'; 
+   
+   // SALES
+   $selectSales = "SELECT * FROM sales WHERE targetSales = '$totalSales' OR endDate = '$updatedDate'";
+   $selectSalesResult = mysqli_query($conn, $selectSales);
+   $selectSalesRow = mysqli_fetch_assoc($selectSalesResult);
+
+   if(mysqli_num_rows($selectSalesResult) > 0){
+      $updateSales = "UPDATE sales SET totalSales = '$totalSales' salesStatus = 'f' WHERE endDate = '$updatedDate' AND salesStatus = 'nf'";
+      mysqli_query($conn, $updateSales);
+   }
+
+   // GET FINISH TOTAL SALES 
+   $selectSales2 = "SELECT SUM(totalSales) AS totals FROM sales WHERE salesStatus = 'f'";
+   $selectSalesResult2 = mysqli_query($conn, $selectSales2);
+   $selectSalesRow2 = mysqli_fetch_assoc($selectSalesResult2);
+   
 ?>
 
 <!DOCTYPE html>
@@ -64,15 +90,15 @@
                <?php while ($rows = mysqli_fetch_assoc($resultSales)) : ?>
                   <tr>
                      <td>
-                        <?php echo $rows["mula"]; ?>
+                        <?php echo $rows["startingDate"]; ?>
                      </td>
 
                      <td>
-                        <?php echo $rows["hanggang"]; ?>
+                        <?php echo $rows["endDate"]; ?>
                      </td>
 
                      <td>
-                        <?php echo '₱' . ' ' . $rows["totalSales"]; ?>
+                        <?php echo ($rows["salesStatus"] == 'f') ? '₱' . ' ' .$rows["totalSales"] : '₱' . ' ' . $totalSales - $selectSalesRow2['totals']; ?>
                      </td>
 
                      <td>
