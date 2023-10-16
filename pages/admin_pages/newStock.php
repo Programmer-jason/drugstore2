@@ -91,7 +91,7 @@
                         </td>
 
                         <td>
-                           <?php echo '₱' . $rows['productPrice']; ?>
+                           <?php echo '₱' . number_format($rows['productPrice']); ?>
                         </td>
 
                         <td>

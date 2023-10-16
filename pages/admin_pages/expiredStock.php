@@ -82,7 +82,7 @@
                      </td>
 
                      <td>
-                        <?php echo '₱' . $selectExpiredRow['productPrice']; ?>
+                        <?php echo '₱' . number_format($selectExpiredRow['productPrice']); ?>
                      </td>
 
                      <td>

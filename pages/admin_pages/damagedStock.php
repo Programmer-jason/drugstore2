@@ -70,14 +70,14 @@
                			?>
 						<tr>
 							<td>
-								<img src="../../uploads/<?php echo $selectExpiredRow['productImg'];?>" alt="" width="50px">
+								<img src="../../uploads/<?php echo $selectExpiredRow['productImg'];?>" alt="" width="30px">
 							</td>
 							<td>
 								<?php echo $selectExpiredRow['productName']; ?>
 							</td>
 
 							<td>
-								<?php echo '₱' . $selectExpiredRow['productPrice']; ?>
+								<?php echo '₱' . number_format($selectExpiredRow['productPrice']); ?>
 							</td>
 
 							<td>

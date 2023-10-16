@@ -113,6 +113,7 @@ div.recieve {
   width: 60%;
   padding: 2px 7px;
   border-radius: 3px;
+  text-align: center;
 }
 
 div.not-recieve {
@@ -122,5 +123,6 @@ div.not-recieve {
   width: 60%;
   padding: 2px 7px;
   border-radius: 3px;
+  text-align: center;
 
 }

@@ -97,7 +97,7 @@
 
                 <div>
                     <h2>
-                        <?php echo '₱' . ' ' . $totalSales; ?>
+                        <?php echo '₱' . ' ' . number_format($totalSales); ?>
                     </h2>
 
                     <div>Total Sales</div>
@@ -128,7 +128,7 @@
                                 </td>
 
                                 <td>
-                                    <?php echo '₱' . $rows['productPrice']; ?>
+                                    <?php echo '₱' . number_format($rows['productPrice']); ?>
                                 </td>
 
                                 <td>

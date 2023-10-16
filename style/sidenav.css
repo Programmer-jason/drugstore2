@@ -267,6 +267,7 @@ table th {
   border: 1px solid #adadad;
   padding: 3px 8px !important;
   text-align: left !important;
+  height: 30px !important;
 }
 
 

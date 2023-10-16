@@ -70,16 +70,17 @@ input[type="text"],
 
 .add-product-content {
   padding: 30px;
-  width: 40%;
+  width: 30%;
   font-size: small;
   position: absolute;
   z-index: 9999;
   right: 400px;
+  top: 100px;
   display: none;
-  background-color: #f8f8f8;
+  background-color: #f0f0f0;
   border-radius: 5px;
   border-top: #007430 2px solid;
-  box-shadow: 1px 1px 4px #c3c3c3 !important
+  box-shadow: 1px 1px 6px #9b9b9b!important
 
 }
 
@@ -168,7 +169,7 @@ select {
   display: inline-block;
   border-radius: 3px;
   cursor: pointer;
-  background: #8e8700;
+  background: orange;
   text-align: center;
   box-shadow: 1px 1px 4px #999999 !important;
 

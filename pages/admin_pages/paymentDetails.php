@@ -75,7 +75,7 @@
 							</td>
 
 							<td>
-								<?php echo '₱ ' . $rows["price"]; ?>
+								<?php echo '₱ ' . number_format($rows["price"]); ?>
 							</td>
 
 							<td>
@@ -115,7 +115,7 @@
 							</td>
 
 							<td>
-								<?php echo $rows["dateRecieved"]; ?>
+								<?php echo date('M d Y', strtotime($rows["dateRecieved"])); ?>
 							</td>
 
 							<td>
