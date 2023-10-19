@@ -58,7 +58,6 @@
                <th>End Date</th>
                <th>Total</th>
                <th>Target </th>
-               <th>Less </th>
                <th>Status</th>
                <th>Action</th>
 
@@ -80,11 +79,13 @@
                      $selectPaymentRow = mysqli_fetch_assoc($selectPaymentResult);
                      $totalSales = $selectPaymentRow['total'];
                      $dateRecieve = $selectPaymentRow['dateRecieved'];
-                     $m = abs($targetSales - $totalSales);
 
                      if(mysqli_num_rows($selectPaymentResult) > 0){
-                        if($endDate == $updatedDate || $targetSales == $totalSales){
-                           $updateSales = "UPDATE sales SET totalSales = '$totalSales', salesLack=$m, salesStatus = 'f' WHERE endDate='$updatedDate' AND salesStatus = 'nf'";
+                        if($endDate == $updatedDate){
+                           $updateSales = "UPDATE sales SET totalSales = '$totalSales', salesStatus = 'f' WHERE startingDate='$startDate' AND endDate='$updatedDate' AND salesStatus = 'nf'";
+                           mysqli_query($conn, $updateSales);
+                        } else {
+                           $updateSales = "UPDATE sales SET totalSales = '$totalSales' WHERE startingDate='$startDate' AND endDate='$endDate' AND salesStatus = 'nf'";
                            mysqli_query($conn, $updateSales);
                         }
                      }
@@ -104,10 +105,6 @@
 
                      <td>
                         <?php echo '₱' . ' ' . number_format($rows["targetSales"]); ?>
-                     </td>
-
-                     <td>
-                        <?php echo '₱' . ' ' . number_format(abs($targetSales - $totalSales)); ?>
                      </td>
 
                      <td>

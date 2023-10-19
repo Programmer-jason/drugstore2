@@ -57,7 +57,7 @@
                <?php while ($rows = mysqli_fetch_assoc($result)) : ?>
                   <tr>
                      <td>
-                        <img src="../../profile/<?php echo $rows['userProfile'];?>" alt="" width="30px">
+                        <img src="../../profile/<?php echo $rows['userProfile'];?>" alt="" width="30px" height="27px">
                      </td>
 
                      <td>

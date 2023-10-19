@@ -22,13 +22,18 @@ $(document).ready(function () {
   $(".btn-add-stock").click(function () {
     $(".add-product-content").fadeIn("3000");
   });
-
+  
   $(".btn-damage").click(function () {
     $(".add-product-content").fadeIn("3000");
   });
-
+  
   $(".cancel").click(function () {
     $(".add-product-content").fadeOut("3000");
+    $(".instore-purchase").fadeOut("3000");
+  });
+  
+  $(".btn-instore").click(function () {
+    $(".instore-purchase").fadeIn("3000");
   });
 
   $(".btn-addsales2").click(function () {

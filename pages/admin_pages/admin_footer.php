@@ -16,6 +16,13 @@
             document.querySelector(".notifCount").style.display = "none"
         }
 
+        // IN STORE PURCHASE
+        async function inStorePurchase(prodId) {
+            let myObject = await fetch('./inStorePurchase.php?prodId=' + prodId);
+            let myText = await myObject.text();
+            document.querySelector('.instore-purchase2').innerHTML = myText
+        }
+
         // AddStockAndDamage.php
         async function addStockAndDamage(stockId) {
             let myObject = await fetch('./addStockAndDamage.php?stockId=' + stockId);
@@ -28,6 +35,9 @@
             let myText = await myObject.text();
             document.querySelector('.insert-form').innerHTML = myText
         }
+       
+
+        
         
     </script>
 </body>

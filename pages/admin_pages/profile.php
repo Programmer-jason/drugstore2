@@ -16,15 +16,9 @@
     $totalExpired = mysqli_num_rows($result3);
 
     //get total sales
-    $sql4 = "SELECT * FROM product";
+    $getTotalSales = "SELECT SUM() FROM sales WHERE startingDate = '1999-01-01' AND endDate ='3000-01-01'";
     $result4 = mysqli_query($conn, $sql4);
     $totalSales = 0;
-
-    if (mysqli_num_rows($result4) > 0) {
-        while ($rows = mysqli_fetch_assoc($result4)) {
-            $totalSales += $rows['productPrice'];
-        }
-    }
 
     //GET TOTAL MALE
     $sql5 = "SELECT * FROM signup WHERE gender = 'm'";
@@ -102,7 +96,9 @@
 
                     <div>Total Sales</div>
                 </div>
+
             </div>
+
         </div>
 
         <div class="down-side">
@@ -115,7 +111,7 @@
                         <th>Price</th>
                         <th>Quantity</th>
                         <th>Location</th>
-                        <!-- <th>Expired Date</th> -->
+                        
                     </tr>
                     <?php if (mysqli_num_rows($result9) > 0) : ?>
                         <?php while ($rows = mysqli_fetch_assoc($result9)) : ?>
@@ -139,9 +135,7 @@
                                     <?php echo $rows['shelve']; ?>
                                 </td>
 
-                                <!-- <td>
-                                    <?php echo $rows['productExpired']; ?>
-                                </td> -->
+                             
                             </tr>
                         <?php endwhile; ?>
                     <?php endif; ?>

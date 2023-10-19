@@ -9,10 +9,21 @@
    $total_rows = mysqli_fetch_array($newstock_result)[0];
    $total_page = ceil($total_rows / $record_number_perpage);
 
-   $sql = "SELECT * FROM product WHERE stockType = 'o' ORDER BY productId DESC LIMIT $offset, $record_number_perpage";
-   $result = mysqli_query($conn, $sql);
+   $sql_payment_search = "SELECT * FROM product WHERE stockType = 'o' ORDER BY productId DESC LIMIT $offset, $record_number_perpage";
+   $result_payment_search = mysqli_query($conn, $sql_payment_search);
 
-
+   //SEARCH PAYMENT
+   if(isset($_GET['searching'])){
+      if ($_GET['searching'] != '') {
+         $searchOnchange = $_GET['searching'];
+         $sql_payment_search = "SELECT * FROM `product` WHERE stockType = 'o' AND productName LIKE '%$searchOnchange%' LIMIT $offset, $record_number_perpage";
+         $result_payment_search = mysqli_query($conn, $sql_payment_search);
+      } else {
+         // $searchOnchange = $_GET['searching'];
+         $sql_payment_search = "SELECT * FROM `product` WHERE stockType = 'o' LIMIT $offset, $record_number_perpage";
+         $result_payment_search = mysqli_query($conn, $sql_payment_search);
+      }
+   }
 ?>
 
 <!DOCTYPE html>
@@ -39,17 +50,17 @@
    <div class="inventory-content">
 
       <div class="add-product-content">
+         <div class="btn-success cancel">x</div>
          <div class="insert-form">
          </div>
-         <div class="btn-success cancel">Cancel</div>
       </div>
 
       
       <div class="table-container">
          <section class="payment-details-head">
             <div class="search-container">
-               <input type="search" onchange="paymentSearch()" name="search" id="search-payment" placeholder="item name">
-               <span class="submit" onclick="paymentSearch()">search</span>
+               <input type="search" name="search" id="search-payment" placeholder="item name">
+               <span class="submit" onclick="itemSearch()">search</span>
             </div>
             
             <div class="stock-links">
@@ -59,6 +70,12 @@
             </div>
          </section>
          
+         <section class="instore-purchase">
+            <div class="btn-success cancel">x</div>
+            <div class="instore-purchase2">
+            </div>
+         </section>
+
          <table>
             <tr>
                <th>Item Image</th>
@@ -66,13 +83,10 @@
                <th>Price</th>
                <th>Quantity</th>
                <th>Location</th>
-               <!-- <th>Expired Date</th> -->
-               <?php if ($row6['role'] == 'admin') { ?>
-                  <th colspan="3">Action</th>
-               <?php } ?>
+               <th colspan="3">Action</th>
             </tr>
-            <?php if (mysqli_num_rows($result) > 0) : ?>
-               <?php while ($rows = mysqli_fetch_assoc($result)) : ?>
+            <?php if (mysqli_num_rows($result_payment_search) > 0) : ?>
+               <?php while ($rows = mysqli_fetch_assoc($result_payment_search)) : ?>
                   <?php 
                      // if($rows['productQty'] <= 0){
                      //    $productN = $rows['productName'];
@@ -83,7 +97,7 @@
                   ?>
                      <tr>
                         <td>
-                           <img src="../../uploads/<?php echo $rows['productImg'];?>" alt="" width="30px">
+                           <img src="../../uploads/<?php echo $rows['productImg'];?>" alt="" width="30px" height="27px">
                         </td>
 
                         <td>
@@ -102,18 +116,17 @@
                            <?php echo $rows['shelve']; ?>
                         </td>
 
-                        <!-- <td>
-                           <?php echo $rows['productExpired']; ?>
-                        </td> -->
+                        <td>
+                           <span onclick="inStorePurchase(<?php echo $rows['productId'] ?>)" class="btn-instore btn-primary">Purchase</span>
 
-                        <?php if ($row6['role'] == 'admin') { ?>
-                           <td>
+                           <?php if ($row6['role'] == 'admin') { ?>
                               <span onclick="addStockAndDamage(<?php echo $rows['productId'] ?>)" class="btn-add-stock">Add Stock</span>
                               <span onclick="addDamage(<?php echo $rows['productId'] ?>, 'd')" class="btn-damage">Add Damage</span>
+                     
                               <a href="./delete_medicine.php?deleteId=<?php echo $rows['productId']; ?>" class="btn-danger">Delete</a>
                               <!-- <a href="../validation/updateInventory.php?updateId=<?php echo $rows['productId']; ?>" class="btn btn-primary">Edit</a> -->
-                           </td>
-                        <?php } ?>
+                           <?php } ?>
+                        </td>
                      </tr>
                <?php endwhile; ?>
             <?php endif; ?>
@@ -134,4 +147,10 @@
       </section>
    </div>
    
+   <script>
+      function itemSearch() {
+			let search = document.getElementById("search-payment").value
+			window.location="./newStock.php?searching=" + search
+      }
+   </script>
 <?php include __DIR__.'\admin_footer.php'; 

@@ -75,7 +75,7 @@
                ?>
                   <tr>
                      <td>
-                        <img src="../../uploads/<?php echo $selectExpiredRow['productImg'];?>" alt="" width="30px">
+                        <img src="../../uploads/<?php echo $selectExpiredRow['productImg'];?>" alt="" width="30px" height="27px">
                      </td>
                      <td>
                         <?php echo $selectExpiredRow['productName']; ?>

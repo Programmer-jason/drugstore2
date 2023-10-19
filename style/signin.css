@@ -20,10 +20,9 @@ body {
 
 .brand {
   display: flex;
-  text-align: center;
+  justify-content: center;
   align-items: center;
   border-radius: 40px;
-  padding: 20px;
 }
 
 .brand img {
@@ -42,7 +41,7 @@ body {
 .container {
   font-size: 2vh;
   border-radius: 10px;
-  width: min(60vh, 550px);
+  width: min(90%, 550px);
   background-color: #f8f8f8;
   box-shadow: 1px 1px 4px #9b9b9b;
   border-top: #007430 3px solid;
