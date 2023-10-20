@@ -16,9 +16,10 @@
     $totalExpired = mysqli_num_rows($result3);
 
     //get total sales
-    $getTotalSales = "SELECT SUM() FROM sales WHERE startingDate = '1999-01-01' AND endDate ='3000-01-01'";
-    $result4 = mysqli_query($conn, $sql4);
-    $totalSales = 0;
+    $getTotalSales = "SELECT SUM(price) AS total FROM paymentDetails";
+    $totalSalesResult = mysqli_query($conn, $getTotalSales);
+    $totalSalesRow = mysqli_fetch_assoc($totalSalesResult);
+    $totalSales = $totalSalesRow['total'];
 
     //GET TOTAL MALE
     $sql5 = "SELECT * FROM signup WHERE gender = 'm'";

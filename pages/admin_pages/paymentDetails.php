@@ -13,7 +13,7 @@
 	$total_rows = mysqli_fetch_array($paymentDetailsResult)[0];
 	$total_page = ceil($total_rows / $record_number_perpage);
 
-	$getPaymentDetails = "SELECT * FROM paymentdetails LIMIT $offset, $record_number_perpage";
+	$getPaymentDetails = "SELECT * FROM paymentdetails WHERE paymentType!='overthecounter' LIMIT $offset, $record_number_perpage";
 	$getPaymentDetailsResult = mysqli_query($conn, $getPaymentDetails);
 
 ?>
