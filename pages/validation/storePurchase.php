@@ -13,17 +13,18 @@
     $minusQuantity = $getproductQty - $quantity;
     $total_amount = $getproductPrice * $quantity;
     $dateNow = date('Y-m-d');
+    $uniqId = uniqid(true);
 
     if(mysqli_num_rows($getProductResult) > 0){
         $updateProduct = "UPDATE product SET productQty = '$minusQuantity' WHERE productId = '$getProductId'";
         mysqli_query($conn, $updateProduct);
 
-        $insertToPayment = "INSERT INTO `paymentdetails`(`paymentId`,`checkoutId`,`name`,`price`,`paymentStatus`,`dateRecieved`,`paymentType`,`paymentAction`) 
-                            VALUES (null, '', '', $total_amount, 'paid', '$dateNow', 'overthecounter', 'recieve')";
+        $insertToPayment = "INSERT INTO `paymentdetails`(`paymentId`,`refId`,`checkoutId`,`name`,`price`,`paymentStatus`,`dateRecieved`,`paymentType`,`paymentAction`) 
+                            VALUES (null, '$uniqId','', '', $total_amount, 'paid', '$dateNow', 'overthecounter', 'recieve')";
         mysqli_query($conn, $insertToPayment);
 
         $insertToCheckout = "INSERT INTO `checkout_item`(`checkout_id`,`ref_id`,`item_id`,`item_name`,`item_qty`) 
-                       VALUES (null, '', '$getProductId', '$getproductName', '$quantity')";
+                       VALUES (null, '$uniqId', '$getProductId', '$getproductName', '$quantity')";
         mysqli_query($conn, $insertToCheckout);
 
         mysqli_close($conn);
