@@ -42,15 +42,8 @@ $checkout_result = mysqli_query($conn, $select_checkout);
                 <?php endwhile; ?>
             <?php endif; ?>
         </div>
-
-        <?php if (!isset($_SESSION['user'])) { ?>
-            <a href="./payment_successful.php">Go Back</a>
-        <?php } ?>
-
-        <?php if (isset($_SESSION['user'])) { ?>
-            <a href="./admin_pages/paymentDetails.php">Go Back</a>
-        <?php } ?>
-
+        
+        <a href=<?php echo (!isset($_SESSION['user'])) ? "./payment_successful.php" : "./admin_pages/paymentDetails.php"?>>Go Back</a>
     </section>
 
 <?php include './footer.php';?>
