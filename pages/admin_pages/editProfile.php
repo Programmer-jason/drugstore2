@@ -1,4 +1,5 @@
-<?php include __DIR__.'\admin_header_php.php' ?>
+<?php include './admin_header_php.php'; ?> 
+
 <?php
 	$myAccount = $_SESSION['user'];
 	$sql = "SELECT * FROM `signUp` WHERE email = '$myAccount';";
@@ -81,9 +82,9 @@
 	<link rel="stylesheet" href="../../style/editProfile.css" />
 </head>
 
-<?php include __DIR__.'\admin_header_html.php'; ?>
+<?php include './admin_header_html.php'; ?>
 	<div class="head-title">Edit Profile</div>
-<?php include __DIR__.'\admin_header_html2.php'; ?>
+<?php include './admin_header_html2.php'; ?>
 
 	<div class="manage-account-content">
 		<div class="account-info">

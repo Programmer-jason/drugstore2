@@ -48,6 +48,7 @@ nav ul li a {
   height: 60px;
   border-right: 1px solid #c3c3c3;
   background-color: #f8f8f8;
+  padding-left: 10px !important;
 }
 
 .brand img {

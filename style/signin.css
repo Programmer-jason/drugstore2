@@ -23,10 +23,11 @@ body {
   justify-content: center;
   align-items: center;
   border-radius: 40px;
+  width: 90% !important;
 }
 
 .brand img {
-  width: 90px;
+  width: 80px;
 }
 
 .brand a {
@@ -41,7 +42,7 @@ body {
 .container {
   font-size: 2vh;
   border-radius: 10px;
-  width: min(90%, 550px);
+  width: min(90%, 500px);
   background-color: #f8f8f8;
   box-shadow: 1px 1px 4px #9b9b9b;
   border-top: #007430 3px solid;

@@ -31,9 +31,9 @@
 
 </head>
 
-<?php include __DIR__.'\admin_header_html.php'; ?>
+<?php include './admin_header_html.php'; ?>
    <div class="head-title">Inventory / Old Stock</div>
-<?php include __DIR__.'\admin_header_html2.php'; ?>
+<?php include './admin_header_html2.php'; ?>
 
    <div class="inventory-content">
       <div class="table-container">

@@ -4,7 +4,8 @@
   height: 100vh;
 }
 .container nav {
-  padding-left: 50px !important;
+  padding-left: 75px !important;
+  box-shadow: none;
 }
 .container nav img {
   max-width: 100%;
@@ -17,19 +18,27 @@
   display: flex;
   flex-direction: column;
   gap: 30px;
+  background-color: #f0f0f0;
 }
 .container .customer-info .title-head {
-  color: #007430;
+  color: #f0f0f0;
+  padding: 20px;
   font-size: 3vh;
   font-family: "Franklin Gothic", "Arial Narrow", Arial, sans-serif;
   border-bottom: #007430 1px solid;
   text-align: center;
+  background-color: #007430;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 .container .customer-info form {
+  box-shadow: 1px 1px 4px #c9c9c9;
+  background-color: #f8f8f8;
+  border-radius: 4px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding-inline: 20px;
+  gap: 35px;
+  height: 380px;
 }
 .container .customer-info form input {
   width: 100%;
@@ -39,11 +48,17 @@
   border: 1px #9b9b9b solid;
   padding: 5px;
 }
+.container .customer-info form .row {
+  width: 80%;
+  margin-inline: auto;
+}
 .container .customer-info form .btn-submit {
   border: none;
   background-color: #007430;
   color: #f0f0f0;
   box-shadow: 1px 1px 4px #9b9b9b;
+  width: 80%;
+  margin-inline: auto;
 }
 .container .customer-info form .for {
   padding: 5px;
@@ -76,7 +91,7 @@
   border: 1px #9b9b9b solid;
 }
 .container .payment-success, .container .payment-failed {
-  background-color: rgba(0, 116, 48, 0.2588235294);
+  background-color: rgba(0, 116, 48, 0.1137254902);
   border: 1px solid #007430;
   display: flex;
   flex-direction: column;
@@ -84,9 +99,8 @@
   justify-content: center;
   margin: auto;
   margin-top: 50px;
-  width: 60%;
-  box-shadow: 1px 1px 4px #9b9b9b;
-  height: 350px;
+  width: 30%;
+  height: 400px;
   border-radius: 3px;
 }
 .container .payment-success .payment-successful, .container .payment-failed .payment-successful, .container .payment-failed .payment-fail {
@@ -94,6 +108,9 @@
   color: #007430;
   padding: 20px;
   text-align: center;
+}
+.container .payment-success div, .container .payment-failed div, .container .payment-success span, .container .payment-failed span {
+  color: #2d2d2d;
 }
 .container .payment-failed {
   border: 1px solid #a80202;
@@ -103,15 +120,7 @@
   color: #a80202;
 }
 
-section.footer {
-  text-align: center;
-}
-section.footer div.copyright {
-  text-align: center;
+div.copyright {
   color: #007430;
-  background-color: #f0f0f0;
-  /* border-top: #007430 1px solid; */
-  padding: 15px;
-  box-shadow: 1px 1px 4px #9b9b9b;
-  
+  text-align: center;
 }/*# sourceMappingURL=global.css.map */

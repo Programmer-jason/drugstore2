@@ -1,4 +1,4 @@
-<?php include  __DIR__ . '\header.php'; ?>
+<?php include './header.php';?>
 <?php
 //======== view_item.php ========//
 
@@ -53,4 +53,4 @@ $checkout_result = mysqli_query($conn, $select_checkout);
 
     </section>
 
-<?php include __DIR__ . '\footer.php'; ?>
+<?php include './footer.php';?>

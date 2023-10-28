@@ -1,5 +1,6 @@
 $primary-color: #007430;
 $background-color: #f0f0f0;
+$background-color2: #f8f8f8;
 $color: #f0f0f0;
 $shadow: 1px 1px 4px #9b9b9b;
 $border: 1px #9b9b9b solid;
@@ -19,7 +20,8 @@ $radius: 3px;
     height: 100vh;
 
     nav{
-        padding-left: 50px !important;
+        padding-left: 75px !important;
+        box-shadow: none;
 
         img {
             max-width: 100%;
@@ -34,21 +36,30 @@ $radius: 3px;
         display: flex;
         flex-direction: column;
         gap: 30px;
+        background-color: $background-color;
+
 
 
         .title-head{
-            color: $primary-color;
+            color: $color;
+            padding: 20px;
             font-size: 3vh;
             font-family: 'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;
             border-bottom: $primary-color 1px solid;
             text-align: center;
+            background-color: $primary-color;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
         }
 
         form {
+            box-shadow: 1px 1px 4px #c9c9c9;
+            background-color: $background-color2;
+            border-radius: 4px;
             display: flex;
             flex-direction: column;
-            gap: 20px;
-            padding-inline: 20px;
+            gap: 35px;
+            height: 380px;
 
             input{
                 width: 100%;
@@ -57,13 +68,21 @@ $radius: 3px;
                 border: none;
                 border: $border;
                 padding: 5px;
-            } 
+            }
+            .row {
+                width: 80%;
+                margin-inline: auto;
+
+            }
 
             .btn-submit {
                 border: none;
                 background-color: $primary-color;
                 color: $color;
                 box-shadow: $shadow;
+                width: 80%;
+                margin-inline: auto;
+
             }
 
 
@@ -118,7 +137,7 @@ $radius: 3px;
 
     //========= PAYMENT SUCCESSFUL =================
     .payment-success{
-        background-color: #00743042;
+        background-color: #0074301d;
         @include borders($primary-color);
         display: flex;
         flex-direction: column;
@@ -126,9 +145,9 @@ $radius: 3px;
         justify-content: center;
         margin: auto;
         margin-top: 50px;
-        width: 60%;
-        box-shadow: $shadow;
-        height: 350px;
+        width: 30%;
+        // box-shadow: $shadow;
+        height: 400px;
         border-radius: $radius;
 
 
@@ -138,6 +157,10 @@ $radius: 3px;
             @include colors(#007430);
             padding: 20px;
             text-align: center;
+        }
+
+        div, span {
+            color: #2d2d2d
         }
     }
     .payment-failed {
@@ -157,14 +180,9 @@ $radius: 3px;
     
 }
 
-section.footer {
 
-   text-align: center;
 
    div.copyright {
+        color: $primary-color;
         text-align: center;
-        color: $color;
-        background-color: $primary-color;
-        padding: 15px;
     }
-}

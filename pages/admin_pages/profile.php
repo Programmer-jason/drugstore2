@@ -1,4 +1,5 @@
-<?php include __DIR__.'\admin_header_php.php' ?>
+<?php include './admin_header_php.php'; ?> 
+
 <?php 
     //get all product type medicine
     $sql = "SELECT DISTINCT productName FROM product WHERE productType = 'm' ";
@@ -47,9 +48,9 @@
     <link rel="stylesheet" href="../../style/profile.css" />
 </head>
 
-<?php include __DIR__.'\admin_header_html.php'; ?>
+<?php include './admin_header_html.php'; ?>
     <div class="head-title">Dashboard</div>
-<?php include __DIR__.'\admin_header_html2.php'; ?>
+<?php include './admin_header_html2.php'; ?>
 
     <div class="user-container">
         <div class="dashboard-content">

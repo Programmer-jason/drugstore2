@@ -18,7 +18,7 @@
     <section class="main-page">
         <nav>
             <div class="brand">
-                <img src="../Images/sample logo.png" alt="no image" />
+                <img src="../images/sample logo.png" alt="no image" />
                 <a href="../index.php">Medicure Drug</a>
             </div>
 

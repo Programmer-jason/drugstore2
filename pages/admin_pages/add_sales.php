@@ -1,4 +1,4 @@
-<?php include __DIR__.'\admin_header_php.php' ?>
+<?php include './admin_header_php.php'; ?> 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,9 +16,9 @@
    <link rel="stylesheet" href="../../style/add_sales.css" />
 </head>
 
-<?php include __DIR__.'\admin_header_html.php'; ?>
+<?php include './admin_header_html.php'; ?>
    <div class="head-title">Sales/Add Sales</div>
-<?php include __DIR__.'\admin_header_html2.php'; ?>
+<?php include './admin_header_html2.php'; ?>
 
 
    <div class="inventory-content">

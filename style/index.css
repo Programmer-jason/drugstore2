@@ -81,5 +81,7 @@ div.clip {
 }
 
 .copyright {
-  text-align: end;
+  color: #007430;
+  text-align: center;
+  padding-left: 10px;
 }

@@ -1,4 +1,4 @@
-<?php include __DIR__.'\admin_header_php.php'; ?>
+<?php include './admin_header_php.php'; ?> 
 <?php
 	//PAGINATION
 	$record_number_perpage = 10;
@@ -26,9 +26,9 @@
    <link rel="stylesheet" href="../../style/damagedStock.css" />
 </head>
 
-<?php include __DIR__.'\admin_header_html.php'; ?>
+<?php include './admin_header_html.php'; ?>
 	<div class="head-title">Inventory / Damaged Stock</div>
-<?php include __DIR__.'\admin_header_html2.php'; ?>
+<?php include './admin_header_html2.php'; ?>
 
 	<div class="inventory-content">
 		<div class="table-container">

@@ -1,4 +1,5 @@
-<?php include __DIR__.'\admin_header_php.php' ?>
+<?php include './admin_header_php.php'; ?> 
+
 <?php
    //PAGINATION
    $record_number_perpage = 8;
@@ -29,9 +30,9 @@
    <link rel="stylesheet" href="../../style/manageAccount.css" />
 </head>
 
-<?php include __DIR__.'\admin_header_html.php'; ?>
+<?php include './admin_header_html.php'; ?>
    <div class="head-title">Users/Customer</div>
-<?php include __DIR__.'\admin_header_html2.php'; ?>
+<?php include './admin_header_html2.php'; ?>
          
    <div class="manage-account-content">
       <div class="table-container">

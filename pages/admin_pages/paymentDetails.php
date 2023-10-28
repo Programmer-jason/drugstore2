@@ -1,4 +1,5 @@
-<?php include __DIR__.'\admin_header_php.php' ?>
+<?php include './admin_header_php.php'; ?> 
+
 <?php
 	// GET SIGNUP
 	$sql = "SELECT * FROM signUp";
@@ -34,9 +35,9 @@
 	<link rel="stylesheet" href="../../style/paymentDetails.css" />
 </head>
 
-<?php include __DIR__.'\admin_header_html.php'; ?>
+<?php include './admin_header_html.php'; ?>
 	<div class="head-title">Payment</div>
-<?php include __DIR__.'\admin_header_html2.php'; ?>
+<?php include './admin_header_html2.php'; ?>
 
 	<div class="manage-account-content">
 		<div class="table-container">
@@ -115,7 +116,7 @@
 							</td>
 
 							<td>
-								<?php echo date('M d Y', strtotime($rows["dateRecieved"])); ?>
+								<?php echo ($rows["paymentAction"] == 'not_recieve' || empty($rows["paymentAction"])) ?  '' : date('M d Y', strtotime($rows["dateRecieved"])) ; ?>
 							</td>
 
 							<td>

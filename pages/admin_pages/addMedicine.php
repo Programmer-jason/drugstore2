@@ -1,4 +1,4 @@
-<?php include __DIR__.'\admin_header_php.php'; ?>
+<?php include './admin_header_php.php'; ?> 
 <?php
     if(isset($_GET['message'])){
         $getMessage = $_GET['message'];
@@ -26,9 +26,9 @@
    <link rel="stylesheet" href="../../style/addMedicine.css" />
 </head>
 
-<?php include __DIR__.'\admin_header_html.php'; ?>
+<?php include './admin_header_html.php'; ?>
     <div class="head-title">Add Item</div>
-<?php include __DIR__.'\admin_header_html2.php'; ?>
+<?php include './admin_header_html2.php'; ?>
 
     <div class="add-product-content">
         <form action="../validation/addMedicineValidation.php" method="post" enctype="multipart/form-data" class="form">

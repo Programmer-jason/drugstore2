@@ -1,5 +1,5 @@
 
-<?php include  __DIR__.'\header.php';?>
+<?php include './header.php';?>
 <?php 
 
     if(!isset($_SESSION['reference_id'])){
@@ -20,10 +20,10 @@
             <?php echo ($_SESSION['payment_status'] == 'paid') ? '
                 <div class="payment-successful">Payment Successful</div>' : '<div class="payment-fail">Payment Failed</div>'
             ?>
-            <span>TRANSACTION NUMBER</span>
+            <span>Transaction Number</span>
             <span class="reference"><?php echo $_SESSION['reference_id']; ?></span>
             <br>
-            <div>NAME</div>
+            <div>Name</div>
             <span class="name"><?php echo $_SESSION['customer_name']; ?></span>
             <br>
             <div>Amount</div>
@@ -38,5 +38,5 @@
 
     </div>
 
-<?php include __DIR__.'\footer.php';?>
+<?php include './footer.php';?>
 
