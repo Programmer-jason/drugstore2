@@ -44,5 +44,9 @@ $(document).ready(function () {
     $(".modal-addsales").fadeOut("3000");
   });
 
+  $(".btn-selectSales").click(function () {
+    $(".search-container").fadeIn("3000");
+  });
+
 
 });

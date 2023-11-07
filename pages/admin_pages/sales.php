@@ -1,10 +1,46 @@
 <?php include './admin_header_php.php'; ?> 
-
 <?php
    //SALES
-   $sqlSales = "SELECT * FROM sales";
-   $resultSales = mysqli_query($conn, $sqlSales);
+   if(!isset($_GET['salesId'])){
+      $sqlSales = "SELECT * FROM sales ORDER BY salesId Desc";
+   } else {
+      $salesIdd =$_GET['salesId'];
+      $sqlSales = "SELECT * FROM sales WHERE salesId=$salesIdd";
+   }
+      $resultSales = mysqli_query($conn, $sqlSales);
+      $salesRow = mysqli_fetch_assoc($resultSales);
+      $updatedDate = date('Y-m-d');
    
+   // if(mysqli_num_rows($resultSales) > 0){
+      $salesId = $salesRow['salesId'];
+      $startDate = $salesRow['startingDate'];
+      $endDate = $salesRow['endDate'];
+      $targetSales = $salesRow['targetSales'];
+      $salesStatus = $salesRow["salesStatus"];
+      $readableStartDate = date('M d Y', strtotime($startDate));
+      $readableEndDate = date('M d Y', strtotime($endDate));
+      
+      $selectPayment = "SELECT SUM(price) AS total, dateRecieved FROM paymentdetails WHERE dateRecieved BETWEEN '$startDate' AND '$endDate'";
+      $selectPaymentResult = mysqli_query($conn, $selectPayment);
+      $selectPaymentRow = mysqli_fetch_assoc($selectPaymentResult);
+      $totalSales = $selectPaymentRow['total'];
+      // $dateRecieve = $selectPaymentRow['dateRecieved'];
+      
+      if(mysqli_num_rows($selectPaymentResult) > 0){
+         if($endDate == $updatedDate){
+            $updateSales = "UPDATE sales SET totalSales = '$totalSales', salesStatus = 'f' WHERE startingDate='$startDate' AND endDate='$updatedDate' AND salesStatus = 'nf'";
+            mysqli_query($conn, $updateSales);
+         } else {
+            $updateSales = "UPDATE sales SET totalSales = '$totalSales' WHERE startingDate='$startDate' AND endDate='$endDate' AND salesStatus = 'nf'";
+         mysqli_query($conn, $updateSales);
+         }
+      }
+   // }
+   $selectPayments = "SELECT DISTINCT dateRecieved FROM paymentdetails WHERE dateRecieved BETWEEN '$startDate' AND '$endDate'";
+   $selectPaymentResults = mysqli_query($conn, $selectPayments);
+
+   $sqlSaless = "SELECT * FROM sales ORDER BY salesId Desc";
+   $resultSaless = mysqli_query($conn, $sqlSaless);
 ?>
 
 <!DOCTYPE html>
@@ -28,8 +64,8 @@
 <?php include './admin_header_html2.php'; ?>
 
    <div class="manage-account-content2">
-
       <div class="modal-addsales">
+         <div class="btn-success btn-addsales-close">X</div>
          <form action="../validation/sales_add.php" method="post">
             <div>Starting Date</div>
             <input type="date" name="from" placeholder="01/1/1970" id="from" required>
@@ -41,83 +77,75 @@
             <input type="number" name="targetSales" id="targetSales" required>
             <br><br>
             <input type="submit" value="Add" name="submit" id="Add" class="btn-success btn-addsales">
-            <div class="btn-success btn-addsales-close">Close</div>
          </form>
       </div>
 
-   
+      
 
+      <section class="top-sales-link">
+         <div class="startDate saless">
+            <div>Starting Date</div>
+            <?php echo (!isset($readableEndDate)) ? 'N/A' : $readableStartDate ?>
+         </div>
+
+         <div class="endDate saless">
+            <div>End Date</div>
+            <?php echo (!isset($readableEndDate)) ? 'N/A' : $readableEndDate ?>
+         </div>
+
+         <div class="totalSales saless">
+            <div>Total Sales</div>
+            <?php echo (!isset($totalSales)) ? '₱' . ' ' .'0' : '₱' . ' ' .number_format($totalSales) ?>
+         </div>
+
+         <div class="targetSales saless">
+            <div>Target Sales</div>
+            <?php echo (!isset($targetSales)) ? '₱' . ' ' .'0' : '₱' . ' ' . number_format($targetSales) ?>
+         </div>
+
+         <div class="salesStatus saless">
+            <div>Status</div>
+            <?php echo(!isset($salesStatus)) ? 'N/A' : (($salesStatus == 'f') ? 'Finish' : 'Not Finish'); ?>
+         </div>
+      </section>
 
       <div class="table-container">
          <section class="payment-details-head">
             <div class="search-container">
-               <input type="search" onchange="paymentSearch()" name="search" id="search-payment" placeholder="starting date">
-               <span class="submit" onclick="paymentSearch()">search</span>
+                  <?php if (mysqli_num_rows($resultSaless) > 0) : ?>
+                     <?php while ($rows = mysqli_fetch_assoc($resultSaless)) : ?>
+                        <a href="<?php echo "./sales.php?salesId=".$rows['salesId'] ?>" class="click-sales">
+                           <?php echo date('M d Y', strtotime($rows['startingDate'])).' - '.date('M d Y', strtotime($rows['endDate'])) ?>
+                        </a>
+                        <br>
+                     <?php endwhile; ?>
+                  <?php endif; ?>
+               </select>
             </div>
          </section>
 
          <table>
             <tr>
-               <th>Starting Date</th>
-               <th>End Date</th>
+               <th>Date</th>
                <th>Total</th>
-               <th>Target </th>
-               <th>Status</th>
-               <th>Action</th>
-
             </tr>
-            <?php if (mysqli_num_rows($resultSales) > 0) : ?>
-               <?php while ($rows = mysqli_fetch_assoc($resultSales)) : ?>
+            <?php if (mysqli_num_rows($selectPaymentResults) > 0) : ?>
+               <?php while ($rows = mysqli_fetch_assoc($selectPaymentResults)) : ?>
                   <?php 
                      //PAYMENT
-   					   $updatedDate = date('Y-m-d');
-
-                     $startDate = $rows['startingDate'];
-                     $endDate = $rows['endDate'];
-                     $targetSales = $rows['targetSales'];
-   					   $readableStartDate = date('M d Y', strtotime($startDate));
-   					   $readableEndDate = date('M d Y', strtotime($endDate));
-
-                     $selectPayment = "SELECT SUM(price) AS total, dateRecieved FROM paymentdetails WHERE dateRecieved BETWEEN '$startDate' AND '$endDate'";
-                     $selectPaymentResult = mysqli_query($conn, $selectPayment);
-                     $selectPaymentRow = mysqli_fetch_assoc($selectPaymentResult);
-                     $totalSales = $selectPaymentRow['total'];
-                     $dateRecieve = $selectPaymentRow['dateRecieved'];
-
-                     if(mysqli_num_rows($selectPaymentResult) > 0){
-                        if($endDate == $updatedDate){
-                           $updateSales = "UPDATE sales SET totalSales = '$totalSales', salesStatus = 'f' WHERE startingDate='$startDate' AND endDate='$updatedDate' AND salesStatus = 'nf'";
-                           mysqli_query($conn, $updateSales);
-                        } else {
-                           $updateSales = "UPDATE sales SET totalSales = '$totalSales' WHERE startingDate='$startDate' AND endDate='$endDate' AND salesStatus = 'nf'";
-                           mysqli_query($conn, $updateSales);
-                        }
-                     }
+                     $dateRecieves = $rows['dateRecieved'];
+                     $selectPaymentss = "SELECT SUM(price) AS total FROM paymentdetails WHERE dateRecieved='$dateRecieves'";
+   					   $selectPaymentResultss = mysqli_query($conn, $selectPaymentss);
+                     $selectPaymentRowss = mysqli_fetch_assoc($selectPaymentResultss);
+                     $totalSalesss = $selectPaymentRowss['total'];
                   ?>
                   <tr>
                      <td>
-                        <?php echo $readableStartDate; ?>
+                        <?php echo date('M d Y', strtotime($rows['dateRecieved'])) ?>
                      </td>
 
                      <td>
-                        <?php echo $readableEndDate; ?>
-                     </td>
-
-                     <td>
-                        <?php echo ($totalSales == 0) ? '₱' . ' ' .'0' : '₱' . ' ' .number_format($totalSales); ?>
-                     </td>
-
-                     <td>
-                        <?php echo '₱' . ' ' . number_format($rows["targetSales"]); ?>
-                     </td>
-
-                     <td>
-                        <?php echo( $rows["salesStatus"] == 'f') ? 'Finish' : 'Not Finish'; ?>
-                     </td>
-
-                     <td>
-                        <!-- <a href="./update.php?id=<?php echo $rows['salesId']; ?>" class="btn btn-primary btn-sm">Edit</a> -->
-                        <a href="./delete_sales.php?deleteId=<?php echo $rows['salesId']; ?>" class="btn btn-danger btn-sm">Delete</a>
+                        <?php echo ($totalSalesss == 0) ? '₱' . ' ' .'0' : '₱' . ' ' .number_format($totalSalesss) ?>
                      </td>
                   </tr>
                <?php endwhile; ?>
@@ -125,7 +153,15 @@
          </table>
       </div>
 
-      <div class="btn-success btn-addsales2">New Sales</div>
+     <!-- SALES BUTTON -->
+     <div class="btn-success btn-addsales2">New Sales</div>
+     <a href="./delete_sales.php?deleteId=<?php echo $salesId ?>" class="btn btn-danger btn-delete-sales">Delete Sales</a>
+     <div class="btn-success btn-selectSales">Select Sales</div>
    </div>
-
+   
+<script>
+      document.querySelector('.click-sales').addEventListener('click', function(){
+         document.querySelector('.search-container').style.display = 'none'
+      })
+</script>
 <?php include __DIR__.'\admin_footer.php'; 
