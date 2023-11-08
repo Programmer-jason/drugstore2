@@ -48,5 +48,8 @@ $(document).ready(function () {
     $(".search-container").fadeIn("3000");
   });
 
+  $(".btn-close-sales").click(function () {
+    $(".search-container").fadeOut("3000");
+  });
 
 });

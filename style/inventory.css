@@ -74,8 +74,8 @@ input[type="text"],
   font-size: small;
   position: absolute;
   z-index: 9999;
-  right: 400px;
-  top: 100px;
+  left: 40%;
+  top: 20%;
   display: none;
   background-color: #f8f8f8;
   border-radius: 5px;
@@ -182,8 +182,7 @@ select {
   margin-top: 0 !important;
   padding-top: 0 !important;
   height: 0 !important;
-  font-weight: bolder !important;
-  font-size: larger !important;
+
 }
 .image {
   width: 30%;
@@ -192,12 +191,14 @@ select {
   width: 15%;
   position: absolute;
   left: 50%;
+  top: 25%;
   height: 330px;
   background-color: #f0f0f0;
   padding: 10px;
   box-shadow: 1px 1px 4px #9b9b9b !important;
   border-top: #007430 2px solid;
   display: none;
+  border-radius: 5px;
  
 }
 .btn-instore {

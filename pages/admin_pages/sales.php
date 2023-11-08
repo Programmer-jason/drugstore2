@@ -112,15 +112,24 @@
       <div class="table-container">
          <section class="payment-details-head">
             <div class="search-container">
+               <div class="btn-success btn-close-sales">X</div>
+               <table >
+                  <tr>
+                     <th>Select Sales</th>
+                  </tr>
+                  
                   <?php if (mysqli_num_rows($resultSaless) > 0) : ?>
                      <?php while ($rows = mysqli_fetch_assoc($resultSaless)) : ?>
-                        <a href="<?php echo "./sales.php?salesId=".$rows['salesId'] ?>" class="click-sales">
-                           <?php echo date('M d Y', strtotime($rows['startingDate'])).' - '.date('M d Y', strtotime($rows['endDate'])) ?>
-                        </a>
-                        <br>
+                        <tr>
+                           <td>
+                              <a href="<?php echo "./sales.php?salesId=".$rows['salesId'] ?>" class="click-sales">
+                                 <?php echo date('M d Y', strtotime($rows['startingDate'])).' - '.date('M d Y', strtotime($rows['endDate'])) ?>
+                              </a>
+                           </td>
+                        </tr>
                      <?php endwhile; ?>
                   <?php endif; ?>
-               </select>
+               </table>
             </div>
          </section>
 
