@@ -11,7 +11,7 @@
    $total_page = ceil($total_rows / $record_number_perpage);
 
    // $sql = "SELECT * FROM product WHERE stockType = 'e' LIMIT $offset, $record_number_perpage";
-   $sql = "SELECT DISTINCT productName FROM product WHERE stockType = 'e' LIMIT $offset, $record_number_perpage";
+   $sql = "SELECT DISTINCT productName FROM product WHERE stockType = 'e' ORDER BY productId DESC LIMIT $offset, $record_number_perpage";
    $result = mysqli_query($conn, $sql);
 ?>
 
@@ -125,4 +125,4 @@
 
    </div>
 
-<?php include __DIR__.'\admin_footer.php'; 
+<?php include './admin_footer.php'; ?> 

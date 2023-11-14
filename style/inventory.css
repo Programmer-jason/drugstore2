@@ -80,7 +80,7 @@ input[type="text"],
   background-color: #f8f8f8;
   border-radius: 5px;
   border-top: #007430 2px solid;
-  box-shadow: 1px 1px 6px #9b9b9b!important
+  box-shadow: 1px 1px 6px #373737!important
 }
 
 .add-product-content .form {
@@ -121,7 +121,7 @@ input[type="text"],
 .two,
 .three {
   width: 50%;
-  padding-right: 10px;
+  padding: 3px;
 }
 input[type="text"],
 [type="number"],
@@ -193,9 +193,9 @@ select {
   left: 50%;
   top: 25%;
   height: 330px;
-  background-color: #f0f0f0;
+  background-color: #f8f8f8;
   padding: 10px;
-  box-shadow: 1px 1px 4px #9b9b9b !important;
+  box-shadow: 1px 1px 4px #373737 !important;
   border-top: #007430 2px solid;
   display: none;
   border-radius: 5px;

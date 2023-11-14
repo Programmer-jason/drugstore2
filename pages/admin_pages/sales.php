@@ -173,4 +173,4 @@
          document.querySelector('.search-container').style.display = 'none'
       })
 </script>
-<?php include __DIR__.'\admin_footer.php'; 
+<?php include './admin_footer.php'; ?> 

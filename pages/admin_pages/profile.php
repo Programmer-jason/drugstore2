@@ -1,5 +1,4 @@
 <?php include './admin_header_php.php'; ?> 
-
 <?php 
     //get all product type medicine
     $sql = "SELECT DISTINCT productName FROM product WHERE productType = 'm' ";
@@ -11,23 +10,32 @@
     $result2 = mysqli_query($conn, $sql2);
     $productType = mysqli_num_rows($result2);
 
-    // get expired
+    //get expired
     $sql3 = "SELECT DISTINCT productName FROM product WHERE stockType = 'e'";
     $result3 = mysqli_query($conn, $sql3);
     $totalExpired = mysqli_num_rows($result3);
 
     //get total sales
-    $getTotalSales = "SELECT SUM(price) AS total FROM paymentDetails";
+    // $getTotalSales = "SELECT SUM(price) AS total FROM paymentDetails";
+    // $totalSalesResult = mysqli_query($conn, $getTotalSales);
+    // $totalSalesRow = mysqli_fetch_assoc($totalSalesResult);
+    // $totalSales = $totalSalesRow['total'];
+    $getTotalSales = "SELECT * FROM sales ORDER BY salesId Desc";
     $totalSalesResult = mysqli_query($conn, $getTotalSales);
     $totalSalesRow = mysqli_fetch_assoc($totalSalesResult);
-    $totalSales = $totalSalesRow['total'];
+    $startingDate = $totalSalesRow['startingDate'];
+    $readableStartDate = date('M d Y', strtotime($startingDate));
+    $endDate = $totalSalesRow['endDate'];
+    $readableEndDate = date('Y', strtotime($endDate));
+    $saleTotal = $totalSalesRow['totalSales'];
+    $targetSales = $totalSalesRow['targetSales'];
 
     //GET TOTAL MALE
     $sql5 = "SELECT * FROM signup WHERE gender = 'm'";
     $result5 = mysqli_query($conn, $sql5);
     $totalMale = mysqli_num_rows($result5);
 
-    $sql9 = "SELECT * FROM product WHERE stockType = 'o' AND productQty > 0 ORDER BY productId DESC LIMIT 10";
+    $sql9 = "SELECT * FROM product WHERE stockType = 'o' AND productQty > 0 ORDER BY productId DESC LIMIT 11";
     $result9 = mysqli_query($conn, $sql9);
 
 ?>
@@ -93,7 +101,7 @@
 
                 <div>
                     <h2>
-                        <?php echo '₱' . ' ' . number_format($totalSales); ?>
+                        <?php echo '₱' . ' ' . number_format($saleTotal); ?>
                     </h2>
 
                     <div>Total Sales</div>
@@ -104,7 +112,9 @@
         </div>
 
         <div class="down-side">
-            <div class="new-stocklist">
+            <div id="chart_div" style="width: 100%; height: 500px;"></div>
+
+            <!-- <div class="new-stocklist">
                 <div class="new-item">New Added Item</div>
                 <table>
                     <tr>
@@ -142,14 +152,42 @@
                         <?php endwhile; ?>
                     <?php endif; ?>
                 </table>
-            </div>
-
-            <!-- <div class="total-user-graph">
-                <div id="myChart" class="box total-users"></div>
-                <div id="userGenderChart" class="box user-gender"></div>
             </div> -->
+
         </div>
     </div>
-
-    <script src="../../js/jsChart.js"></script>
-<?php include __DIR__.'\admin_footer.php'; 
+    
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" defer>
+        
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+      
+            function drawChart() {
+              var data = google.visualization.arrayToDataTable([
+                <?php
+                    echo "
+                      ['Year', 'Sales', 'Target'],
+                      [ '2019', 1252000,     2112000],
+                      [ '2020', 922232,     1389433],
+                      [ '2021', 832035,     1203423],
+                      [ '2022', 982034,     1210243],
+                      ['$readableEndDate', $saleTotal, $targetSales],
+                    "
+                ?>
+              ]);
+      
+              var options = {
+                title: 'Sales',
+                hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
+                backgroundColor: '#f8f8f8',
+                vAxis: {minValue: 0},
+                colors: ['green','lightblue']
+              };
+      
+              var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+              chart.draw(data, options);
+            }
+        
+    </script>
+<?php include './admin_footer.php'; ?>

@@ -119,4 +119,4 @@
 		</section>
 
 	</div>
-<?php include __DIR__.'\admin_footer.php'; 
+<?php include './admin_footer.php'; ?> 

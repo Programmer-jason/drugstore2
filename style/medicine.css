@@ -46,7 +46,7 @@ a {
 }
 
 .medicine-container::-webkit-scrollbar-thumb {
-  background-color: #007430;
+  background-color: #313131;
 }
 
 .mp-card {
@@ -100,7 +100,7 @@ form {
   width: 68%;
   margin-bottom: 5px;
   text-align: end;
-  padding: 10px;
+  padding-block: 10px;
 }
 
 #search {
@@ -181,11 +181,10 @@ div.checkout {
 
 div.checkout::-webkit-scrollbar {
   width: 5px;
-  border: #9c9c9c 1px solid;
 }
 
 div.checkout::-webkit-scrollbar-thumb {
-  background-color: #00642a;
+  background-color: #313131;
   border-radius: 30px;
 
 }

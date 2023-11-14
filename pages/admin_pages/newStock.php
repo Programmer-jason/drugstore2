@@ -154,4 +154,4 @@
 			window.location="./newStock.php?searching=" + search
       }
    </script>
-<?php include __DIR__.'\admin_footer.php'; 
+<?php include './admin_footer.php'; ?> 

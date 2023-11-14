@@ -138,14 +138,14 @@ div.btn-success.btn-selectSales  {
   color: var(--text-color);
   width: 20%;
   height: 370px;
-  margin-bottom: 20px;
-  box-shadow: 1px 1px 4px #c3c3c3, -1px -1px 4px #c3c3c3 !important;
+  box-shadow: 1px 1px 6px #373737 !important;
   border-radius: 5px;
   padding: 20px;
   font-size: 1vw !important;
   background-color: #f8f8f8;
   position: absolute;
-  transform: translate(120%, 10%);
+  top: 25%;
+  left: 45%;
   display: none;
 }
 
@@ -170,7 +170,7 @@ div.btn-success.btn-selectSales  {
   position: absolute;
   top: 25%;
   left: 45%;
-  box-shadow: 1px 1px 4px #c3c3c3, -1px -1px 4px #c3c3c3 !important;
+  box-shadow: 1px 1px 6px #373737 !important;
   width: 25%;
   height: 400px;
   border-radius: 5px;

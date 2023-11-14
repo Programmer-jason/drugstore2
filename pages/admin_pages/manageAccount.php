@@ -110,4 +110,4 @@
       <a href="./add_employee.php" class="add-employee btn-success">Add Employee</a>
    </div>
 
-<?php include __DIR__.'\admin_footer.php'; 
+<?php include './admin_footer.php'; ?> 
