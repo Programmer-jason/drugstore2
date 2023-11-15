@@ -12,10 +12,13 @@
          </div>
       </div>
 
-      <a href="./profile.php" class="box dashboard">
-         <div><img src="../../assets/dashboard.svg" alt="dashboard" width="25px"></div>
-         <div> Dashboard</div>
-      </a>
+      <?php if ($row6['role'] == 'admin') { ?>
+         <a href="./profile.php" class="box dashboard">
+            <div><img src="../../assets/dashboard.svg" alt="dashboard" width="25px"></div>
+            <div> Dashboard</div>
+         </a>
+      <?php } ?>
+
 
       <a href="./newStock.php" class="box stock">
          <div><img src="../../assets/inventory.svg" alt="dashboard" width="25px"></div>

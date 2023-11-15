@@ -10,7 +10,7 @@
 				<div class="notifContent">
 					<div class="notifTittle">Notification</div>
 					<?php
-					$sql8 = "SELECT * FROM product WHERE stockType = 'e'";
+					$sql8 = "SELECT * FROM product WHERE stockType = 'e' ORDER BY productId DESC";
 					$result8 = mysqli_query($conn, $sql8);
 					while ($rw = mysqli_fetch_assoc($result8)) { 
 					?>

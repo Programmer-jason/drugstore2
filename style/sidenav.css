@@ -247,11 +247,14 @@ img {
   padding: 20px 40px;
   width: 100%;
   height: 100vh;
+  overflow: hidden;
+
 }
 
 table {
   border-collapse: collapse;
   width: 95%;
+  height: fit-content !important;
   color: var(--text-color);
   cursor: pointer;
   overflow: hidden;

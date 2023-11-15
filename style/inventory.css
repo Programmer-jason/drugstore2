@@ -9,7 +9,6 @@
 }
 * {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -143,7 +142,7 @@ select {
   border: none;
 }
 .btn-add-stock {
-  width: 90px !important;
+  width: 20% !important;
   outline: none;
   border: none;
   text-decoration: none;
@@ -156,9 +155,12 @@ select {
   background: #0965dd;
   text-align: center;
   box-shadow: 1px 1px 4px #999999 !important;
+  font-size: 90% !important;
+
 }
 .btn-damage {
-  width: 90px !important;
+  width: 20% !important;
+  font-size: 90% !important;
   outline: none;
   border: none;
   text-decoration: none;
@@ -202,7 +204,7 @@ select {
  
 }
 .btn-instore {
-  width: 90px !important;
+  width: 20% !important;
   outline: none;
   border: none;
   text-decoration: none;
@@ -215,4 +217,6 @@ select {
   background: #007430;
   text-align: center;
   box-shadow: 1px 1px 4px #999999 !important;
+  font-size: 90% !important;
+
 }
