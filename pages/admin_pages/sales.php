@@ -164,7 +164,7 @@
 
      <!-- SALES BUTTON -->
      <div class="btn-success btn-addsales2">New Sales</div>
-     <a href="./delete_sales.php?deleteId=<?php echo $salesId ?>" class="btn btn-danger btn-delete-sales">Delete Sales</a>
+     <!-- <a href="./delete_sales.php?deleteId=<?php echo $salesId ?>" class="btn btn-danger btn-delete-sales">Delete Sales</a> -->
      <div class="btn-success btn-selectSales">Select Sales</div>
    </div>
    

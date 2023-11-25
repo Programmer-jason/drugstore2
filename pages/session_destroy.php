@@ -1,7 +1,8 @@
 <?php 
 session_start();
 
-session_destroy();
+// session_destroy();
+$_SESSION['shoppingCart'] = [];
 header("location: ./medicine.php");
 
 ?>

@@ -16,7 +16,6 @@
 }
 body,
 html {
-  width: 100%;
   display: flex;
   overflow: hidden;
 }

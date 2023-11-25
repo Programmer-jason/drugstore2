@@ -12,6 +12,11 @@
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
+html, body {
+  width: 100vw !important;
+  height: auto !important;
+}
+
 .user-profile {
   width: 20px !important;
   vertical-align: middle !important;
